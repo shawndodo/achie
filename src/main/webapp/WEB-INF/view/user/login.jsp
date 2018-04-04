@@ -37,13 +37,13 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html">教师教学与科研成果管理系统</a>
+        <a href="login.jsp">教师教学与科研成果管理系统</a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">登陆</p>
 
-        <form action="../../index2.html" method="post">
+        <form action="signIn" method="post">
             <div class="form-group has-feedback">
                 <input type="email" class="form-control" placeholder="Email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -78,7 +78,7 @@
         <!-- /.social-auth-links -->
 
         <a href="#">忘记密码</a><br>
-        <a href="register.html" class="text-center">注册</a>
+        <a href="register.jsp" class="text-center">注册</a>
 
     </div>
     <!-- /.login-box-body -->

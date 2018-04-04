@@ -12,4 +12,9 @@ public class UserController {
         return "user/login";
     }
 
+    @RequestMapping("/signIn")
+    public String signIn(){
+        return "redirect:/home/index";
+    }
+
 }

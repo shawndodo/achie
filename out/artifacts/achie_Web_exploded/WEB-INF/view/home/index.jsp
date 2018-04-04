@@ -75,7 +75,7 @@
                                         <a href="#">
                                             <div class="pull-left">
                                                 <!-- User Image -->
-                                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                <img src="<%=request.getContextPath()%>/statics/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                             </div>
                                             <!-- Message title and timestamp -->
                                             <h4>
@@ -160,17 +160,17 @@
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src="<%=request.getContextPath()%>/statics/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs">admin</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="<%=request.getContextPath()%>/statics/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Alexander Pierce - Web Developer
+                                    admin - Web Developer
                                     <small>Member since Nov. 2012</small>
                                 </p>
                             </li>
@@ -217,10 +217,10 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="<%=request.getContextPath()%>/statics/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
+                    <p>admin</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -242,17 +242,17 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">HEADER</li>
                 <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-                <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+                <li class="active"><a href="#"><i class="fa fa-link"></i> <span>个人中心</span></a></li>
+                <li><a href="#"><i class="fa fa-link"></i> <span>成果统计</span></a></li>
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+                    <a href="#"><i class="fa fa-link"></i> <span>成果提交</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#">Link in level 2</a></li>
-                        <li><a href="#">Link in level 2</a></li>
+                        <li><a href="#">著作申请</a></li>
+                        <li><a href="#">论文信息</a></li>
                     </ul>
                 </li>
             </ul>
@@ -294,7 +294,7 @@
             Anything you want
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2018 <a href="#">Company</a>.</strong> All rights reserved.
     </footer>
 
     <!-- Control Sidebar -->
