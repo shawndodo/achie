@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Starter</title>
+    <title>成果管理系统 | 首页</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -45,9 +45,9 @@
         <!-- Logo -->
         <a href="index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini">成果</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><i class = "fa fa-bank"></i>    <b>成果管理系统</b></span>
         </a>
 
         <!-- Header Navbar -->
@@ -170,32 +170,32 @@
                                 <img src="<%=request.getContextPath()%>/statics/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                    admin - Web Developer
-                                    <small>Member since Nov. 2012</small>
+                                    admin - 老师
+                                    <small>2012-09-01年开始工作</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-                            </li>
+                            <%--<li class="user-body">--%>
+                                <%--<div class="row">--%>
+                                    <%--<div class="col-xs-4 text-center">--%>
+                                        <%--<a href="#">Followers</a>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="col-xs-4 text-center">--%>
+                                        <%--<a href="#">Sales</a>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="col-xs-4 text-center">--%>
+                                        <%--<a href="#">Friends</a>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                                <%--<!-- /.row -->--%>
+                            <%--</li>--%>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="#" class="btn btn-default btn-flat">个人信息</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="#" class="btn btn-default btn-flat">注销</a>
                                 </div>
                             </li>
                         </ul>
@@ -222,14 +222,14 @@
                 <div class="pull-left info">
                     <p>admin</p>
                     <!-- Status -->
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
                 </div>
             </div>
 
             <!-- search form (Optional) -->
             <form action="#" method="get" class="sidebar-form">
                 <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <input type="text" name="q" class="form-control" placeholder="搜索">
                     <span class="input-group-btn">
               <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
               </button>
@@ -240,21 +240,38 @@
 
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">HEADER</li>
+                <li class="header">菜单</li>
                 <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="#"><i class="fa fa-link"></i> <span>个人中心</span></a></li>
-                <li><a href="#"><i class="fa fa-link"></i> <span>成果统计</span></a></li>
+                <li class="active"><a href="#"><i class="fa fa-user"></i> <span>个人中心</span></a></li>
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-link"></i> <span>成果提交</span>
+                    <a href="#"><i class="fa fa-bookmark-o"></i> <span>教学成果</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#">著作申请</a></li>
-                        <li><a href="#">论文信息</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i>教学奖项</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i>教材或讲义</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i>教学论文</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i>主持改革项目</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i>承担教学项目</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i>指导学生创新项目</a></li>
                     </ul>
                 </li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-balance-scale"></i> <span>科研成果</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i>科研论文</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i>科研奖项</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i>科研专利</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i>科研报告</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="fa fa-bar-chart"></i> <span>成果统计</span></a></li>
             </ul>
             <!-- /.sidebar-menu -->
         </section>
@@ -266,12 +283,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Page Header
-                <small>Optional description</small>
+                欢迎
+                <%--<small>Optional description</small>--%>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> 欢迎</a></li>
+                <li class="active">当前页</li>
             </ol>
         </section>
 
@@ -290,9 +307,9 @@
     <!-- Main Footer -->
     <footer class="main-footer">
         <!-- To the right -->
-        <div class="pull-right hidden-xs">
-            Anything you want
-        </div>
+        <%--<div class="pull-right hidden-xs">--%>
+            <%--谢谢使用--%>
+        <%--</div>--%>
         <!-- Default to the left -->
         <strong>Copyright &copy; 2018 <a href="#">Company</a>.</strong> All rights reserved.
     </footer>
