@@ -152,7 +152,7 @@
                                         <td>xxxxxxxxx</td>
                                         <td>
                                             <div>
-                                                <a>
+                                                <a href="/achie/patent/show">
                                                     <i></i>
                                                     查看详情
                                                 </a>

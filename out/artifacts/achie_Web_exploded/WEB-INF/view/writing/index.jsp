@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>成果管理系统 | 专利管理</title>
+    <title>成果管理系统 | 著作管理</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- 页面css -->
@@ -59,13 +59,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                专利管理
+                著作管理
                 <%--<small>advanced tables</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">科研成果</a></li>
-                <li class="active">专利管理</li>
+                <li><a href="#">教学成果</a></li>
+                <li class="active">著作管理</li>
             </ol>
         </section>
 
@@ -113,7 +113,7 @@
             <div class="row">
                 <div class="col-xs-2">
                     <button type="button" class="btn btn-block btn-primary" onclick="window.location.href='add'">
-                        新增专利
+                        新增著作
                     </button>
                 </div>
                 <div class="col-xs-12">
