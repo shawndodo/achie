@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>成果管理系统 | 新增专利</title>
+    <title>成果管理系统 | 查看专利</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -50,13 +50,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                新增专利
+                查看专利
                 <%--<small>Preview</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a href="#">专利管理</a></li>
-                <li class="active">新增专利</li>
+                <li class="active">查看专利</li>
             </ol>
         </section>
 
@@ -68,11 +68,11 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">信息填写</h3>
+                            <h3 class="box-title">信息查看</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form action="index" method="post" role="form">
+                        <form action="edit" method="get" role="form">
                             <div class="box-body">
                                 <%@include file="_patent_form.jsp" %>
                                 <%--<div class="form-group">--%>
@@ -152,7 +152,7 @@
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">确认</button>
+                                <button type="submit" class="btn btn-primary">编辑</button>
                             </div>
                         </form>
                     </div>

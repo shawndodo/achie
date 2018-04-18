@@ -17,5 +17,14 @@ public class PatentController {
         return "patent/add";
     }
 
+    @RequestMapping("/show")
+    public String show(){
+        return "patent/show";
+    }
+
+    @RequestMapping("/edit")
+    public String edit(){
+        return "patent/edit";
+    }
 
 }

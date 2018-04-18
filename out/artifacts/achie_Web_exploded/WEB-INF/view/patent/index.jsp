@@ -14,6 +14,8 @@
     <title>成果管理系统 | 专利管理</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- 页面css -->
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/css/patent/index.css">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet"
           href="<%=request.getContextPath()%>/statics/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -39,6 +41,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 
     <!-- Google Font -->
     <link rel="stylesheet"
@@ -66,11 +69,12 @@
             </ol>
         </section>
 
+        <%--查询框--%>
         <section class="search-box">
             <div class="box-body">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div>
+                    <div class="col-md-10">
+                        <div class="search-query">
                             <div class="form-group">
                                 <label>专利名称</label>
                                 <input type="text" class="form-control" placeholder="请输入..">
@@ -91,6 +95,13 @@
                                 </select>
                             </div>
 
+                        </div>
+                        <div>
+                            <div class="col-xs-2">
+                                <button type="button" class="btn btn-block btn-primary" onclick="window.location.href='add'">
+                                    查询
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -151,20 +162,20 @@
                                 </c:forEach>
 
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>专利名称</th>
-                                    <th>专利类型</th>
-                                    <th>专利状态</th>
-                                    <th>专利编号</th>
-                                    <th>获得时间</th>
-                                    <th>申请编号</th>
-                                    <th>申请时间</th>
-                                    <th>本人排名</th>
-                                    <th>备注</th>
-                                    <th>操作</th>
-                                </tr>
-                                </tfoot>
+                                <%--<tfoot>--%>
+                                <%--<tr>--%>
+                                    <%--<th>专利名称</th>--%>
+                                    <%--<th>专利类型</th>--%>
+                                    <%--<th>专利状态</th>--%>
+                                    <%--<th>专利编号</th>--%>
+                                    <%--<th>获得时间</th>--%>
+                                    <%--<th>申请编号</th>--%>
+                                    <%--<th>申请时间</th>--%>
+                                    <%--<th>本人排名</th>--%>
+                                    <%--<th>备注</th>--%>
+                                    <%--<th>操作</th>--%>
+                                <%--</tr>--%>
+                                <%--</tfoot>--%>
                             </table>
                         </div>
                         <!-- /.box-body -->
@@ -204,20 +215,6 @@
 <!-- Select2 -->
 <script src="<%=request.getContextPath()%>/statics/bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- page script -->
-<script>
-    $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging': true,
-            'lengthChange': false,
-            'searching': false,
-            'ordering': true,
-            'info': true,
-            'autoWidth': false
-        })
-        //Initialize Select2 Elements
-        $('.select2').select2()
-    })
-</script>
+<script src="<%=request.getContextPath()%>/statics/js/patent/index.js"></script>
 </body>
 </html>
