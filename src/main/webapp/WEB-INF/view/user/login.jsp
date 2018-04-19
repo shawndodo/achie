@@ -39,17 +39,21 @@
     <div class="login-logo">
         <a href="login.jsp">教师教学与科研成果管理系统</a>
     </div>
-    <!-- /.login-logo -->
+    <!-- /.servlets-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">登陆</p>
 
-        <form action="signIn" method="post">
+        <form action="loginServlet" method="post">
+            <%--暂时不用使用邮箱登陆--%>
+            <%--<div class="form-group has-feedback">--%>
+                <%--<input type="email" class="form-control" placeholder="Email">--%>
+                <%--<span class="glyphicon glyphicon-envelope form-control-feedback"></span>--%>
+            <%--</div>--%>
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Email">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <input type="text" class="form-control" name="userName" placeholder="请填写用户名">
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" class="form-control" name="userPwd" placeholder="请填写密码">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
@@ -77,13 +81,14 @@
         <%--</div>--%>
         <!-- /.social-auth-links -->
 
-        <a href="#">忘记密码</a><br>
-        <a href="register.jsp" class="text-center">注册</a>
+        <%--暂时注释--%>
+        <%--<a href="#">忘记密码</a><br>--%>
+        <%--<a href="register.jsp" class="text-center">注册</a>--%>
 
     </div>
-    <!-- /.login-box-body -->
+    <!-- /.servlets-box-body -->
 </div>
-<!-- /.login-box -->
+<!-- /.servlets-box -->
 
 <!-- jQuery 3 -->
 <script src="<%=request.getContextPath()%>/statics/bower_components/jquery/dist/jquery.min.js"></script>

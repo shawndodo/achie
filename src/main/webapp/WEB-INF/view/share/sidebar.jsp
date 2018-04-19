@@ -18,7 +18,11 @@
                 <img src="<%=request.getContextPath()%>/statics/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>admin</p>
+                <%--在类似局部视图的文件里不需要再声明--%>
+                <%--<%--%>
+                    <%--String userName = (String) session.getAttribute("loginName");--%>
+                <%--%>--%>
+                <p><%=realName%></p>
                 <!-- Status -->
                 <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
             </div>

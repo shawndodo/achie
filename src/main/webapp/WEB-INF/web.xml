@@ -27,6 +27,15 @@
         <servlet-name>springMVC</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>achieve.servlets.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/user/loginServlet</url-pattern>
+    </servlet-mapping>
+
     <!--把applicationContext.xml加入到配置文件中-->
     <context-param>
         <param-name>contextConfigLocation</param-name>

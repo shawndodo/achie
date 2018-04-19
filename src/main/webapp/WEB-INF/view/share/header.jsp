@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String realName = (String) session.getAttribute("loginName");
+%>
 <!-- Main Header -->
 <header class="main-header">
 
@@ -129,7 +132,7 @@
                         <!-- The user image in the navbar-->
                         <img src="<%=request.getContextPath()%>/statics/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">admin</span>
+                        <span class="hidden-xs"><%=realName%></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
@@ -137,7 +140,7 @@
                             <img src="<%=request.getContextPath()%>/statics/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                             <p>
-                                admin - 老师
+                                <%=realName%> - 老师
                                 <small>2012-09-01年开始工作</small>
                             </p>
                         </li>

@@ -38,7 +38,9 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
+    <%--<%--%>
+        <%--String userName = (String) session.getAttribute("loginName");--%>
+    <%--%>--%>
     <!-- Main Header -->
     <%@include file="../share/header.jsp" %>
 
@@ -51,8 +53,11 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
+            <%--<%--%>
+                <%--String userName = (String) session.getAttribute("loginName");--%>
+            <%--%>--%>
             <h1>
-                欢迎
+                欢迎<%=realName%>
                 <%--<small>Optional description</small>--%>
             </h1>
             <ol class="breadcrumb">
