@@ -5,8 +5,9 @@ public class TeacherAchie {
     private int id;
     private int teacherId;
     private int achieId;
-    private int achieType;
-    private int teacherContributeType;
+    private String achieType;
+    private String teacherContributeType;
+    private String label;
 
     public int getId() {
         return id;
@@ -32,20 +33,28 @@ public class TeacherAchie {
         this.achieId = achieId;
     }
 
-    public int getAchieType() {
+    public String getAchieType() {
         return achieType;
     }
 
-    public void setAchieType(int achieType) {
+    public void setAchieType(String achieType) {
         this.achieType = achieType;
     }
 
-    public int getTeacherContributeType() {
+    public String getTeacherContributeType() {
         return teacherContributeType;
     }
 
-    public void setTeacherContributeType(int teacherContributeType) {
+    public void setTeacherContributeType(String teacherContributeType) {
         this.teacherContributeType = teacherContributeType;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     @Override
@@ -54,8 +63,9 @@ public class TeacherAchie {
                 "id=" + id +
                 ", teacherId=" + teacherId +
                 ", achieId=" + achieId +
-                ", achieType=" + achieType +
-                ", teacherContributeType=" + teacherContributeType +
+                ", achieType='" + achieType + '\'' +
+                ", teacherContributeType='" + teacherContributeType + '\'' +
+                ", label='" + label + '\'' +
                 '}';
     }
 }

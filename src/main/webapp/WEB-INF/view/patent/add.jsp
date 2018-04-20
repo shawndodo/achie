@@ -72,7 +72,7 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form action="index" method="post" role="form">
+                        <form action="create" method="post" role="form">
                             <div class="box-body">
                                 <%@include file="_patent_form.jsp" %>
                                 <%--<div class="form-group">--%>
@@ -159,9 +159,6 @@
                     <!-- /.box -->
 
 
-
-
-
                         <!-- /.box-body -->
                     <!-- /.box -->
 
@@ -193,10 +190,10 @@
 <script>
     $(function () {
         //Date picker
-        $('#datepicker').datepicker({
+        $('#getPatentDate').datepicker({
             autoclose: true
         })
-        $('#datepicker1').datepicker({
+        $('#applyDate').datepicker({
             autoclose: true
         })
 

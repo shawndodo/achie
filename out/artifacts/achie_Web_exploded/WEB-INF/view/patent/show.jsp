@@ -14,15 +14,18 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="<%=request.getContextPath()%>/statics/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="<%=request.getContextPath()%>/statics/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/dist/css/AdminLTE.min.css">
     <!-- bootstrap datepicker -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet"
+          href="<%=request.getContextPath()%>/statics/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/dist/css/skins/_all-skins.min.css">
@@ -35,7 +38,8 @@
     <![endif]-->
 
     <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -72,81 +76,99 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form action="edit" method="get" role="form">
+                        <form action="edit" method="post" role="form">
                             <div class="box-body">
-                                <%@include file="_patent_form.jsp" %>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputEmail1">专利名称</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="请填写专利">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>专利类型</label>--%>
-                                    <%--<select class="form-control">--%>
-                                        <%--<option>发明</option>--%>
-                                        <%--<option>实用新型</option>--%>
-                                        <%--<option>外型</option>--%>
-                                        <%--<option>国际专利</option>--%>
-                                    <%--</select>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>专利状态</label>--%>
-                                    <%--<select class="form-control">--%>
-                                        <%--<option>已授权</option>--%>
-                                        <%--<option>已受理</option>--%>
-                                        <%--<option>已申请</option>--%>
-                                    <%--</select>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">专利编号</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="如xx">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>获得时间</label>--%>
+                                <%--<%@include file="_patent_form.jsp" %>--%>
+                                <div class="form-group">
+                                    <label for="patentName">专利名称</label>
+                                    <input type="text" class="form-control" disabled="disabled"
+                                           value="${patent.patentName}" name="patentName" id="patentName"
+                                           placeholder="请填写专利">
+                                </div>
+                                <div class="form-group">
+                                    <label>专利类型</label>
+                                    <select class="form-control" id="patentType" name="patentType" disabled="disabled">
+                                        <option value="发明">发明</option>
+                                        <option value="实用新型">实用新型</option>
+                                        <option value="外型">外型</option>
+                                        <option value="国际专利">国际专利</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>专利状态</label>
+                                    <select class="form-control" id="patentStatus" name="patentStatus" disabled="disabled">
+                                        <option value="已授权">已授权</option>
+                                        <option value="已受理">已受理</option>
+                                        <option value="已申请">已申请</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="patentCode">专利编号</label>
+                                    <input type="text" class="form-control" value="${patent.patentCode}"
+                                           disabled="disabled" name="patentCode" id="patentCode"
+                                           placeholder="如xx">
+                                </div>
+                                <div class="form-group">
+                                    <label>获得时间</label>
 
-                                    <%--<div class="input-group date">--%>
-                                        <%--<div class="input-group-addon">--%>
-                                            <%--<i class="fa fa-calendar"></i>--%>
-                                        <%--</div>--%>
-                                        <%--<input type="text" class="form-control pull-right" id="datepicker">--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">申请编号</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="如xx">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>申请时间</label>--%>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" name="getPatentDate"
+                                               disabled="disabled" value="${patent.getPatentDate}"
+                                               id="getPatentDate">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="applyCode">申请编号</label>
+                                    <input type="text" class="form-control" name="applyCode" disabled="disabled"
+                                           id="applyCode" value="${patent.applyCode}"
+                                           placeholder="如xx">
+                                </div>
+                                <div class="form-group">
+                                    <label>申请时间</label>
 
-                                    <%--<div class="input-group date">--%>
-                                        <%--<div class="input-group-addon">--%>
-                                            <%--<i class="fa fa-calendar"></i>--%>
-                                        <%--</div>--%>
-                                        <%--<input type="text" class="form-control pull-right" id="datepicker1">--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">本人编号</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="1">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">关联课题</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="请输入关联课题">--%>
-                                <%--</div>--%>
-                                <%--<!-- textarea -->--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>备注</label>--%>
-                                    <%--<textarea class="form-control" rows="3" placeholder="请输入备注信息"></textarea>--%>
-                                <%--</div>--%>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" name="applyDate"
+                                               disabled="disabled" value="${patent.applyDate}"
+                                               id="applyDate">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="selfRank">本人编号</label>
+                                    <input type="text" class="form-control" name="selfRank" id="selfRank"
+                                           disabled="disabled" value="${patent.selfRank}"
+                                           placeholder="1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="relatedCourseName">关联课题</label>
+                                    <input type="text" class="form-control" name="relatedCourseName" disabled="disabled"
+                                           value="${patent.relatedCourseName}"
+                                           id="relatedCourseName" placeholder="请输入关联课题">
+                                </div>
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <label>备注</label>
+                                    <textarea class="form-control" rows="3" name="remark" disabled="disabled"
+                                              placeholder="请输入备注信息">${patent.remark}</textarea>
+                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">上传专利</label>
                                     <input type="file" id="exampleInputFile">
 
                                     <p class="help-block">Example block-level help text here.</p>
                                 </div>
+                                <div>
+                                    <input type="hidden" name="patentId" value="${patent.id}">
+                                </div>
                                 <%--<div class="checkbox">--%>
-                                    <%--<label>--%>
-                                        <%--<input type="checkbox"> Check me out--%>
-                                    <%--</label>--%>
+                                <%--<label>--%>
+                                <%--<input type="checkbox"> Check me out--%>
+                                <%--</label>--%>
                                 <%--</div>--%>
                             </div>
                             <!-- /.box-body -->
@@ -159,10 +181,7 @@
                     <!-- /.box -->
 
 
-
-
-
-                        <!-- /.box-body -->
+                    <!-- /.box-body -->
                     <!-- /.box -->
 
                 </div>
@@ -193,13 +212,15 @@
 <script>
     $(function () {
         //Date picker
-        $('#datepicker').datepicker({
+        $('#applyDate').datepicker({
             autoclose: true
         })
-        $('#datepicker1').datepicker({
+        $('#getPatentDate').datepicker({
             autoclose: true
         })
 
+        $("#patentType").val("${patent.patentType}");
+        $("#patentStatus").val("${patent.patentStatus}");
     })
 </script>
 </body>

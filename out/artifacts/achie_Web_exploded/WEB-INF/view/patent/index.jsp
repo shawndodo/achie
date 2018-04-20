@@ -139,20 +139,20 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="i" begin="1" end="10" step="1">
+                                <c:forEach items="${patentList}" var="patent" begin="0" end="9" step="1">
                                     <tr>
-                                        <td>一种新型装置</td>
-                                        <td>实用新型</td>
-                                        <td>已授权</td>
-                                        <td>XX 0000 01</td>
-                                        <td>2009.04.22</td>
-                                        <td>XX 0000 01</td>
-                                        <td>2008.04.01</td>
-                                        <td>1</td>
-                                        <td>xxxxxxxxx</td>
+                                        <td>${patent.patentName}</td>
+                                        <td>${patent.patentType}</td>
+                                        <td>${patent.patentStatus}</td>
+                                        <td>${patent.patentCode}</td>
+                                        <td>${patent.getPatentDate}</td>
+                                        <td>${patent.applyCode}</td>
+                                        <td>${patent.applyDate}</td>
+                                        <td>${patent.selfRank}</td>
+                                        <td>${patent.remark}</td>
                                         <td>
                                             <div>
-                                                <a href="/achie/patent/show">
+                                                <a href="/achie/patent/show?patentId=${patent.id}">
                                                     <i></i>
                                                     查看详情
                                                 </a>

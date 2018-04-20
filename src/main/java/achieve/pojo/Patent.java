@@ -15,7 +15,7 @@ public class Patent {
     private int selfRank;
     private String relatedCourseName;
     private String remark;
-    private int researchAchievementId;
+//    private int researchAchievementId;
 
     public int getId() {
         return id;
@@ -105,13 +105,13 @@ public class Patent {
         this.remark = remark;
     }
 
-    public int getResearchAchievementId() {
-        return researchAchievementId;
-    }
-
-    public void setResearchAchievementId(int researchAchievementId) {
-        this.researchAchievementId = researchAchievementId;
-    }
+//    public int getResearchAchievementId() {
+//        return researchAchievementId;
+//    }
+//
+//    public void setResearchAchievementId(int researchAchievementId) {
+//        this.researchAchievementId = researchAchievementId;
+//    }
 
     @Override
     public String toString() {
@@ -127,7 +127,7 @@ public class Patent {
                 ", selfRank=" + selfRank +
                 ", relatedCourseName='" + relatedCourseName + '\'' +
                 ", remark='" + remark + '\'' +
-                ", researchAchievementId=" + researchAchievementId +
+//                ", researchAchievementId=" + researchAchievementId +
                 '}';
     }
 }

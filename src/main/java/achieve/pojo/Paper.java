@@ -23,7 +23,7 @@ public class Paper {
     private String cnNum;
     private String impactFactor;
     private String quotesNum;
-    private int researchAchievementId;
+//    private int researchAchievementId;
 
     public int getId() {
         return id;
@@ -177,13 +177,13 @@ public class Paper {
         this.quotesNum = quotesNum;
     }
 
-    public int getResearchAchievementId() {
-        return researchAchievementId;
-    }
-
-    public void setResearchAchievementId(int researchAchievementId) {
-        this.researchAchievementId = researchAchievementId;
-    }
+//    public int getResearchAchievementId() {
+//        return researchAchievementId;
+//    }
+//
+//    public void setResearchAchievementId(int researchAchievementId) {
+//        this.researchAchievementId = researchAchievementId;
+//    }
 
     @Override
     public String toString() {
@@ -207,7 +207,7 @@ public class Paper {
                 ", cnNum='" + cnNum + '\'' +
                 ", impactFactor='" + impactFactor + '\'' +
                 ", quotesNum='" + quotesNum + '\'' +
-                ", researchAchievementId=" + researchAchievementId +
+//                ", researchAchievementId=" + researchAchievementId +
                 '}';
     }
 }

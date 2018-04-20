@@ -34,7 +34,7 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background: url(<%=request.getContextPath()%>/statics/image/achie_background2.png); background-size:cover;">
 <div class="login-box">
     <div class="login-logo">
         <a href="login.jsp">教师教学与科研成果管理系统</a>
