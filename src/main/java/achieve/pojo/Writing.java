@@ -14,6 +14,8 @@ public class Writing {
     private Date publishTime;
     private String relatedCourseName;
     private String remark;
+    private Date createdAt;
+    private Date updatedAt;
 //    private int researchAchievementId;
 
     public int getId() {
@@ -104,6 +106,23 @@ public class Writing {
 //        this.researchAchievementId = researchAchievementId;
 //    }
 
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
         return "Writing{" +
@@ -117,7 +136,8 @@ public class Writing {
                 ", publishTime=" + publishTime +
                 ", relatedCourseName='" + relatedCourseName + '\'' +
                 ", remark='" + remark + '\'' +
-//                ", researchAchievementId=" + researchAchievementId +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

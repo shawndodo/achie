@@ -1,5 +1,8 @@
 package achieve.pojo;
 
+import java.util.Date;
+
+// 软件著作权(科研)
 public class SoftwareCopyright {
 
     private int id;
@@ -10,6 +13,8 @@ public class SoftwareCopyright {
     private String copyrightPerson;
     private String relatedCourseName;
     private String remark;
+    private Date createdAt;
+    private Date updatedAt;
 //    private int researchAchievementId;
 
     public int getId() {
@@ -84,6 +89,23 @@ public class SoftwareCopyright {
 //        this.researchAchievementId = researchAchievementId;
 //    }
 
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
         return "SoftwareCopyright{" +
@@ -95,7 +117,8 @@ public class SoftwareCopyright {
                 ", copyrightPerson='" + copyrightPerson + '\'' +
                 ", relatedCourseName='" + relatedCourseName + '\'' +
                 ", remark='" + remark + '\'' +
-//                ", researchAchievementId=" + researchAchievementId +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

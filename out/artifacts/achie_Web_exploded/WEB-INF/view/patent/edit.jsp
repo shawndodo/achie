@@ -214,10 +214,12 @@
     $(function () {
         //Date picker
         $('#applyDate').datepicker({
-            autoclose: true
+            autoclose: true,
+            format: 'yyyy-mm-dd'
         })
         $('#getPatentDate').datepicker({
-            autoclose: true
+            autoclose: true,
+            format: 'yyyy-mm-dd'
         })
 
         $("#patentType").val("${patent.patentType}");

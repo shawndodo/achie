@@ -76,7 +76,7 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form action="edit" method="post" role="form">
+                        <form action="edit" method="get" role="form">
                             <div class="box-body">
                                 <%--<%@include file="_patent_form.jsp" %>--%>
                                 <div class="form-group">
@@ -213,10 +213,12 @@
     $(function () {
         //Date picker
         $('#applyDate').datepicker({
-            autoclose: true
+            autoclose: true,
+            format: 'yyyy-mm-dd'
         })
         $('#getPatentDate').datepicker({
-            autoclose: true
+            autoclose: true,
+            format: 'yyyy-mm-dd'
         })
 
         $("#patentType").val("${patent.patentType}");

@@ -2,8 +2,8 @@ package achieve.pojo;
 
 import java.util.Date;
 
+// 专利(科研)
 public class Patent {
-
     private int id;
     private String patentName;
     private String patentType;
@@ -15,6 +15,8 @@ public class Patent {
     private int selfRank;
     private String relatedCourseName;
     private String remark;
+    private Date createdAt;
+    private Date updatedAt;
 //    private int researchAchievementId;
 
     public int getId() {
@@ -113,6 +115,23 @@ public class Patent {
 //        this.researchAchievementId = researchAchievementId;
 //    }
 
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
         return "Patent{" +
@@ -127,7 +146,8 @@ public class Patent {
                 ", selfRank=" + selfRank +
                 ", relatedCourseName='" + relatedCourseName + '\'' +
                 ", remark='" + remark + '\'' +
-//                ", researchAchievementId=" + researchAchievementId +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

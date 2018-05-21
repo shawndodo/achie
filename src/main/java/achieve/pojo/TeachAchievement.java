@@ -1,5 +1,6 @@
 package achieve.pojo;
 
+// 不使用了
 public class TeachAchievement {
 
     private int id;

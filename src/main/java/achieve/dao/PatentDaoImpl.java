@@ -173,6 +173,7 @@ public class PatentDaoImpl implements PatentDao {
             }
             ps.close() ;
         } catch (Exception e) {
+            System.out.println("出错原因" + e);
             e.printStackTrace() ;
         }finally{
             DBUtil.close(conn) ;

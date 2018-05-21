@@ -76,22 +76,22 @@
                     <div class="col-md-10">
                         <div class="search-query">
                             <div class="form-group">
-                                <label>专利名称</label>
+                                <label>著作名称</label>
                                 <input type="text" class="form-control" placeholder="请输入..">
                             </div>
 
                             <div class="form-group">
-                                <label>专利编号</label>
+                                <label>出版号</label>
                                 <input type="text" class="form-control" placeholder="请输入..">
                             </div>
 
                             <div class="form-group">
-                                <label>专利类型</label>
+                                <label>著作类型</label>
                                 <select class="form-control select2" style="width: 100%;">
-                                    <option selected="selected">发明</option>
-                                    <option>实用新型</option>
-                                    <option>外型</option>
-                                    <option>国际专利</option>
+                                    <option value="非教材" selected="selected">非教材</option>
+                                    <option value="普通教材">普通教材</option>
+                                    <option value="省级规划教材">省级规划教材</option>
+                                    <option value="国家级规划教材">国家级规划教材</option>
                                 </select>
                             </div>
 
@@ -126,33 +126,32 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>专利名称</th>
-                                    <th>专利类型</th>
-                                    <th>专利状态</th>
-                                    <th>专利编号</th>
-                                    <th>获得时间</th>
-                                    <th>申请编号</th>
-                                    <th>申请时间</th>
+                                    <th>著作名称</th>
+                                    <th>出版号</th>
+                                    <th>身份</th>
                                     <th>本人排名</th>
+                                    <th>出版社</th>
+                                    <th>著作类型</th>
+                                    <th>出版时间</th>
                                     <th>备注</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="i" begin="1" end="10" step="1">
+                                <c:forEach items="${writingList}" var="writing" begin="0" end="9" step="1">
                                     <tr>
-                                        <td>一种新型装置</td>
-                                        <td>实用新型</td>
-                                        <td>已授权</td>
-                                        <td>XX 0000 01</td>
-                                        <td>2009.04.22</td>
-                                        <td>XX 0000 01</td>
-                                        <td>2008.04.01</td>
-                                        <td>1</td>
-                                        <td>xxxxxxxxx</td>
+                                        <td>${writing.writingName}</td>
+                                        <td>${writing.publicationNumber}</td>
+                                        <td>${writing.selfPosition}</td>
+                                        <td>${writing.selfRank}</td>
+                                        <td>${writing.press}</td>
+                                        <td>${writing.writingType}</td>
+                                        <td>${writing.publishTime}</td>
+                                        <td>${writing.relatedCourseName}</td>
+                                        <td>${writing.remark}</td>
                                         <td>
                                             <div>
-                                                <a href="/achie/patent/show">
+                                                <a href="/achie/writing/show?writingId=${writing.id}">
                                                     <i></i>
                                                     查看详情
                                                 </a>

@@ -2,6 +2,7 @@ package achieve.pojo;
 
 import java.util.Date;
 
+// 论文(科研)
 public class Paper {
 
     private int id;
@@ -23,6 +24,8 @@ public class Paper {
     private String cnNum;
     private String impactFactor;
     private String quotesNum;
+    private Date createdAt;
+    private Date updatedAt;
 //    private int researchAchievementId;
 
     public int getId() {
@@ -185,6 +188,23 @@ public class Paper {
 //        this.researchAchievementId = researchAchievementId;
 //    }
 
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
         return "Paper{" +
@@ -207,7 +227,8 @@ public class Paper {
                 ", cnNum='" + cnNum + '\'' +
                 ", impactFactor='" + impactFactor + '\'' +
                 ", quotesNum='" + quotesNum + '\'' +
-//                ", researchAchievementId=" + researchAchievementId +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

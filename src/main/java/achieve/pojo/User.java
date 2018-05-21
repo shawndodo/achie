@@ -14,6 +14,8 @@ public class User {
     private Date startWorkingTime;
     private String remark;
     private String status;
+    private Date createdAt;
+    private Date updatedAt;
 
     public int getId() {
         return id;
@@ -95,6 +97,22 @@ public class User {
         this.status = status;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -108,6 +126,8 @@ public class User {
                 ", startWorkingTime=" + startWorkingTime +
                 ", remark='" + remark + '\'' +
                 ", status='" + status + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

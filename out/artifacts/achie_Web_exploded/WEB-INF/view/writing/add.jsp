@@ -193,13 +193,9 @@
 <script>
     $(function () {
         //Date picker
-        $('#datepicker').datepicker({
+        $('#publishTime').datepicker({
             autoclose: true
         })
-        $('#datepicker1').datepicker({
-            autoclose: true
-        })
-
     })
 </script>
 </body>

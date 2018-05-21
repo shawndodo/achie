@@ -1,10 +1,14 @@
 package achieve.pojo;
 
+import java.util.Date;
+
 public class College {
 
     private int id;
     private String name;
     private int schoolId;
+    private Date createdAt;
+    private Date updatedAt;
 
     public int getId() {
         return id;
@@ -30,12 +34,30 @@ public class College {
         this.schoolId = schoolId;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
         return "College{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", schoolId=" + schoolId +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

@@ -72,7 +72,7 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form action="create" method="post" role="form">
+                        <form action="create" method="post" role="form" enctype="multipart/form-data">
                             <div class="box-body">
                                 <%@include file="_patent_form.jsp" %>
                                 <%--<div class="form-group">--%>
@@ -139,7 +139,7 @@
                                 <%--</div>--%>
                                 <div class="form-group">
                                     <label for="exampleInputFile">上传专利</label>
-                                    <input type="file" id="exampleInputFile">
+                                    <input type="file" id="exampleInputFile" name="file">
 
                                     <p class="help-block">Example block-level help text here.</p>
                                 </div>
@@ -190,11 +190,13 @@
 <script>
     $(function () {
         //Date picker
-        $('#getPatentDate').datepicker({
-            autoclose: true
-        })
         $('#applyDate').datepicker({
-            autoclose: true
+            autoclose: true,
+            format: 'yyyy-mm-dd'
+        })
+        $('#getPatentDate').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd'
         })
 
     })

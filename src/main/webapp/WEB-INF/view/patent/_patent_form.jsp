@@ -56,7 +56,7 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="selfRank">本人编号</label>
+    <label for="selfRank">本人排名</label>
     <input type="text" class="form-control" name="selfRank" id="selfRank" placeholder="1">
 </div>
 <div class="form-group">

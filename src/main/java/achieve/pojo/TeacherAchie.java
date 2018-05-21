@@ -1,5 +1,7 @@
 package achieve.pojo;
 
+import java.util.Date;
+
 public class TeacherAchie {
 
     private int id;
@@ -8,6 +10,8 @@ public class TeacherAchie {
     private String achieType;
     private String teacherContributeType;
     private String label;
+    private Date createdAt;
+    private Date updatedAt;
 
     public int getId() {
         return id;
@@ -57,6 +61,22 @@ public class TeacherAchie {
         this.label = label;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
         return "TeacherAchie{" +
@@ -66,6 +86,8 @@ public class TeacherAchie {
                 ", achieType='" + achieType + '\'' +
                 ", teacherContributeType='" + teacherContributeType + '\'' +
                 ", label='" + label + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }
