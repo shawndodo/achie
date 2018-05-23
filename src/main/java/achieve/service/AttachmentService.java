@@ -11,7 +11,7 @@ public class AttachmentService {
 
     private static AttachmentDaoImpl attachmentDaoImpl = new AttachmentDaoImpl();
 
-    public static void setValue(MultipartFile file, String url, int userId, int ownerId, String ownerType){
+    public void setValue(MultipartFile file, String url, int userId, int ownerId, String ownerType){
 
         Attachment attachment = new Attachment();
         attachment.setFile(file.toString());

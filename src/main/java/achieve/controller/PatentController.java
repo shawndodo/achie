@@ -33,6 +33,11 @@ import java.util.Map;
 public class PatentController {
 
     @Autowired
+    private AttachmentService attachmentService;
+
+    @Autowired
+    private TeacherAchieService teacherAchieService;
+
     private static PatentDaoImpl patentDaoImpl =  new PatentDaoImpl();
     private static TeacherAchieDaoImpl teacherAchieDaoImpl = new TeacherAchieDaoImpl();
     private static TeacherDaoImpl teacherDaoImpl = new TeacherDaoImpl();
@@ -81,9 +86,9 @@ public class PatentController {
 
 //        int attachmentGroupId = AttachmentGroupService.getOrSetValue(patentId, "Patent", userId);
 
-        AttachmentService.setValue(file, url, userId, patentId, "Patent");
+        attachmentService.setValue(file, url, userId, patentId, "Patent");
 
-        TeacherAchieService.setValue(patentId, teacher);
+        teacherAchieService.setValue(patentId, teacher);
 
         return "redirect:index";
     }
@@ -134,7 +139,7 @@ public class PatentController {
             attachmentDaoImpl.deleteAttachment(attachment.getId());
         }
 
-        AttachmentService.setValue(file, url, userId, patent.getId(), "Patent");
+        attachmentService.setValue(file, url, userId, patent.getId(), "Patent");
 
         return "redirect:index";
     }

@@ -9,7 +9,7 @@ public class AttachmentGroupService {
 
     private static AttachmentGroupDaoImpl attachmentGroupDaoImpl = new AttachmentGroupDaoImpl();
 
-    public static int getOrSetValue(int ownerId, String ownerType, int userId){
+    public int getOrSetValue(int ownerId, String ownerType, int userId){
         AttachmentGroup attachmentGroup = new AttachmentGroup();
         attachmentGroup.setCatalogType("上传成果附件");
         attachmentGroup.setOwnerId(ownerId);

@@ -10,7 +10,7 @@ public class TeacherAchieService {
 
     private static TeacherAchieDaoImpl teacherAchieDaoImpl = new TeacherAchieDaoImpl();
 
-    public static void setValue(int achieId, Teacher teacher){
+    public void setValue(int achieId, Teacher teacher){
         TeacherAchie teacherAchie = new TeacherAchie();
         teacherAchie.setAchieId(achieId);
         teacherAchie.setAchieType("Patent");
