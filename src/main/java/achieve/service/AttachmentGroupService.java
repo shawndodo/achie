@@ -2,7 +2,9 @@ package achieve.service;
 
 import achieve.dao.AttachmentGroupDaoImpl;
 import achieve.pojo.AttachmentGroup;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AttachmentGroupService {
 
     private static AttachmentGroupDaoImpl attachmentGroupDaoImpl = new AttachmentGroupDaoImpl();

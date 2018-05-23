@@ -3,8 +3,10 @@ package achieve.service;
 import achieve.dao.AttachmentDaoImpl;
 import achieve.pojo.Attachment;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+@Service
 public class AttachmentService {
 
     private static AttachmentDaoImpl attachmentDaoImpl = new AttachmentDaoImpl();

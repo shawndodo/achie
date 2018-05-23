@@ -12,6 +12,7 @@ import achieve.util.QiniuUtil;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -31,6 +32,7 @@ import java.util.Map;
 @RequestMapping("/patent")
 public class PatentController {
 
+    @Autowired
     private static PatentDaoImpl patentDaoImpl =  new PatentDaoImpl();
     private static TeacherAchieDaoImpl teacherAchieDaoImpl = new TeacherAchieDaoImpl();
     private static TeacherDaoImpl teacherDaoImpl = new TeacherDaoImpl();

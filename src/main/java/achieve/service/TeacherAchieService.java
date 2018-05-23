@@ -3,7 +3,9 @@ package achieve.service;
 import achieve.dao.TeacherAchieDaoImpl;
 import achieve.pojo.Teacher;
 import achieve.pojo.TeacherAchie;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TeacherAchieService {
 
     private static TeacherAchieDaoImpl teacherAchieDaoImpl = new TeacherAchieDaoImpl();
