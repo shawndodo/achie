@@ -158,9 +158,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">上传专利</label>
-                                    <input type="file" id="exampleInputFile">
-
-                                    <p class="help-block">Example block-level help text here.</p>
+                                    <input id="exampleInputFile" name="file" disabled="disabled">
+                                    <div class="showFile">
+                                        <span>"${attachment.fileName}"</span>
+                                        <button type="button" class="btn btn-block btn-default btn-xs" style="width:40px;display:inline;">
+                                            <a href="${attachment.attachmentUrl}" download="" target="_blank">下载</a>
+                                        </button>
+                                    </div>
+                                    <%--<p class="help-block">Example block-level help text here.</p>--%>
                                 </div>
                                 <div>
                                     <input type="hidden" name="patentId" value="${patent.id}">
@@ -223,6 +228,9 @@
 
         $("#patentType").val("${patent.patentType}");
         $("#patentStatus").val("${patent.patentStatus}");
+
+        $("#exampleInputFile").hide();
+
     })
 </script>
 </body>

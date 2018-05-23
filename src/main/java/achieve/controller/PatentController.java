@@ -1,22 +1,29 @@
 package achieve.controller;
 
+import achieve.dao.AttachmentDaoImpl;
 import achieve.dao.PatentDaoImpl;
 import achieve.dao.TeacherAchieDaoImpl;
 import achieve.dao.TeacherDaoImpl;
-import achieve.pojo.Patent;
-import achieve.pojo.Teacher;
-import achieve.pojo.TeacherAchie;
-import achieve.pojo.Writing;
+import achieve.pojo.*;
+import achieve.service.AttachmentGroupService;
+import achieve.service.AttachmentService;
+import achieve.service.TeacherAchieService;
+import achieve.util.QiniuUtil;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletSecurityElement;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +34,7 @@ public class PatentController {
     private static PatentDaoImpl patentDaoImpl =  new PatentDaoImpl();
     private static TeacherAchieDaoImpl teacherAchieDaoImpl = new TeacherAchieDaoImpl();
     private static TeacherDaoImpl teacherDaoImpl = new TeacherDaoImpl();
+    private static AttachmentDaoImpl attachmentDaoImpl = new AttachmentDaoImpl();
 
     @InitBinder
     public void InitBinder(HttpServletRequest request,
@@ -44,9 +52,6 @@ public class PatentController {
 
     @RequestMapping("/index")
     public String index(Map<String,Object> model, HttpSession session){
-
-        System.out.println("has_wrong");
-
         Integer userId = (Integer) session.getAttribute("userId");
         Teacher teacher = teacherDaoImpl.findByUserId(userId);
         List<Patent> patentList = patentDaoImpl.findAll(teacher.getId());
@@ -60,23 +65,24 @@ public class PatentController {
         return "patent/add";
     }
 
-
-    //   文件参数
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(Patent patent, HttpSession session, @RequestParam(value = "file") MultipartFile file){
+    public String create(Patent patent, HttpSession session, @RequestParam(value = "file") MultipartFile file) throws Exception{
         System.out.println("patent=" + patent);
-        System.out.println("file=" + file);
 
-//        int parentId = patentDaoImpl.addPatent(patent);
-//        Integer userId = (Integer) session.getAttribute("userId");
-//        Teacher teacher = teacherDaoImpl.findByUserId(userId);
-//        TeacherAchie teacherAchie = new TeacherAchie();
-//        teacherAchie.setAchieId(parentId);
-//        teacherAchie.setAchieType("Patent");
-//        teacherAchie.setLabel("research");
-//        teacherAchie.setTeacherContributeType("submit");
-//        teacherAchie.setTeacherId(teacher.getId());
-//        teacherAchieDaoImpl.addTeacherAchie(teacherAchie);
+        String url = QiniuUtil.uploadToQiNiuYun(file);
+
+        System.out.println("last_result===" + url);
+
+        int patentId = patentDaoImpl.addPatent(patent);
+        Integer userId = (Integer) session.getAttribute("userId");
+        Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+//        int attachmentGroupId = AttachmentGroupService.getOrSetValue(patentId, "Patent", userId);
+
+        AttachmentService.setValue(file, url, userId, patentId, "Patent");
+
+        TeacherAchieService.setValue(patentId, teacher);
+
         return "redirect:index";
     }
 
@@ -84,7 +90,12 @@ public class PatentController {
     public String show(Map<String,Object> model, HttpServletRequest request){
         String patentId = request.getParameter("patentId");
         Patent patent = patentDaoImpl.findById(Integer.parseInt(patentId));
+        Attachment attachment = attachmentDaoImpl.findByOwnerIdAndOwnerType(patent.getId(), "Patent");
         model.put("patent", patent);
+        System.out.println("patent=" + patent);
+        System.out.println("file=" + attachment);
+        model.put("attachment", attachment);
+        System.out.println("model=" + model);
         return "patent/show";
     }
 
@@ -93,15 +104,36 @@ public class PatentController {
         String patentId = request.getParameter("patentId");
         Patent patent = patentDaoImpl.findById(Integer.parseInt(patentId));
         model.put("patent", patent);
+        Attachment attachment = attachmentDaoImpl.findByOwnerIdAndOwnerType(patent.getId(), "Patent");
+        model.put("attachment", attachment);
         return "patent/edit";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(@ModelAttribute("patent") Patent patent){
-//        System.out.println("日期1" + patent);
-//        System.out.println("日期2" + patent.getApplyDate());
+    public String update(@ModelAttribute("patent") Patent patent, HttpSession session, @RequestParam(value = "file") MultipartFile file) throws Exception{
+        System.out.println("file1=" + file);
+        String url = QiniuUtil.uploadToQiNiuYun(file);
+
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        System.out.println("patent=" + patent);
+        System.out.println("file=" + file);
+
         patentDaoImpl.editPatent(patent);
-//        System.out.println("has_wrong2");
+
+        System.out.println("patentId=" + patent.getId());
+
+        Attachment attachment = attachmentDaoImpl.findByOwnerIdAndOwnerType(patent.getId(), "Patent");
+
+        System.out.println("原来的attachment=" + attachment);
+
+        if (attachment != null) {
+            System.out.println("进来了1");
+            attachmentDaoImpl.deleteAttachment(attachment.getId());
+        }
+
+        AttachmentService.setValue(file, url, userId, patent.getId(), "Patent");
+
         return "redirect:index";
     }
 

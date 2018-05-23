@@ -76,7 +76,7 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form action="update" method="post" role="form">
+                        <form action="update" method="post" role="form" enctype="multipart/form-data">
                             <div class="box-body">
                                 <%--<%@include file="_patent_form.jsp" %>--%>
                                 <div class="form-group">
@@ -156,14 +156,25 @@
                                     <textarea class="form-control" rows="3" name="remark"
                                               placeholder="请输入备注信息">${patent.remark}</textarea>
                                 </div>
+                                <div>
+                                    <input type="hidden" name="id" value="${patent.id}">
+                                </div>
+                                <div>
+                                    <input type="hidden" name="createdAt" value="${patent.createdAt}">
+                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">上传专利</label>
-                                    <input type="file" id="exampleInputFile">
-
-                                    <p class="help-block">Example block-level help text here.</p>
+                                    <input type="file" id="exampleInputFile" name="file">
+                                    <div class="showFile">
+                                        <span>"${attachment.fileName}"</span>
+                                        <button type="button" class="btn btn-block btn-default btn-xs"
+                                                style="width:40px;display:inline;">下载
+                                        </button>
+                                    </div>
+                                    <%--<p class="help-block">Example block-level help text here.</p>--%>
                                 </div>
                                 <%--<div>--%>
-                                    <%--<input type="hidden" name="patentId" value="${patent.id}">--%>
+                                <%--<input type="hidden" name="patentId" value="${patent.id}">--%>
                                 <%--</div>--%>
                             </div>
                             <%--<div class="checkbox">--%>
@@ -226,6 +237,14 @@
         $("#patentStatus").val("${patent.patentStatus}");
 
     })
+
+    $('#exampleInputFile').bind('input exampleInputFile', function() {
+        var fileValue = $(this).val();
+        if(fileValue != "" || fileValue != null || fileValue != undefined){
+            $('.showFile').hide();
+        }
+    });
+
 </script>
 </body>
 </html>

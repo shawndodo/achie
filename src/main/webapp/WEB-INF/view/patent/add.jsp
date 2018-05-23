@@ -141,7 +141,7 @@
                                     <label for="exampleInputFile">上传专利</label>
                                     <input type="file" id="exampleInputFile" name="file">
 
-                                    <p class="help-block">Example block-level help text here.</p>
+                                    <%--<p class="help-block">Example block-level help text here.</p>--%>
                                 </div>
                                 <%--<div class="checkbox">--%>
                                     <%--<label>--%>

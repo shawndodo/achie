@@ -3,11 +3,9 @@ package achieve.dao;
 import achieve.pojo.Patent;
 import achieve.util.DBUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PatentDaoImpl implements PatentDao {
@@ -53,9 +51,9 @@ public class PatentDaoImpl implements PatentDao {
         try {
             conn = DBUtil.getConnection() ;
             String sql = "INSERT INTO patent " +
-                    "(patentName , patentType , patentStatus , patentCode , getPatentDate, applyCode, applyDate, selfRank, relatedCourseName, remark) " +
+                    "(patentName , patentType , patentStatus , patentCode , getPatentDate, applyCode, applyDate, selfRank, relatedCourseName, remark, createdAt, updatedAt) " +
                     "VALUES " +
-                    "(? , ? , ? , ? , ?, ?, ?, ?, ?, ?)" ;
+                    "(? , ? , ? , ? , ?, ?, ?, ?, ?, ?, ?, ?)" ;
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS) ;
             ps.setString(1, patent.getPatentName()) ;
             ps.setString(2, patent.getPatentType()) ;
@@ -75,6 +73,11 @@ public class PatentDaoImpl implements PatentDao {
             ps.setInt(8, patent.getSelfRank()) ;
             ps.setString(9, patent.getRelatedCourseName()) ;
             ps.setString(10, patent.getRemark()) ;
+            Date date = new Date();
+            Timestamp timeStamp = new Timestamp(date.getTime());
+            ps.setTimestamp(11, timeStamp);
+            ps.setTimestamp(12, timeStamp);
+
             int n = ps.executeUpdate() ;
             if(n > 0){
                 System.out.println("新建成功") ;
@@ -117,7 +120,10 @@ public class PatentDaoImpl implements PatentDao {
                 patent.setApplyDate(rs.getDate("applyDate")) ;
                 patent.setSelfRank(rs.getInt("selfRank")) ;
                 patent.setRelatedCourseName(rs.getString("relatedCourseName")) ;
-                patent.setRemark(rs.getString("remark")) ;
+                patent.setRemark(rs.getString("remark"));
+                System.out.println("rs======>" + rs.getTimestamp("createdAt"));
+                patent.setCreatedAt(rs.getTimestamp("createdAt"));
+                patent.setUpdatedAt(rs.getTimestamp("updatedAt"));
             }
             rs.close() ;
             ps.close() ;
@@ -131,7 +137,7 @@ public class PatentDaoImpl implements PatentDao {
 
     }
 
-    public void editPatent(Patent patent) {
+    public int editPatent(Patent patent) {
         Connection conn = null ;
         try {
             conn = DBUtil.getConnection() ;
@@ -145,9 +151,10 @@ public class PatentDaoImpl implements PatentDao {
                     "applyDate = ?, " +
                     "selfRank = ?, " +
                     "relatedCourseName = ?, " +
-                    "remark = ?" +
+                    "remark = ?, " +
+                    "updatedAt = ?" +
                     "WHERE id = ? " ;
-            PreparedStatement ps = conn.prepareStatement(sql) ;
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS) ;
             ps.setString(1, patent.getPatentName()) ;
             ps.setString(2, patent.getPatentType()) ;
             ps.setString(3, patent.getPatentStatus()) ;
@@ -166,15 +173,26 @@ public class PatentDaoImpl implements PatentDao {
             ps.setInt(8, patent.getSelfRank()) ;
             ps.setString(9, patent.getRelatedCourseName()) ;
             ps.setString(10, patent.getRemark()) ;
-            ps.setInt(11 , patent.getId()) ;
+            Date date = new Date();
+            Timestamp timeStamp = new Timestamp(date.getTime());
+            ps.setTimestamp(11, timeStamp);
+            ps.setInt(12 , patent.getId()) ;
             int n = ps.executeUpdate() ;
             if(n > 0){
                 System.out.println("更新成功") ;
             }
+            ResultSet rs = ps.getGeneratedKeys();
+            int patentId = 0;
+            if(rs.next())
+            {
+                patentId = rs.getInt(1);
+            }
             ps.close() ;
+            return patentId ;
         } catch (Exception e) {
             System.out.println("出错原因" + e);
             e.printStackTrace() ;
+            return 0;
         }finally{
             DBUtil.close(conn) ;
         }

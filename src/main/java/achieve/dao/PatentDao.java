@@ -12,6 +12,6 @@ public interface PatentDao {
 
     Patent findById(Integer id) ;
 
-    void editPatent(Patent patent) ;
+    int editPatent(Patent patent) ;
 
 }

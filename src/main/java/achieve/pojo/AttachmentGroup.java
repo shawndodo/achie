@@ -2,6 +2,8 @@ package achieve.pojo;
 
 import java.util.Date;
 
+// 暂时不用了 需求上用不到这个 如果要用这个还需要去做一个find_or_create_by的验证
+
 public class AttachmentGroup {
 
     private int id;
