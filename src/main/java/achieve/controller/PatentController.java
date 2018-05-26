@@ -76,7 +76,10 @@ public class PatentController {
     public String create(Patent patent, HttpSession session, @RequestParam(value = "file") MultipartFile file) throws Exception{
         System.out.println("patent=" + patent);
 
-        String url = QiniuUtil.uploadToQiNiuYun(file);
+        String url = null;
+        if(!file.isEmpty()){
+            url = QiniuUtil.uploadToQiNiuYun(file);
+        }
 
         System.out.println("last_result===" + url);
 
@@ -86,9 +89,11 @@ public class PatentController {
 
 //        int attachmentGroupId = AttachmentGroupService.getOrSetValue(patentId, "Patent", userId);
 
-        attachmentService.setValue(file, url, userId, patentId, "Patent");
+        if(url != null) {
+            attachmentService.setValue(file, url, userId, patentId, "Patent");
+        }
 
-        teacherAchieService.setValue(patentId, teacher);
+        teacherAchieService.setValue(patentId, teacher, "Writing", "research", "submit");
 
         return "redirect:index";
     }
@@ -119,7 +124,10 @@ public class PatentController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(@ModelAttribute("patent") Patent patent, HttpSession session, @RequestParam(value = "file") MultipartFile file) throws Exception{
         System.out.println("file1=" + file);
-        String url = QiniuUtil.uploadToQiNiuYun(file);
+        String url = null;
+        if(!file.isEmpty()) {
+            url = QiniuUtil.uploadToQiNiuYun(file);
+        }
 
         Integer userId = (Integer) session.getAttribute("userId");
 
@@ -130,16 +138,19 @@ public class PatentController {
 
         System.out.println("patentId=" + patent.getId());
 
-        Attachment attachment = attachmentDaoImpl.findByOwnerIdAndOwnerType(patent.getId(), "Patent");
+        if(url != null) {
+            Attachment attachment = attachmentDaoImpl.findByOwnerIdAndOwnerType(patent.getId(), "Patent");
 
-        System.out.println("原来的attachment=" + attachment);
+            System.out.println("原来的attachment=" + attachment);
 
-        if (attachment != null) {
-            System.out.println("进来了1");
-            attachmentDaoImpl.deleteAttachment(attachment.getId());
+            if (attachment != null) {
+                System.out.println("进来了1");
+                attachmentDaoImpl.deleteAttachment(attachment.getId());
+            }
+
+            attachmentService.setValue(file, url, userId, patent.getId(), "Patent");
+
         }
-
-        attachmentService.setValue(file, url, userId, patent.getId(), "Patent");
 
         return "redirect:index";
     }

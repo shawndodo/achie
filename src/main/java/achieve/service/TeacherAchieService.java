@@ -10,12 +10,12 @@ public class TeacherAchieService {
 
     private static TeacherAchieDaoImpl teacherAchieDaoImpl = new TeacherAchieDaoImpl();
 
-    public void setValue(int achieId, Teacher teacher){
+    public void setValue(int achieId, Teacher teacher, String achieType, String label, String teacherContributeType){
         TeacherAchie teacherAchie = new TeacherAchie();
         teacherAchie.setAchieId(achieId);
-        teacherAchie.setAchieType("Patent");
-        teacherAchie.setLabel("research");
-        teacherAchie.setTeacherContributeType("submit");
+        teacherAchie.setAchieType(achieType);
+        teacherAchie.setLabel(label);
+        teacherAchie.setTeacherContributeType(teacherContributeType);
         teacherAchie.setTeacherId(teacher.getId());
         teacherAchieDaoImpl.addTeacherAchie(teacherAchie);
     }

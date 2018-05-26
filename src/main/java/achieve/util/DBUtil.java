@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class DBUtil {
 
     private static String driverName = "com.mysql.jdbc.Driver" ;
-    private static String url = "jdbc:mysql://45.76.103.254:3306/achie_0417?characterEncoding=utf8" ;
+    private static String url = "jdbc:mysql://45.76.103.254:3306/achie_0417?characterEncoding=utf8&useSSL=false" ;
     private static String username = "root" ;
     private static String password = "dodocat1994" ;
 

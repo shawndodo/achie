@@ -12,7 +12,7 @@ public interface WritingDao {
 
     Writing findById(Integer id) ;
 
-    void editWriting(Writing writing) ;
+    int editWriting(Writing writing) ;
 
 
 }

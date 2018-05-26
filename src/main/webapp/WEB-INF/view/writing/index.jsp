@@ -147,7 +147,6 @@
                                         <td>${writing.press}</td>
                                         <td>${writing.writingType}</td>
                                         <td>${writing.publishTime}</td>
-                                        <td>${writing.relatedCourseName}</td>
                                         <td>${writing.remark}</td>
                                         <td>
                                             <div>

@@ -74,74 +74,116 @@
                         <!-- form start -->
                         <form action="edit" method="get" role="form">
                             <div class="box-body">
-                                <%@include file="_writing_form.jsp" %>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputEmail1">专利名称</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="请填写专利">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>专利类型</label>--%>
-                                    <%--<select class="form-control">--%>
-                                        <%--<option>发明</option>--%>
-                                        <%--<option>实用新型</option>--%>
-                                        <%--<option>外型</option>--%>
-                                        <%--<option>国际专利</option>--%>
-                                    <%--</select>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>专利状态</label>--%>
-                                    <%--<select class="form-control">--%>
-                                        <%--<option>已授权</option>--%>
-                                        <%--<option>已受理</option>--%>
-                                        <%--<option>已申请</option>--%>
-                                    <%--</select>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">专利编号</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="如xx">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>获得时间</label>--%>
-
-                                    <%--<div class="input-group date">--%>
-                                        <%--<div class="input-group-addon">--%>
-                                            <%--<i class="fa fa-calendar"></i>--%>
-                                        <%--</div>--%>
-                                        <%--<input type="text" class="form-control pull-right" id="datepicker">--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">申请编号</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="如xx">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>申请时间</label>--%>
-
-                                    <%--<div class="input-group date">--%>
-                                        <%--<div class="input-group-addon">--%>
-                                            <%--<i class="fa fa-calendar"></i>--%>
-                                        <%--</div>--%>
-                                        <%--<input type="text" class="form-control pull-right" id="datepicker1">--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">本人编号</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="1">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">关联课题</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="请输入关联课题">--%>
-                                <%--</div>--%>
-                                <%--<!-- textarea -->--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>备注</label>--%>
-                                    <%--<textarea class="form-control" rows="3" placeholder="请输入备注信息"></textarea>--%>
-                                <%--</div>--%>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传专利</label>
-                                    <input type="file" id="exampleInputFile">
+                                    <label for="writingName">著作名称</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="writingName"
+                                           id="writingName"
+                                           value="${writing.writingName}"
+                                           disabled="disabled"
+                                           placeholder="请填写标题">
+                                </div>
+                                <div class="form-group">
+                                    <label for="publicationNumber">出版号</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="publicationNumber"
+                                           id="publicationNumber"
+                                           value="${writing.publicationNumber}"
+                                           disabled="disabled"
+                                           placeholder="如ISBN 123-1-123-12345-1">
+                                </div>
 
-                                    <p class="help-block">Example block-level help text here.</p>
+                                <div class="form-group">
+                                    <label>身份</label>
+                                    <select class="form-control" name="selfPosition" id="selfPosition" disabled="disabled">
+                                        <option value="著作" selected="selected">著作</option>
+                                        <option value="总主编">总主编</option>
+                                        <option value="副主编">副主编</option>
+                                        <option value="主编">主编</option>
+                                        <option value="参编">参编</option>
+                                        <option value="主审">主审</option>
+                                        <option value="其他">其他</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="selfRank">本人排名</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="selfRank"
+                                           id="selfRank"
+                                           value="${writing.selfRank}"
+                                           disabled="disabled"
+                                           placeholder="1">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="press">出版社</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="press"
+                                           id="press"
+                                           value="${writing.press}"
+                                           disabled="disabled"
+                                           placeholder="例: 北京邮电出版社">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>著作类型</label>
+                                    <select class="form-control" name="writingType" id="writingType" disabled="disabled">
+                                        <option value="非教材" selected="selected">非教材</option>
+                                        <option value="普通教材">普通教材</option>
+                                        <option value="省级规划教材">省级规划教材</option>
+                                        <option value="国家级规划教材">国家级规划教材</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>出版时间</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control pull-right"
+                                               name="publishTime"
+                                               id="publishTime"
+                                               value="${writing.publishTime}"
+                                               disabled="disabled">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="relatedCourseName">关联课题</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="relatedCourseName"
+                                           id="relatedCourseName"
+                                           placeholder="请输入关联课题"
+                                           value="${writing.relatedCourseName}"
+                                           disabled="disabled">
+                                </div>
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <label>备注</label>
+                                    <textarea class="form-control" rows="3" name="remark" disabled="disabled" placeholder="请输入备注信息">${writing.remark}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">上传著作</label>
+                                    <input id="exampleInputFile" name="file" disabled="disabled">
+                                    <div class="showFile">
+                                        <span>"${attachment.fileName}"</span>
+                                        <button type="button" class="btn btn-block btn-default btn-xs" style="width:40px;display:inline;">
+                                            <a href="${attachment.attachmentUrl}" download="" target="_blank">下载</a>
+                                        </button>
+                                    </div>
+                                    <%--<p class="help-block">Example block-level help text here.</p>--%>
+                                </div>
+
+                                <div>
+                                    <input type="hidden" name="writingId" value="${writing.id}">
                                 </div>
                                 <%--<div class="checkbox">--%>
                                     <%--<label>--%>
@@ -193,12 +235,16 @@
 <script>
     $(function () {
         //Date picker
-        $('#datepicker').datepicker({
-            autoclose: true
+        $('#publishTime').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd'
         })
-        $('#datepicker1').datepicker({
-            autoclose: true
-        })
+
+        $("#writingType").val("${writing.writingType}");
+
+        $("#selfPosition").val("${writing.selfPosition}");
+
+        $("#exampleInputFile").hide();
 
     })
 </script>

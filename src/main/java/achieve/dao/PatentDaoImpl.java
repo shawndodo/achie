@@ -33,6 +33,8 @@ public class PatentDaoImpl implements PatentDao {
                 patent.setSelfRank(rs.getInt("selfRank")) ;
                 patent.setRelatedCourseName(rs.getString("relatedCourseName")) ;
                 patent.setRemark(rs.getString("remark")) ;
+                patent.setCreatedAt(rs.getTimestamp("createdAt"));
+                patent.setUpdatedAt(rs.getTimestamp("updatedAt"));
                 list.add(patent) ;
             }
             rs.close() ;

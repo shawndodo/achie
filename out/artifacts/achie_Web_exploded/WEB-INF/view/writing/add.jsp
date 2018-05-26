@@ -72,7 +72,7 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form action="index" method="post" role="form">
+                        <form action="create" method="post" role="form" enctype="multipart/form-data">
                             <div class="box-body">
                                 <%@include file="_writing_form.jsp" %>
                                 <%--<div class="form-group">--%>
@@ -138,10 +138,10 @@
                                     <%--<textarea class="form-control" rows="3" placeholder="请输入备注信息"></textarea>--%>
                                 <%--</div>--%>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传专利</label>
-                                    <input type="file" id="exampleInputFile">
+                                    <label for="exampleInputFile">上传著作</label>
+                                    <input type="file" id="exampleInputFile" name="file">
 
-                                    <p class="help-block">Example block-level help text here.</p>
+                                    <%--<p class="help-block">Example block-level help text here.</p>--%>
                                 </div>
                                 <%--<div class="checkbox">--%>
                                     <%--<label>--%>
@@ -194,7 +194,8 @@
     $(function () {
         //Date picker
         $('#publishTime').datepicker({
-            autoclose: true
+            autoclose: true,
+            format: 'yyyy-mm-dd'
         })
     })
 </script>
