@@ -15,7 +15,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- 页面css -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/css/patent/index.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/css/writing/index.css">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet"
           href="<%=request.getContextPath()%>/statics/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -213,6 +213,6 @@
 <!-- Select2 -->
 <script src="<%=request.getContextPath()%>/statics/bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- page script -->
-<script src="<%=request.getContextPath()%>/statics/js/patent/index.js"></script>
+<script src="<%=request.getContextPath()%>/statics/js/writing/index.js"></script>
 </body>
 </html>

@@ -72,24 +72,24 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form action="index" method="post" role="form">
+                        <form action="create" method="post" role="form" enctype="multipart/form-data">
                             <div class="box-body">
                                 <%@include file="_paper_form.jsp" %>
                                 <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputEmail1">专利名称</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="请填写专利">--%>
+                                    <%--<label for="exampleInputEmail1">论文名称</label>--%>
+                                    <%--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="请填写论文">--%>
                                 <%--</div>--%>
                                 <%--<div class="form-group">--%>
-                                    <%--<label>专利类型</label>--%>
+                                    <%--<label>论文类型</label>--%>
                                     <%--<select class="form-control">--%>
                                         <%--<option>发明</option>--%>
                                         <%--<option>实用新型</option>--%>
                                         <%--<option>外型</option>--%>
-                                        <%--<option>国际专利</option>--%>
+                                        <%--<option>国际论文</option>--%>
                                     <%--</select>--%>
                                 <%--</div>--%>
                                 <%--<div class="form-group">--%>
-                                    <%--<label>专利状态</label>--%>
+                                    <%--<label>论文状态</label>--%>
                                     <%--<select class="form-control">--%>
                                         <%--<option>已授权</option>--%>
                                         <%--<option>已受理</option>--%>
@@ -97,7 +97,7 @@
                                     <%--</select>--%>
                                 <%--</div>--%>
                                 <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">专利编号</label>--%>
+                                    <%--<label for="exampleInputPassword1">论文编号</label>--%>
                                     <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="如xx">--%>
                                 <%--</div>--%>
                                 <%--<div class="form-group">--%>
@@ -138,10 +138,10 @@
                                     <%--<textarea class="form-control" rows="3" placeholder="请输入备注信息"></textarea>--%>
                                 <%--</div>--%>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传专利</label>
-                                    <input type="file" id="exampleInputFile">
+                                    <label for="exampleInputFile">上传论文</label>
+                                    <input type="file" id="exampleInputFile" name="file">
 
-                                    <p class="help-block">Example block-level help text here.</p>
+                                    <%--<p class="help-block">Example block-level help text here.</p>--%>
                                 </div>
                                 <%--<div class="checkbox">--%>
                                     <%--<label>--%>
@@ -157,9 +157,6 @@
                         </form>
                     </div>
                     <!-- /.box -->
-
-
-
 
 
                         <!-- /.box-body -->
@@ -193,11 +190,9 @@
 <script>
     $(function () {
         //Date picker
-        $('#datepicker').datepicker({
-            autoclose: true
-        })
-        $('#datepicker1').datepicker({
-            autoclose: true
+        $('#publishTime').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd'
         })
 
     })

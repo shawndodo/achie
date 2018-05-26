@@ -78,7 +78,7 @@
                         <!-- form start -->
                         <form action="edit" method="get" role="form">
                             <div class="box-body">
-                                <%--<%@include file="_patent_form.jsp" %>--%>
+                                <%--<%@include file="_paper_form.jsp" %>--%>
                                 <div class="form-group">
                                     <label for="patentName">专利名称</label>
                                     <input type="text" class="form-control" disabled="disabled"

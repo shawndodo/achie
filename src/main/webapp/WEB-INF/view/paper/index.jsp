@@ -15,7 +15,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- 页面css -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/css/patent/index.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/css/paper/index.css">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet"
           href="<%=request.getContextPath()%>/statics/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -76,22 +76,17 @@
                     <div class="col-md-10">
                         <div class="search-query">
                             <div class="form-group">
-                                <label>专利名称</label>
+                                <label>论文名称</label>
                                 <input type="text" class="form-control" placeholder="请输入..">
                             </div>
 
                             <div class="form-group">
-                                <label>专利编号</label>
-                                <input type="text" class="form-control" placeholder="请输入..">
-                            </div>
-
-                            <div class="form-group">
-                                <label>专利类型</label>
+                                <label>论文类型</label>
                                 <select class="form-control select2" style="width: 100%;">
-                                    <option selected="selected">发明</option>
-                                    <option>实用新型</option>
-                                    <option>外型</option>
-                                    <option>国际专利</option>
+                                    <option selected="selected">期刊论文</option>
+                                    <option>会议论文集</option>
+                                    <option>报纸</option>
+                                    <option>学位论文</option>
                                 </select>
                             </div>
 
@@ -126,33 +121,33 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>专利名称</th>
-                                    <th>专利类型</th>
-                                    <th>专利状态</th>
-                                    <th>专利编号</th>
-                                    <th>获得时间</th>
-                                    <th>申请编号</th>
-                                    <th>申请时间</th>
+                                    <th>论文名称</th>
+                                    <th>论文类型</th>
                                     <th>本人排名</th>
+                                    <th>是否独著</th>
+                                    <th>通讯作者</th>
+                                    <th>刊物名称</th>
+                                    <th>收录检索(刊物级别)</th>
+                                    <th>发表时间</th>
                                     <th>备注</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="i" begin="1" end="10" step="1">
+                                <c:forEach items="${paperList}" var="paper" begin="0" end="9" step="1">
                                     <tr>
-                                        <td>一种新型装置</td>
-                                        <td>实用新型</td>
-                                        <td>已授权</td>
-                                        <td>XX 0000 01</td>
-                                        <td>2009.04.22</td>
-                                        <td>XX 0000 01</td>
-                                        <td>2008.04.01</td>
-                                        <td>1</td>
-                                        <td>xxxxxxxxx</td>
+                                        <td>${paper.paperName}</td>
+                                        <td>${paper.paperType}</td>
+                                        <td>${paper.selfRank}</td>
+                                        <td>${paper.isAlone}</td>
+                                        <td>${paper.messageAuthor}</td>
+                                        <td>${paper.periodicalName}</td>
+                                        <td>${paper.inclusionSearch}</td>
+                                        <td>${paper.publishTime}</td>
+                                        <td>${paper.remark}</td>
                                         <td>
                                             <div>
-                                                <a href="/achie/patent/show">
+                                                <a href="/achie/paper/show?paperId=${paper.id}">
                                                     <i></i>
                                                     查看详情
                                                 </a>
@@ -215,6 +210,6 @@
 <!-- Select2 -->
 <script src="<%=request.getContextPath()%>/statics/bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- page script -->
-<script src="<%=request.getContextPath()%>/statics/js/patent/index.js"></script>
+<script src="<%=request.getContextPath()%>/statics/js/paper/index.js"></script>
 </body>
 </html>

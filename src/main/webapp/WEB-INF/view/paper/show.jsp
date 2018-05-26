@@ -14,15 +14,18 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="<%=request.getContextPath()%>/statics/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="<%=request.getContextPath()%>/statics/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/dist/css/AdminLTE.min.css">
     <!-- bootstrap datepicker -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet"
+          href="<%=request.getContextPath()%>/statics/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/dist/css/skins/_all-skins.min.css">
@@ -35,7 +38,8 @@
     <![endif]-->
 
     <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -74,79 +78,206 @@
                         <!-- form start -->
                         <form action="edit" method="get" role="form">
                             <div class="box-body">
-                                <%@include file="_paper_form.jsp" %>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputEmail1">专利名称</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="请填写专利">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>专利类型</label>--%>
-                                    <%--<select class="form-control">--%>
-                                        <%--<option>发明</option>--%>
-                                        <%--<option>实用新型</option>--%>
-                                        <%--<option>外型</option>--%>
-                                        <%--<option>国际专利</option>--%>
-                                    <%--</select>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>专利状态</label>--%>
-                                    <%--<select class="form-control">--%>
-                                        <%--<option>已授权</option>--%>
-                                        <%--<option>已受理</option>--%>
-                                        <%--<option>已申请</option>--%>
-                                    <%--</select>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">专利编号</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="如xx">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>获得时间</label>--%>
-
-                                    <%--<div class="input-group date">--%>
-                                        <%--<div class="input-group-addon">--%>
-                                            <%--<i class="fa fa-calendar"></i>--%>
-                                        <%--</div>--%>
-                                        <%--<input type="text" class="form-control pull-right" id="datepicker">--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">申请编号</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="如xx">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>申请时间</label>--%>
-
-                                    <%--<div class="input-group date">--%>
-                                        <%--<div class="input-group-addon">--%>
-                                            <%--<i class="fa fa-calendar"></i>--%>
-                                        <%--</div>--%>
-                                        <%--<input type="text" class="form-control pull-right" id="datepicker1">--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">本人编号</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="1">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">关联课题</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="请输入关联课题">--%>
-                                <%--</div>--%>
-                                <%--<!-- textarea -->--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>备注</label>--%>
-                                    <%--<textarea class="form-control" rows="3" placeholder="请输入备注信息"></textarea>--%>
-                                <%--</div>--%>
+                                <%--<%@include file="_paper_form.jsp" %>--%>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传专利</label>
-                                    <input type="file" id="exampleInputFile">
+                                    <label for="paperName">论文名称</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="paperName"
+                                           id="paperName"
+                                           value="${paper.paperName}"
+                                           disabled="disabled"
+                                           placeholder="请填写标题">
+                                </div>
+                                <div class="form-group">
+                                    <label>论文类型</label>
+                                    <select class="form-control" name="paperType" id="paperType" disabled="disabled">
+                                        <option value="期刊论文" selected="selected">期刊论文</option>
+                                        <option value="会议论文集">会议论文集</option>
+                                        <option value="报纸">报纸</option>
+                                        <option value="学位论文">学位论文</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="selfRank">本人排名</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="selfRank"
+                                           id="selfRank"
+                                           value="${paper.selfRank}"
+                                           disabled="disabled"
+                                           placeholder="1">
+                                </div>
+                                <div class="form-group">
+                                    <label>是否独著</label>
+                                    <select class="form-control" name="isAlone" id="isAlone" disabled="disabled">
+                                        <option value="是" selected="selected">是</option>
+                                        <option value="否">否</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>通讯作者</label>
+                                    <select class="form-control" name="messageAuthor" id="messageAuthor" disabled="disabled">
+                                        <option value="是" selected="selected">是</option>
+                                        <option value="否">否</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="periodicalName">刊物名称</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="periodicalName"
+                                           id="periodicalName"
+                                           value="${paper.periodicalName}"
+                                           disabled="disabled"
+                                           placeholder="如：装饰">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inclusionSearch">收录检索(刊物级别)</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="inclusionSearch"
+                                           id="inclusionSearch"
+                                           value="${paper.inclusionSearch}"
+                                           disabled="disabled"
+                                           placeholder="请输入刊物级别">
+                                </div>
+                                <div class="form-group">
+                                    <label>发表时间</label>
 
-                                    <p class="help-block">Example block-level help text here.</p>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control pull-right"
+                                               name="publishTime"
+                                               value="${paper.publishTime}"
+                                               disabled="disabled"
+                                               id="publishTime">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="keyWord">关键词</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="keyWord"
+                                           id="keyWord"
+                                           value="${paper.keyWord}"
+                                           disabled="disabled"
+                                           placeholder="如：机器学习，生物化学">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edition">卷(期、版次)</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="edition"
+                                           id="edition"
+                                           value="${paper.edition}"
+                                           disabled="disabled"
+                                           placeholder="格式为：卷(期)，如12(04)">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edition">起止页码</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="startEndPageNum"
+                                           id="startEndPageNum"
+                                           value="${paper.startEndPageNum}"
+                                           disabled="disabled"
+                                           placeholder="如：21~24">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="doiNum">DOI号</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="doiNum"
+                                           id="doiNum"
+                                           value="${paper.doiNum}"
+                                           disabled="disabled"
+                                           placeholder="请输入DOI号">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="issnNum">ISSN号</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="issnNum"
+                                           id="issnNum"
+                                           value="${paper.issnNum}"
+                                           disabled="disabled"
+                                           placeholder="请输入ISSN号">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cnNum">CN号</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="cnNum"
+                                           id="cnNum"
+                                           value="${paper.cnNum}"
+                                           disabled="disabled"
+                                           placeholder="请输入CN号">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="impactFactor">影响因子</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="impactFactor"
+                                           id="impactFactor"
+                                           value="${paper.impactFactor}"
+                                           disabled="disabled"
+                                           placeholder="如：3.102">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="quotesNum">引用次数</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="quotesNum"
+                                           id="quotesNum"
+                                           value="${paper.quotesNum}"
+                                           disabled="disabled"
+                                           placeholder="请输入论文引用次数">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="relatedCourseName">关联课题</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="relatedCourseName"
+                                           id="relatedCourseName"
+                                           value="${paper.relatedCourseName}"
+                                           disabled="disabled"
+                                           placeholder="请输入关联课题">
+                                </div>
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <label>备注</label>
+                                    <textarea class="form-control" rows="3" name="remark" disabled="disabled"
+                                              placeholder="请输入备注信息">${paper.remark}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">上传论文</label>
+                                    <input id="exampleInputFile" name="file" disabled="disabled">
+                                    <div class="showFile">
+                                        <span>"${attachment.fileName}"</span>
+                                        <button type="button" class="btn btn-block btn-default btn-xs"
+                                                style="width:40px;display:inline;">
+                                            <a href="${attachment.attachmentUrl}" download="" target="_blank">下载</a>
+                                        </button>
+                                    </div>
+                                    <%--<p class="help-block">Example block-level help text here.</p>--%>
+                                </div>
+                                <div>
+                                    <input type="hidden" name="paperId" value="${paper.id}">
                                 </div>
                                 <%--<div class="checkbox">--%>
-                                    <%--<label>--%>
-                                        <%--<input type="checkbox"> Check me out--%>
-                                    <%--</label>--%>
+                                <%--<label>--%>
+                                <%--<input type="checkbox"> Check me out--%>
+                                <%--</label>--%>
                                 <%--</div>--%>
                             </div>
                             <!-- /.box-body -->
@@ -159,10 +290,7 @@
                     <!-- /.box -->
 
 
-
-
-
-                        <!-- /.box-body -->
+                    <!-- /.box-body -->
                     <!-- /.box -->
 
                 </div>
@@ -193,12 +321,16 @@
 <script>
     $(function () {
         //Date picker
-        $('#datepicker').datepicker({
-            autoclose: true
+        $('#publishTime').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd'
         })
-        $('#datepicker1').datepicker({
-            autoclose: true
-        })
+
+        $("#paperType").val("${paper.paperType}");
+        $("#isAlone").val("${paper.isAlone}");
+        $("#messageAuthor").val("${paper.messageAuthor}");
+
+        $("#exampleInputFile").hide();
 
     })
 </script>

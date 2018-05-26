@@ -1,0 +1,13 @@
+.search-box .box-body
+{
+    border-bottom: 1px dashed #ccc;
+}
+/*.search-box .box-body .form-group*/
+/*{*/
+    /*display: inline-block;*/
+/*}*/
+.search-box .search-query
+{
+    display: flex;
+    justify-content: space-between;
+}

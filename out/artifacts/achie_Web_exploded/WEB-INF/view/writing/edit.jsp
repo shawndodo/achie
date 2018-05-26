@@ -78,7 +78,7 @@
                         <!-- form start -->
                         <form action="update" method="post" role="form" enctype="multipart/form-data">
                             <div class="box-body">
-                                <%--<%@include file="_patent_form.jsp" %>--%>
+                                <%--<%@include file="_paper_form.jsp" %>--%>
                                 <div class="form-group">
                                     <label for="writingName">著作名称</label>
                                     <input type="text"
@@ -170,7 +170,7 @@
                                     <%--<p class="help-block">Example block-level help text here.</p>--%>
                                 </div>
                                 <%--<div>--%>
-                                <%--<input type="hidden" name="patentId" value="${patent.id}">--%>
+                                <%--<input type="hidden" name="writingId" value="${writing.id}">--%>
                                 <%--</div>--%>
                             </div>
                             <%--<div class="checkbox">--%>
