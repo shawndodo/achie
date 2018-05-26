@@ -6,7 +6,6 @@ import java.util.Date;
 public class ResearchAward {
 
     private int id;
-    private String workNumber;
     private String awardName;
     private String publishJournal;
     private String publisher;
@@ -19,6 +18,7 @@ public class ResearchAward {
     private int unitRank;
     private int selfRank;
     private String subjectCategory;
+    private String remark;
     private Date createdAt;
     private Date updatedAt;
 
@@ -28,14 +28,6 @@ public class ResearchAward {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getWorkNumber() {
-        return workNumber;
-    }
-
-    public void setWorkNumber(String workNumber) {
-        this.workNumber = workNumber;
     }
 
     public String getAwardName() {
@@ -150,11 +142,18 @@ public class ResearchAward {
         this.updatedAt = updatedAt;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     @Override
     public String toString() {
         return "ResearchAward{" +
                 "id=" + id +
-                ", workNumber='" + workNumber + '\'' +
                 ", awardName='" + awardName + '\'' +
                 ", publishJournal='" + publishJournal + '\'' +
                 ", publisher='" + publisher + '\'' +
@@ -167,6 +166,7 @@ public class ResearchAward {
                 ", unitRank=" + unitRank +
                 ", selfRank=" + selfRank +
                 ", subjectCategory='" + subjectCategory + '\'' +
+                ", remark='" + remark + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';
