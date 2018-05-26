@@ -93,7 +93,7 @@ public class PatentController {
             attachmentService.setValue(file, url, userId, patentId, "Patent");
         }
 
-        teacherAchieService.setValue(patentId, teacher, "Writing", "research", "submit");
+        teacherAchieService.setValue(patentId, teacher, "Patent", "research", "submit");
 
         return "redirect:index";
     }
