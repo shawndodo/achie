@@ -70,6 +70,7 @@
                     <li><a href="/achie/paper/index"><i class="fa fa-circle-o text-aqua"></i>论文管理</a></li>
                     <li><a href="/achie/paper/index"><i class="fa fa-circle-o text-aqua"></i>参与学术会议管理</a></li>
                     <li><a href="/achie/researchAward/index"><i class="fa fa-circle-o text-aqua"></i>获奖成果管理</a></li>
+                    <li><a href="/achie/researchProject/index"><i class="fa fa-circle-o text-aqua"></i>科研项目管理</a></li>
                 </ul>
             </li>
             <li><a href="#"><i class="fa fa-bar-chart"></i> <span>成果统计</span></a></li>

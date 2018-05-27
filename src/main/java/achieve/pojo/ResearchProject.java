@@ -14,6 +14,7 @@ public class ResearchProject {
     private int approvalFund;
     private int currentYearInMoney;
     private int currentYearOutMoney;
+    private String subjectCategory;
     private String organizationForm;
     private String serveNationalEconomyIndustry;
     private String projectGoal;
@@ -94,6 +95,14 @@ public class ResearchProject {
         this.currentYearOutMoney = currentYearOutMoney;
     }
 
+    public String getSubjectCategory() {
+        return subjectCategory;
+    }
+
+    public void setSubjectCategory(String subjectCategory) {
+        this.subjectCategory = subjectCategory;
+    }
+
     public String getOrganizationForm() {
         return organizationForm;
     }
@@ -162,6 +171,7 @@ public class ResearchProject {
                 ", approvalFund=" + approvalFund +
                 ", currentYearInMoney=" + currentYearInMoney +
                 ", currentYearOutMoney=" + currentYearOutMoney +
+                ", subjectCategory='" + subjectCategory + '\'' +
                 ", organizationForm='" + organizationForm + '\'' +
                 ", serveNationalEconomyIndustry='" + serveNationalEconomyIndustry + '\'' +
                 ", projectGoal='" + projectGoal + '\'' +
