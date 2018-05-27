@@ -215,7 +215,7 @@
                                     <input type="hidden" name="createdAt" value="${researchAward.createdAt}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传专利</label>
+                                    <label for="exampleInputFile">上传获奖成果</label>
                                     <input type="file" id="exampleInputFile" name="file">
                                     <div class="showFile">
                                         <span>"${attachment.fileName}"</span>

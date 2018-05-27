@@ -10,19 +10,22 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>成果管理系统 | 编辑软件著作权</title>
+    <title>成果管理系统 | 编辑专利</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="<%=request.getContextPath()%>/statics/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="<%=request.getContextPath()%>/statics/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/dist/css/AdminLTE.min.css">
     <!-- bootstrap datepicker -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet"
+          href="<%=request.getContextPath()%>/statics/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/dist/css/skins/_all-skins.min.css">
@@ -35,7 +38,8 @@
     <![endif]-->
 
     <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -50,13 +54,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                编辑软件著作权
+                编辑专利
                 <%--<small>Preview</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">软件著作权管理</a></li>
-                <li class="active">编辑软件著作权</li>
+                <li><a href="#">专利管理</a></li>
+                <li class="active">编辑专利</li>
             </ol>
         </section>
 
@@ -72,81 +76,124 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form action="index" method="post" role="form">
+                        <form action="update" method="post" role="form" enctype="multipart/form-data">
                             <div class="box-body">
-                                <%@include file="_software_copyright_form.jsp" %>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputEmail1">专利名称</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="请填写专利">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>专利类型</label>--%>
-                                    <%--<select class="form-control">--%>
-                                        <%--<option>发明</option>--%>
-                                        <%--<option>实用新型</option>--%>
-                                        <%--<option>外型</option>--%>
-                                        <%--<option>国际专利</option>--%>
-                                    <%--</select>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>专利状态</label>--%>
-                                    <%--<select class="form-control">--%>
-                                        <%--<option>已授权</option>--%>
-                                        <%--<option>已受理</option>--%>
-                                        <%--<option>已申请</option>--%>
-                                    <%--</select>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">专利编号</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="如xx">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>获得时间</label>--%>
-
-                                    <%--<div class="input-group date">--%>
-                                        <%--<div class="input-group-addon">--%>
-                                            <%--<i class="fa fa-calendar"></i>--%>
-                                        <%--</div>--%>
-                                        <%--<input type="text" class="form-control pull-right" id="datepicker">--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">申请编号</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="如xx">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>申请时间</label>--%>
-
-                                    <%--<div class="input-group date">--%>
-                                        <%--<div class="input-group-addon">--%>
-                                            <%--<i class="fa fa-calendar"></i>--%>
-                                        <%--</div>--%>
-                                        <%--<input type="text" class="form-control pull-right" id="datepicker1">--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">本人编号</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="1">--%>
-                                <%--</div>--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label for="exampleInputPassword1">关联课题</label>--%>
-                                    <%--<input type="text" class="form-control" id="exampleInputPassword1" placeholder="请输入关联课题">--%>
-                                <%--</div>--%>
-                                <%--<!-- textarea -->--%>
-                                <%--<div class="form-group">--%>
-                                    <%--<label>备注</label>--%>
-                                    <%--<textarea class="form-control" rows="3" placeholder="请输入备注信息"></textarea>--%>
-                                <%--</div>--%>
+                                <%--<%@include file="_paper_form.jsp" %>--%>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传专利</label>
-                                    <input type="file" id="exampleInputFile">
-
-                                    <p class="help-block">Example block-level help text here.</p>
+                                    <label for="copyrightName">著作权名称</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="copyrightName"
+                                           id="copyrightName"
+                                           value="${softwareCopyright.copyrightName}"
+                                           placeholder="请填写标题">
                                 </div>
+                                <div class="form-group">
+                                    <label for="certificateNum">证书号</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="certificateNum"
+                                           id="certificateNum"
+                                           value="${softwareCopyright.certificateNum}"
+                                           placeholder="请填写证书右上角的[软著登字xxx]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="selfRank">本人排名</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="selfRank"
+                                           id="selfRank"
+                                           value="${softwareCopyright.selfRank}"
+                                           placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label>开发完成时间</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control pull-right"
+                                               name="developFinishDate"
+                                               value="${softwareCopyright.developFinishDate}"
+                                               id="developFinishDate">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>获得时间</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control pull-right"
+                                               name="getDate"
+                                               value="${softwareCopyright.getDate}"
+                                               id="getDate">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>著作权类型</label>
+                                    <select class="form-control"
+                                            name="copyrightType"
+                                            id="copyrightType">
+                                        <option value="软件制品" selected="selected">软件制品</option>
+                                        <option value="音像制品">音像制品</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="copyrightPerson">著作权人</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="copyrightPerson"
+                                           id="copyrightPerson"
+                                           value="${softwareCopyright.copyrightPerson}"
+                                           placeholder="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="relatedCourseName">关联课题</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="relatedCourseName"
+                                           id="relatedCourseName"
+                                           value="${softwareCopyright.relatedCourseName}"
+                                           placeholder="">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>备注</label>
+                                    <textarea class="form-control" rows="3" name="remark"
+                                              placeholder="请输入备注信息">${softwareCopyright.remark}</textarea>
+                                </div>
+                                <div>
+                                    <input type="hidden" name="id" value="${softwareCopyright.id}">
+                                </div>
+                                <div>
+                                    <input type="hidden" name="createdAt" value="${softwareCopyright.createdAt}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">上传软件著作权</label>
+                                    <input type="file" id="exampleInputFile" name="file">
+                                    <div class="showFile">
+                                        <span>"${attachment.fileName}"</span>
+                                        <button type="button" class="btn btn-block btn-default btn-xs"
+                                                style="width:40px;display:inline;">下载
+                                        </button>
+                                    </div>
+                                    <%--<p class="help-block">Example block-level help text here.</p>--%>
+                                </div>
+                                <%--<div>--%>
+                                <%--<input type="hidden" name="patentId" value="${patent.id}">--%>
+                                <%--</div>--%>
                                 <%--<div class="checkbox">--%>
-                                    <%--<label>--%>
-                                        <%--<input type="checkbox"> Check me out--%>
-                                    <%--</label>--%>
+                                <%--<label>--%>
+                                <%--<input type="checkbox"> Check me out--%>
+                                <%--</label>--%>
                                 <%--</div>--%>
                             </div>
                             <!-- /.box-body -->
@@ -159,10 +206,7 @@
                     <!-- /.box -->
 
 
-
-
-
-                        <!-- /.box-body -->
+                    <!-- /.box-body -->
                     <!-- /.box -->
 
                 </div>
@@ -193,14 +237,26 @@
 <script>
     $(function () {
         //Date picker
-        $('#datepicker').datepicker({
-            autoclose: true
+        $('#getDate').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd'
         })
-        $('#datepicker1').datepicker({
-            autoclose: true
+        $('#developFinishDate').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd'
         })
 
+        $("#copyrightType").val("${softwareCopyright.copyrightType}");
+
     })
+
+    $('#exampleInputFile').bind('input exampleInputFile', function () {
+        var fileValue = $(this).val();
+        if (fileValue != "" || fileValue != null || fileValue != undefined) {
+            $('.showFile').hide();
+        }
+    });
+
 </script>
 </body>
 </html>

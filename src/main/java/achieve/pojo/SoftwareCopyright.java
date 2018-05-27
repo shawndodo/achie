@@ -9,6 +9,8 @@ public class SoftwareCopyright {
     private String copyrightName;
     private String certificateNum;
     private int selfRank;
+    private Date getDate;
+    private Date developFinishDate;
     private String copyrightType;
     private String copyrightPerson;
     private String relatedCourseName;
@@ -16,6 +18,7 @@ public class SoftwareCopyright {
     private Date createdAt;
     private Date updatedAt;
 //    private int researchAchievementId;
+
 
     public int getId() {
         return id;
@@ -47,6 +50,22 @@ public class SoftwareCopyright {
 
     public void setSelfRank(int selfRank) {
         this.selfRank = selfRank;
+    }
+
+    public Date getGetDate() {
+        return getDate;
+    }
+
+    public void setGetDate(Date getDate) {
+        this.getDate = getDate;
+    }
+
+    public Date getDevelopFinishDate() {
+        return developFinishDate;
+    }
+
+    public void setDevelopFinishDate(Date developFinishDate) {
+        this.developFinishDate = developFinishDate;
     }
 
     public String getCopyrightType() {
@@ -81,15 +100,6 @@ public class SoftwareCopyright {
         this.remark = remark;
     }
 
-//    public int getResearchAchievementId() {
-//        return researchAchievementId;
-//    }
-//
-//    public void setResearchAchievementId(int researchAchievementId) {
-//        this.researchAchievementId = researchAchievementId;
-//    }
-
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -113,6 +123,8 @@ public class SoftwareCopyright {
                 ", copyrightName='" + copyrightName + '\'' +
                 ", certificateNum='" + certificateNum + '\'' +
                 ", selfRank=" + selfRank +
+                ", getDate=" + getDate +
+                ", developFinishDate=" + developFinishDate +
                 ", copyrightType='" + copyrightType + '\'' +
                 ", copyrightPerson='" + copyrightPerson + '\'' +
                 ", relatedCourseName='" + relatedCourseName + '\'' +
