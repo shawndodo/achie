@@ -193,6 +193,7 @@
                 <!-- /.box -->
 
             </div>
+        </section>
     </div>
     </section>
 
