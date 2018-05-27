@@ -154,7 +154,7 @@
                                     <input type="hidden" name="createdAt" value="${teachAward.createdAt}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传软件著作权</label>
+                                    <label for="exampleInputFile">上传教学奖项</label>
                                     <input type="file" id="exampleInputFile" name="file">
                                     <div class="showFile">
                                         <span>"${attachment.fileName}"</span>

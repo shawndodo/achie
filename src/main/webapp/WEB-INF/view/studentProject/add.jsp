@@ -77,7 +77,7 @@
                                 <%@include file="_student_project_form.jsp" %>
                                 
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传教学奖项</label>
+                                    <label for="exampleInputFile">上传指导学生项目</label>
                                     <input type="file" id="exampleInputFile" name="file">
 
                                     <%--<p class="help-block">Example block-level help text here.</p>--%>

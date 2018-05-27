@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>成果管理系统 | 新增指导学生项目</title>
+    <title>成果管理系统 | 新增教学论文</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -50,13 +50,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                新增指导学生项目
+                新增教学论文
                 <%--<small>Preview</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">指导学生项目管理</a></li>
-                <li class="active">新增指导学生项目</li>
+                <li><a href="#">教学论文管理</a></li>
+                <li class="active">新增教学论文</li>
             </ol>
         </section>
 
@@ -74,10 +74,10 @@
                         <!-- form start -->
                         <form action="create" method="post" role="form" enctype="multipart/form-data">
                             <div class="box-body">
-                                <%@include file="_student_project_form.jsp" %>
+                                <%@include file="_teach_paper_form.jsp" %>
                                 
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传指导学生项目</label>
+                                    <label for="exampleInputFile">上传教学论文</label>
                                     <input type="file" id="exampleInputFile" name="file">
 
                                     <%--<p class="help-block">Example block-level help text here.</p>--%>

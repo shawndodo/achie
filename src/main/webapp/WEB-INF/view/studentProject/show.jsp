@@ -152,7 +152,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传教学奖项</label>
+                                    <label for="exampleInputFile">上传指导学生项目</label>
                                     <input id="exampleInputFile" name="file" disabled="disabled">
                                     <div class="showFile">
                                         <span>"${attachment.fileName}"</span>

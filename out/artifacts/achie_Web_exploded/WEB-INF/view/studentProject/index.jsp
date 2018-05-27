@@ -65,7 +65,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">科研成果</a></li>
+                <li><a href="#">教学成果</a></li>
                 <li class="active">指导学生项目管理</li>
             </ol>
         </section>

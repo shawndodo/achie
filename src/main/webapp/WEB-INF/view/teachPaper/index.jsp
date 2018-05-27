@@ -12,11 +12,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>成果管理系统 | 教学奖项管理</title>
+    <title>成果管理系统 | 教学论文管理</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- 页面css -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/css/teachAward/index.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/css/teachPaper/index.css">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet"
           href="<%=request.getContextPath()%>/statics/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -60,13 +60,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                教学奖项管理
+                教学论文管理
                 <%--<small>advanced tables</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a href="#">教学成果</a></li>
-                <li class="active">教学奖项管理</li>
+                <li class="active">教学论文管理</li>
             </ol>
         </section>
 
@@ -77,20 +77,9 @@
                     <div class="col-md-10">
                         <div class="search-query">
                             <div class="form-group">
-                                <label>教学奖项名称</label>
+                                <label>论文题目</label>
                                 <input type="text" class="form-control" placeholder="请输入..">
                             </div>
-
-                            <div class="form-group">
-                                <label>著作权类型</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                    <option selected="selected">国家级</option>
-                                    <option>省部级</option>
-                                    <option>校级</option>
-                                    <option>其他</option>
-                                </select>
-                            </div>
-
                         </div>
                         <div>
                             <div class="col-xs-2">
@@ -109,7 +98,7 @@
             <div class="row">
                 <div class="col-xs-2">
                     <button type="button" class="btn btn-block btn-primary" onclick="window.location.href='add'">
-                        新增教学奖项
+                        新增教学论文
                     </button>
                 </div>
                 <div class="col-xs-12">
@@ -122,11 +111,10 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>教学奖项名称</th>
-                                    <th>本人排名</th>
-                                    <th>级别</th>
-                                    <th>授予单位</th>
-                                    <th>获奖时间</th>
+                                    <th>论文题目</th>
+                                    <th>刊物名称</th>
+                                    <th>期/卷</th>
+                                    <th>页号</th>
                                     <th>备注</th>
                                     <th>提交时间</th>
                                     <th>修改时间</th>
@@ -134,19 +122,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${teachAwardList}" var="teachAward" begin="0" end="9" step="1">
+                                <c:forEach items="${teachPaperList}" var="teachPaper" begin="0" end="9" step="1">
                                     <tr>
-                                        <td>${teachAward.awardName}</td>
-                                        <td>${teachAward.selfRank}</td>
-                                        <td>${teachAward.level}</td>
-                                        <td>${teachAward.awardDepartment}</td>
-                                        <td>${teachAward.awardDate}</td>
-                                        <td>${teachAward.remark}</td>
-                                        <td>${fn:substring(teachAward.createdAt, 0, 19)}</td>
-                                        <td>${fn:substring(teachAward.updatedAt, 0, 19)}</td>
+                                        <td>${teachPaper.paperName}</td>
+                                        <td>${teachPaper.periodicalName}</td>
+                                        <td>${teachPaper.vol}</td>
+                                        <td>${teachPaper.page}</td>
+                                        <td>${teachPaper.remark}</td>
+                                        <td>${fn:substring(teachPaper.createdAt, 0, 19)}</td>
+                                        <td>${fn:substring(teachPaper.updatedAt, 0, 19)}</td>
                                         <td>
                                             <div>
-                                                <a href="/achie/teachAward/show?teachAwardId=${teachAward.id}">
+                                                <a href="/achie/teachPaper/show?teachPaperId=${teachPaper.id}">
                                                     <i></i>
                                                     查看详情
                                                 </a>
@@ -209,6 +196,6 @@
 <!-- Select2 -->
 <script src="<%=request.getContextPath()%>/statics/bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- page script -->
-<script src="<%=request.getContextPath()%>/statics/js/teachAward/index.js"></script>
+<script src="<%=request.getContextPath()%>/statics/js/teachPaper/index.js"></script>
 </body>
 </html>

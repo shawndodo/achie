@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>成果管理系统 | 编辑教学奖项</title>
+    <title>成果管理系统 | 编辑教学论文</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -54,13 +54,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                编辑教学奖项
+                编辑教学论文
                 <%--<small>Preview</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">教学奖项管理</a></li>
-                <li class="active">编辑教学奖项</li>
+                <li><a href="#">教学论文管理</a></li>
+                <li class="active">编辑教学论文</li>
             </ol>
         </section>
 
@@ -80,61 +80,51 @@
                             <div class="box-body">
                                 <%--<%@include file="_paper_form.jsp" %>--%>
                                 <div class="form-group">
-                                    <label for="code">项目编号</label>
+                                    <label for="paperName">论文题目</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="code"
-                                           id="code"
-                                           value="${studentProject.code}"
+                                           name="paperName"
+                                           id="paperName"
+                                           value="${teachPaper.paperName}"
                                            placeholder="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">项目名称</label>
+                                    <label for="periodicalName">刊物名称</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="name"
-                                           id="name"
-                                           value="${studentProject.name}"
-                                           placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>级别</label>
-                                    <select class="form-control" name="projectType" id="projectType">
-                                        <option value="国家级" selected="selected">国家级</option>
-                                        <option value="省部级">省部级</option>
-                                        <option value="校级">校级</option>
-                                        <option value="其他">其他</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="leader">项目负责人</label>
-                                    <input type="text"
-                                           class="form-control"
-                                           name="leader"
-                                           id="leader"
-                                           value="${studentProject.leader}"
+                                           name="periodicalName"
+                                           id="periodicalName"
+                                           value="${teachPaper.periodicalName}"
                                            placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="studentNum">学生数</label>
+                                    <label for="vol">期/卷</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="studentNum"
-                                           id="studentNum"
-                                           value="${studentProject.studentNum}"
+                                           name="vol"
+                                           id="vol"
+                                           value="${teachPaper.vol}"
                                            placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="mentorName">导师姓名</label>
+                                    <label for="page">页号</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="mentorName"
-                                           id="mentorName"
-                                           value="${studentProject.mentorName}"
+                                           name="page"
+                                           id="page"
+                                           value="${teachPaper.page}"
+                                           placeholder="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="relatedCourseName">关联课题</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="relatedCourseName"
+                                           id="relatedCourseName"
+                                           value="${teachPaper.relatedCourseName}"
                                            placeholder="">
                                 </div>
 
@@ -143,16 +133,16 @@
                                     <textarea class="form-control"
                                               rows="3"
                                               name="remark"
-                                              placeholder="请输入备注信息">${studentProject.remark}</textarea>
+                                              placeholder="请输入备注信息">${teachPaper.remark}</textarea>
                                 </div>
                                 <div>
-                                    <input type="hidden" name="id" value="${studentProject.id}">
+                                    <input type="hidden" name="id" value="${teachPaper.id}">
                                 </div>
                                 <div>
-                                    <input type="hidden" name="createdAt" value="${studentProject.createdAt}">
+                                    <input type="hidden" name="createdAt" value="${teachPaper.createdAt}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传指导学生项目</label>
+                                    <label for="exampleInputFile">上传软件著作权</label>
                                     <input type="file" id="exampleInputFile" name="file">
                                     <div class="showFile">
                                         <span>"${attachment.fileName}"</span>
@@ -211,8 +201,6 @@
 <!-- Page script -->
 <script>
     $(function () {
-
-        $("#projectType").val("${studentProject.projectType}");
 
     })
 
