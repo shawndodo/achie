@@ -85,6 +85,7 @@
                                 <select class="form-control select2" style="width: 100%;">
                                     <option selected="selected">国家级</option>
                                     <option>省部级</option>
+                                    <option>校级</option>
                                     <option>其他</option>
                                 </select>
                             </div>
@@ -132,6 +133,8 @@
                                     <th>单位排名</th>
                                     <th>本人排名</th>
                                     <th>学科门类</th>
+                                    <th>提交时间</th>
+                                    <th>修改时间</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -150,6 +153,8 @@
                                         <td>${researchAward.unitRank}</td>
                                         <td>${researchAward.selfRank}</td>
                                         <td>${researchAward.subjectCategory}</td>
+                                        <td>${fn:substring(researchAward.createdAt, 0, 19)}</td>
+                                        <td>${fn:substring(researchAward.updatedAt, 0, 19)}</td>
                                         <td>
                                             <div>
                                                 <a href="/achie/researchAward/show?researchAwardId=${researchAward.id}">

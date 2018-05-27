@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>成果管理系统 | 编辑教学奖项</title>
+    <title>成果管理系统 | 查看指导学生项目</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -54,13 +54,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                编辑教学奖项
+                查看指导学生项目
                 <%--<small>Preview</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a href="#">教学奖项管理</a></li>
-                <li class="active">编辑教学奖项</li>
+                <li class="active">查看指导学生项目</li>
             </ol>
         </section>
 
@@ -72,35 +72,36 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">信息填写</h3>
+                            <h3 class="box-title">信息查看</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form action="update" method="post" role="form" enctype="multipart/form-data">
+                        <form action="edit" method="get" role="form">
                             <div class="box-body">
-                                <%--<%@include file="_paper_form.jsp" %>--%>
                                 <div class="form-group">
-                                    <label for="awardName">教学奖项名称</label>
+                                    <label for="code">项目编号</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="awardName"
-                                           id="awardName"
-                                           value="${teachAward.awardName}"
-                                           placeholder="请填写标题">
+                                           name="code"
+                                           id="code"
+                                           value="${studentProject.code}"
+                                           disabled="disabled"
+                                           placeholder="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="selfRank">本人排名</label>
+                                    <label for="name">项目名称</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="selfRank"
-                                           id="selfRank"
-                                           value="${teachAward.selfRank}"
+                                           name="name"
+                                           id="name"
+                                           value="${studentProject.name}"
+                                           disabled="disabled"
                                            placeholder="">
                                 </div>
 
                                 <div class="form-group">
                                     <label>级别</label>
-                                    <select class="form-control" name="level" id="level">
+                                    <select class="form-control" name="projectType" id="projectType" disabled="disabled">
                                         <option value="国家级" selected="selected">国家级</option>
                                         <option value="省部级">省部级</option>
                                         <option value="校级">校级</option>
@@ -109,64 +110,62 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="awardDepartment">授予单位</label>
+                                    <label for="leader">项目负责人</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="awardDepartment"
-                                           id="awardDepartment"
-                                           value="${teachAward.awardDepartment}"
+                                           name="leader"
+                                           id="leader"
+                                           value="${studentProject.leader}"
+                                           disabled="disabled"
                                            placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>获奖时间</label>
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input type="text"
-                                               class="form-control pull-right"
-                                               name="awardDate"
-                                               value="${teachAward.awardDate}"
-                                               id="awardDate">
-                                    </div>
+                                    <label for="studentNum">学生数</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="studentNum"
+                                           id="studentNum"
+                                           value="${studentProject.studentNum}"
+                                           disabled="disabled"
+                                           placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="relatedCourseName">关联课题</label>
+                                    <label for="mentorName">导师姓名</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="relatedCourseName"
-                                           id="relatedCourseName"
-                                           value="${teachAward.relatedCourseName}"
+                                           name="mentorName"
+                                           id="mentorName"
+                                           value="${studentProject.mentorName}"
+                                           disabled="disabled"
                                            placeholder="">
                                 </div>
 
                                 <div class="form-group">
                                     <label>备注</label>
-                                    <textarea class="form-control" rows="3" name="remark"
-                                              placeholder="请输入备注信息">${teachAward.remark}</textarea>
+                                    <textarea class="form-control"
+                                              rows="3"
+                                              name="remark"
+                                              disabled="disabled"
+                                              placeholder="请输入备注信息">${studentProject.remark}</textarea>
                                 </div>
-                                <div>
-                                    <input type="hidden" name="id" value="${teachAward.id}">
-                                </div>
-                                <div>
-                                    <input type="hidden" name="createdAt" value="${teachAward.createdAt}">
-                                </div>
+
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传软件著作权</label>
-                                    <input type="file" id="exampleInputFile" name="file">
+                                    <label for="exampleInputFile">上传教学奖项</label>
+                                    <input id="exampleInputFile" name="file" disabled="disabled">
                                     <div class="showFile">
                                         <span>"${attachment.fileName}"</span>
                                         <button type="button" class="btn btn-block btn-default btn-xs"
-                                                style="width:40px;display:inline;">下载
+                                                style="width:40px;display:inline;">
+                                            <a href="${attachment.attachmentUrl}" download="" target="_blank">下载</a>
                                         </button>
                                     </div>
                                     <%--<p class="help-block">Example block-level help text here.</p>--%>
                                 </div>
-                                <%--<div>--%>
-                                <%--<input type="hidden" name="patentId" value="${patent.id}">--%>
-                                <%--</div>--%>
+                                <div>
+                                    <input type="hidden" name="studentProjectId" value="${studentProject.id}">
+                                </div>
                                 <%--<div class="checkbox">--%>
                                 <%--<label>--%>
                                 <%--<input type="checkbox"> Check me out--%>
@@ -176,7 +175,7 @@
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">确认</button>
+                                <button type="submit" class="btn btn-primary">编辑</button>
                             </div>
                         </form>
                     </div>
@@ -213,23 +212,12 @@
 <!-- Page script -->
 <script>
     $(function () {
-        //Date picker
-        $('#awardDate').datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd'
-        })
 
-        $("#level").val("${teachAward.level}");
+        $("#projectType").val("${studentProject.projectType}");
+
+        $("#exampleInputFile").hide();
 
     })
-
-    $('#exampleInputFile').bind('input exampleInputFile', function () {
-        var fileValue = $(this).val();
-        if (fileValue != "" || fileValue != null || fileValue != undefined) {
-            $('.showFile').hide();
-        }
-    });
-
 </script>
 </body>
 </html>

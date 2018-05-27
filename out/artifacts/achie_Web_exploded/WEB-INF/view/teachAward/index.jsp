@@ -87,6 +87,7 @@
                                     <option selected="selected">国家级</option>
                                     <option>省部级</option>
                                     <option>校级</option>
+                                    <option>其他</option>
                                 </select>
                             </div>
 

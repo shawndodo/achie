@@ -104,6 +104,7 @@
                                     <select class="form-control" name="level" id="level" disabled="disabled">
                                         <option value="国家级" selected="selected">国家级</option>
                                         <option value="省部级">省部级</option>
+                                        <option value="校级">校级</option>
                                         <option value="其他">其他</option>
                                     </select>
                                 </div>

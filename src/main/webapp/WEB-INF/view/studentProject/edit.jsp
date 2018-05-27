@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>成果管理系统 | 编辑著作</title>
+    <title>成果管理系统 | 编辑教学奖项</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -54,13 +54,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                编辑著作
+                编辑教学奖项
                 <%--<small>Preview</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">著作管理</a></li>
-                <li class="active">编辑著作</li>
+                <li><a href="#">教学奖项管理</a></li>
+                <li class="active">编辑教学奖项</li>
             </ol>
         </section>
 
@@ -80,86 +80,79 @@
                             <div class="box-body">
                                 <%--<%@include file="_paper_form.jsp" %>--%>
                                 <div class="form-group">
-                                    <label for="writingName">著作名称</label>
+                                    <label for="code">项目编号</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="writingName"
-                                           id="writingName"
-                                           value="${writing.writingName}"
-                                           placeholder="请填写标题">
+                                           name="code"
+                                           id="code"
+                                           value="${studentProject.code}"
+                                           placeholder="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="publicationNumber">出版号</label>
-                                    <input type="text" class="form-control" name="publicationNumber" value="${writing.publicationNumber}"
-                                           id="publicationNumber" placeholder="如ISBN 123-1-123-12345-1">
+                                    <label for="name">项目名称</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="name"
+                                           id="name"
+                                           value="${studentProject.name}"
+                                           placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>身份</label>
-                                    <select class="form-control" name="selfPosition" id="selfPosition">
-                                        <option value="著作" selected="selected">著作</option>
-                                        <option value="总主编">总主编</option>
-                                        <option value="副主编">副主编</option>
-                                        <option value="主编">主编</option>
-                                        <option value="参编">参编</option>
-                                        <option value="主审">主审</option>
+                                    <label>级别</label>
+                                    <select class="form-control" name="projectType" id="projectType">
+                                        <option value="国家级" selected="selected">国家级</option>
+                                        <option value="省部级">省部级</option>
+                                        <option value="校级">校级</option>
                                         <option value="其他">其他</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="selfRank">本人排名</label>
-                                    <input type="text" class="form-control" name="selfRank" id="selfRank" value="${writing.selfRank}"
-                                           placeholder="1">
+                                    <label for="leader">项目负责人</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="leader"
+                                           id="leader"
+                                           value="${studentProject.leader}"
+                                           placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="press">出版社</label>
-                                    <input type="text" class="form-control" name="press" id="press" value="${writing.press}"
-                                           placeholder="例: 北京邮电出版社">
+                                    <label for="studentNum">学生数</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="studentNum"
+                                           id="studentNum"
+                                           value="${studentProject.studentNum}"
+                                           placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>著作类型</label>
-                                    <select class="form-control" name="writingType" id="writingType">
-                                        <option value="非教材" selected="selected">非教材</option>
-                                        <option value="普通教材">普通教材</option>
-                                        <option value="省级规划教材">省级规划教材</option>
-                                        <option value="国家级规划教材">国家级规划教材</option>
-                                    </select>
+                                    <label for="mentorName">导师姓名</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="mentorName"
+                                           id="mentorName"
+                                           value="${studentProject.mentorName}"
+                                           placeholder="">
                                 </div>
 
-                                <div class="form-group">
-                                    <label>出版时间</label>
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input type="text" class="form-control pull-right" name="publishTime"
-                                               value="${writing.publishTime}"
-                                               id="publishTime">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="relatedCourseName">关联课题</label>
-                                    <input type="text" class="form-control" name="relatedCourseName" value="${writing.relatedCourseName}"
-                                           id="relatedCourseName" placeholder="请输入关联课题">
-                                </div>
-                                <!-- textarea -->
                                 <div class="form-group">
                                     <label>备注</label>
-                                    <textarea class="form-control" rows="3" name="remark"
-                                              placeholder="请输入备注信息">${writing.remark}</textarea>
+                                    <textarea class="form-control"
+                                              rows="3"
+                                              name="remark"
+                                              placeholder="请输入备注信息">${studentProject.remark}</textarea>
                                 </div>
                                 <div>
-                                    <input type="hidden" name="id" value="${writing.id}">
+                                    <input type="hidden" name="id" value="${studentProject.id}">
                                 </div>
                                 <div>
-                                    <input type="hidden" name="createdAt" value="${writing.createdAt}">
+                                    <input type="hidden" name="createdAt" value="${studentProject.createdAt}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传著作</label>
+                                    <label for="exampleInputFile">上传软件著作权</label>
                                     <input type="file" id="exampleInputFile" name="file">
                                     <div class="showFile">
                                         <span>"${attachment.fileName}"</span>
@@ -170,36 +163,34 @@
                                     <%--<p class="help-block">Example block-level help text here.</p>--%>
                                 </div>
                                 <%--<div>--%>
-                                <%--<input type="hidden" name="writingId" value="${writing.id}">--%>
+                                <%--<input type="hidden" name="patentId" value="${patent.id}">--%>
+                                <%--</div>--%>
+                                <%--<div class="checkbox">--%>
+                                <%--<label>--%>
+                                <%--<input type="checkbox"> Check me out--%>
+                                <%--</label>--%>
                                 <%--</div>--%>
                             </div>
-                            <%--<div class="checkbox">--%>
-                            <%--<label>--%>
-                            <%--<input type="checkbox"> Check me out--%>
-                            <%--</label>--%>
-                            <%--</div>--%>
+                            <!-- /.box-body -->
+
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">确认</button>
+                            </div>
+                        </form>
                     </div>
+                    <!-- /.box -->
+
+
                     <!-- /.box-body -->
+                    <!-- /.box -->
 
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">确认</button>
-                    </div>
-                    </form>
                 </div>
-                <!-- /.box -->
-
-
-                <!-- /.box-body -->
-                <!-- /.box -->
-
             </div>
         </section>
-    </div>
-    </section>
 
-</div>
-<!-- Main Footer -->
-<%@include file="../share/footer.jsp" %>
+    </div>
+    <!-- Main Footer -->
+    <%@include file="../share/footer.jsp" %>
 
 
 </div>
@@ -220,15 +211,8 @@
 <!-- Page script -->
 <script>
     $(function () {
-        //Date picker
-        $('#publishTime').datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd'
-        })
 
-        $("#writingType").val("${writing.writingType}");
-
-        $("#selfPosition").val("${writing.selfPosition}");
+        $("#projectType").val("${studentProject.projectType}");
 
     })
 

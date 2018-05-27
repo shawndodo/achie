@@ -134,6 +134,8 @@
                                     <th>著作类型</th>
                                     <th>出版时间</th>
                                     <th>备注</th>
+                                    <th>提交时间</th>
+                                    <th>修改时间</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -148,6 +150,8 @@
                                         <td>${writing.writingType}</td>
                                         <td>${writing.publishTime}</td>
                                         <td>${writing.remark}</td>
+                                        <td>${fn:substring(writing.createdAt, 0, 19)}</td>
+                                        <td>${fn:substring(writing.updatedAt, 0, 19)}</td>
                                         <td>
                                             <div>
                                                 <a href="/achie/writing/show?writingId=${writing.id}">

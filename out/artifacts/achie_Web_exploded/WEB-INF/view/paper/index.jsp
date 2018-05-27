@@ -130,6 +130,8 @@
                                     <th>收录检索(刊物级别)</th>
                                     <th>发表时间</th>
                                     <th>备注</th>
+                                    <th>提交时间</th>
+                                    <th>修改时间</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -145,6 +147,8 @@
                                         <td>${paper.inclusionSearch}</td>
                                         <td>${paper.publishTime}</td>
                                         <td>${paper.remark}</td>
+                                        <td>${fn:substring(paper.createdAt, 0, 19)}</td>
+                                        <td>${fn:substring(paper.updatedAt, 0, 19)}</td>
                                         <td>
                                             <div>
                                                 <a href="/achie/paper/show?paperId=${paper.id}">

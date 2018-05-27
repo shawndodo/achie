@@ -135,6 +135,8 @@
                                     <th>申请时间</th>
                                     <th>本人排名</th>
                                     <th>备注</th>
+                                    <th>提交时间</th>
+                                    <th>修改时间</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -150,6 +152,8 @@
                                         <td>${patent.applyDate}</td>
                                         <td>${patent.selfRank}</td>
                                         <td>${patent.remark}</td>
+                                        <td>${fn:substring(patent.createdAt, 0, 19)}</td>
+                                        <td>${fn:substring(patent.updatedAt, 0, 19)}</td>
                                         <td>
                                             <div>
                                                 <a href="/achie/patent/show?patentId=${patent.id}">

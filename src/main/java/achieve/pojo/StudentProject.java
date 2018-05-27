@@ -11,7 +11,7 @@ public class StudentProject {
     private String projectType;
     private String leader;
     private String studentNum;
-    private String mentorNum;
+    private String mentorName;
     private String remark;
     private Date createdAt;
     private Date updatedAt;
@@ -64,12 +64,12 @@ public class StudentProject {
         this.studentNum = studentNum;
     }
 
-    public String getMentorNum() {
-        return mentorNum;
+    public String getMentorName() {
+        return mentorName;
     }
 
-    public void setMentorNum(String mentorNum) {
-        this.mentorNum = mentorNum;
+    public void setMentorName(String mentorName) {
+        this.mentorName = mentorName;
     }
 
     public String getRemark() {
@@ -105,7 +105,7 @@ public class StudentProject {
                 ", projectType='" + projectType + '\'' +
                 ", leader='" + leader + '\'' +
                 ", studentNum='" + studentNum + '\'' +
-                ", mentorNum='" + mentorNum + '\'' +
+                ", mentorName='" + mentorName + '\'' +
                 ", remark='" + remark + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +

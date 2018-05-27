@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>成果管理系统 | 编辑专利</title>
+    <title>成果管理系统 | 编辑获奖成果</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -54,13 +54,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                编辑专利
+                编辑获奖成果
                 <%--<small>Preview</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">专利管理</a></li>
-                <li class="active">编辑专利</li>
+                <li><a href="#">获奖成果管理</a></li>
+                <li class="active">编辑获奖成果</li>
             </ol>
         </section>
 
@@ -135,6 +135,7 @@
                                     <select class="form-control" name="awardType" id="awardType">
                                         <option value="国家级" selected="selected">国家级</option>
                                         <option value="省部级">省部级</option>
+                                        <option value="校级">校级</option>
                                         <option value="其他">其他</option>
                                     </select>
                                 </div>
