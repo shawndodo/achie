@@ -77,7 +77,7 @@
                                 <%@include file="_software_copyright_form.jsp" %>
                                 
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传获奖成果</label>
+                                    <label for="exampleInputFile">上传软件著作权</label>
                                     <input type="file" id="exampleInputFile" name="file">
 
                                     <%--<p class="help-block">Example block-level help text here.</p>--%>

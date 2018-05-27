@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>成果管理系统 | 新增软件著作权</title>
+    <title>成果管理系统 | 新增教学奖项</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -50,13 +50,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                新增软件著作权
+                新增教学奖项
                 <%--<small>Preview</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">软件著作权管理</a></li>
-                <li class="active">新增软件著作权</li>
+                <li><a href="#">教学奖项管理</a></li>
+                <li class="active">新增教学奖项</li>
             </ol>
         </section>
 
@@ -74,10 +74,10 @@
                         <!-- form start -->
                         <form action="create" method="post" role="form" enctype="multipart/form-data">
                             <div class="box-body">
-                                <%@include file="_software_copyright_form.jsp" %>
+                                <%@include file="_teach_award_form.jsp" %>
                                 
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传软件著作权</label>
+                                    <label for="exampleInputFile">上传教学奖项</label>
                                     <input type="file" id="exampleInputFile" name="file">
 
                                     <%--<p class="help-block">Example block-level help text here.</p>--%>
@@ -129,11 +129,7 @@
 <script>
     $(function () {
         //Date picker
-        $('#getDate').datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd'
-        })
-        $('#developFinishDate').datepicker({
+        $('#awardDate').datepicker({
             autoclose: true,
             format: 'yyyy-mm-dd'
         })
