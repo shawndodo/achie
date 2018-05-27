@@ -80,51 +80,51 @@
                             <div class="box-body">
                                 <%--<%@include file="_paper_form.jsp" %>--%>
                                 <div class="form-group">
-                                    <label for="paperName">论文题目</label>
+                                    <label for="code">项目编号</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="paperName"
-                                           id="paperName"
-                                           value="${teachPaper.paperName}"
+                                           name="code"
+                                           id="code"
+                                           value="${teachReformResearchProject.code}"
                                            placeholder="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="periodicalName">刊物名称</label>
+                                    <label for="name">项目名称</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="periodicalName"
-                                           id="periodicalName"
-                                           value="${teachPaper.periodicalName}"
-                                           placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="vol">期/卷</label>
-                                    <input type="text"
-                                           class="form-control"
-                                           name="vol"
-                                           id="vol"
-                                           value="${teachPaper.vol}"
+                                           name="name"
+                                           id="name"
+                                           value="${teachReformResearchProject.name}"
                                            placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="page">页号</label>
+                                    <label>级别</label>
+                                    <select class="form-control" name="level" id="level">
+                                        <option value="国家级" selected="selected">国家级</option>
+                                        <option value="省部级">省部级</option>
+                                        <option value="校级">校级</option>
+                                        <option value="其他">其他</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="leader">主持人</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="page"
-                                           id="page"
-                                           value="${teachPaper.page}"
+                                           name="leader"
+                                           id="leader"
+                                           value="${teachReformResearchProject.leader}"
                                            placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="relatedCourseName">关联课题</label>
+                                    <label for="year">年度</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="relatedCourseName"
-                                           id="relatedCourseName"
-                                           value="${teachPaper.relatedCourseName}"
+                                           name="year"
+                                           id="year"
+                                           value="${teachReformResearchProject.year}"
                                            placeholder="">
                                 </div>
 
@@ -133,16 +133,16 @@
                                     <textarea class="form-control"
                                               rows="3"
                                               name="remark"
-                                              placeholder="请输入备注信息">${teachPaper.remark}</textarea>
+                                              placeholder="请输入备注信息">${teachReformResearchProject.remark}</textarea>
                                 </div>
                                 <div>
-                                    <input type="hidden" name="id" value="${teachPaper.id}">
+                                    <input type="hidden" name="id" value="${teachReformResearchProject.id}">
                                 </div>
                                 <div>
-                                    <input type="hidden" name="createdAt" value="${teachPaper.createdAt}">
+                                    <input type="hidden" name="createdAt" value="${teachReformResearchProject.createdAt}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">上传教学论文</label>
+                                    <label for="exampleInputFile">上传主持教学改革研究项目</label>
                                     <input type="file" id="exampleInputFile" name="file">
                                     <div class="showFile">
                                         <span>"${attachment.fileName}"</span>
@@ -201,6 +201,8 @@
 <!-- Page script -->
 <script>
     $(function () {
+
+        $("#level").val("${teachReformResearchProject.level}");
 
     })
 

@@ -11,6 +11,7 @@ public class TeachReformResearchProject {
     private String level;
     private String leader;
     private String year;
+    private String remark;
     private Date createdAt;
     private Date updatedAt;
 
@@ -62,6 +63,14 @@ public class TeachReformResearchProject {
         this.year = year;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -87,6 +96,7 @@ public class TeachReformResearchProject {
                 ", level='" + level + '\'' +
                 ", leader='" + leader + '\'' +
                 ", year='" + year + '\'' +
+                ", remark='" + remark + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';

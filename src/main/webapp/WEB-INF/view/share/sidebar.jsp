@@ -56,6 +56,7 @@
                     <li><a href="/achie/teachAward/index"><i class="fa fa-circle-o text-aqua"></i>教学奖项管理</a></li>
                     <li><a href="/achie/studentProject/index"><i class="fa fa-circle-o text-aqua"></i>指导学生项目管理</a></li>
                     <li><a href="/achie/teachPaper/index"><i class="fa fa-circle-o text-aqua"></i>教学论文管理</a></li>
+                    <li><a href="/achie/teachReformResearchProject/index"><i class="fa fa-circle-o text-aqua"></i>主持教学改革研究项目管理</a></li>
                 </ul>
             </li>
             <li class="treeview">
