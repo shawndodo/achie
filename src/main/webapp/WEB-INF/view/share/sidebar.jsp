@@ -74,7 +74,7 @@
                     <li><a href="/achie/researchProject/index"><i class="fa fa-circle-o text-aqua"></i>科研项目管理</a></li>
                 </ul>
             </li>
-            <li><a href="#"><i class="fa fa-bar-chart"></i> <span>成果统计</span></a></li>
+            <li><a href="/achie/statistics/index"><i class="fa fa-bar-chart"></i> <span>成果统计</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>
