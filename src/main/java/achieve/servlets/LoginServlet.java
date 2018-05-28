@@ -2,6 +2,7 @@ package achieve.servlets;
 
 import achieve.dao.UserDaoImpl;
 import achieve.pojo.User;
+import achieve.util.MD5Util;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,9 +21,13 @@ public class LoginServlet extends HttpServlet {
         String userName = request.getParameter("userName");
         String userPwd = request.getParameter("userPwd");
 
+        String pwd = MD5Util.md5Password(userPwd);
+
+        System.out.println("密码是===>" + pwd);
+
         User user = new UserDaoImpl().findByUserName(userName);
 
-        if(user != null && user.getPassword().equals(userPwd)){
+        if(user != null && user.getPassword().equals(pwd)){
             //登陆成功
 
             //创建session对象
