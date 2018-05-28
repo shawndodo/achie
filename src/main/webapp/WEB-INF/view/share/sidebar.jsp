@@ -69,7 +69,7 @@
                     <li><a href="/achie/patent/index"><i class="fa fa-circle-o text-aqua"></i>专利管理</a></li>
                     <li><a href="/achie/softwareCopyright/index"><i class="fa fa-circle-o text-aqua"></i>软件著作权管理</a></li>
                     <li><a href="/achie/paper/index"><i class="fa fa-circle-o text-aqua"></i>论文管理</a></li>
-                    <li><a href="/achie/paper/index"><i class="fa fa-circle-o text-aqua"></i>参与学术会议管理</a></li>
+                    <li><a href="/achie/joinAcademicConference/index"><i class="fa fa-circle-o text-aqua"></i>参与学术会议管理</a></li>
                     <li><a href="/achie/researchAward/index"><i class="fa fa-circle-o text-aqua"></i>获奖成果管理</a></li>
                     <li><a href="/achie/researchProject/index"><i class="fa fa-circle-o text-aqua"></i>科研项目管理</a></li>
                 </ul>
