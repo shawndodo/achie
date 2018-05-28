@@ -40,8 +40,8 @@
         <a href="login.jsp">教师教学与科研成果管理系统</a>
     </div>
     <!-- /.servlets-logo -->
-    <div class="login-box-body">
-        <p class="login-box-msg">登陆</p>
+    <div class="login-box-body" style="background: none;">
+        <%--<p class="login-box-msg">登陆</p>--%>
 
         <form action="loginServlet" method="post">
             <%--暂时不用使用邮箱登陆--%>

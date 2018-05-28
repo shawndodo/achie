@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -63,7 +64,7 @@
                 <%--<small>advanced tables</small>--%>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li><a href="/achie/home/index"><i class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a href="#">科研成果</a></li>
                 <li class="active">论文管理</li>
             </ol>
@@ -93,7 +94,7 @@
                         </div>
                         <div>
                             <div class="col-xs-2">
-                                <button type="button" class="btn btn-block btn-primary" onclick="window.location.href='add'">
+                                <button type="button" class="btn btn-block btn-primary" onclick="window.location.href='index'">
                                     查询
                                 </button>
                             </div>

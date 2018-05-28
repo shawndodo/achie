@@ -61,7 +61,7 @@
                 <%--<small>Optional description</small>--%>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> 欢迎</a></li>
+                <li><a href="/achie/home/index"><i class="fa fa-dashboard"></i> 欢迎</a></li>
                 <li class="active">当前页</li>
             </ol>
         </section>

@@ -64,7 +64,7 @@
                 <%--<small>advanced tables</small>--%>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li><a href="/achie/home/index"><i class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a href="#">科研成果</a></li>
                 <li class="active">参加学术会议管理</li>
             </ol>

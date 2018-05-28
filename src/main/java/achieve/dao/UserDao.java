@@ -6,5 +6,8 @@ public interface UserDao {
 
     User findByUserName(String userName) ;
 
+    User findById(Integer id) ;
+
+    int editUser(User user) ;
 
 }

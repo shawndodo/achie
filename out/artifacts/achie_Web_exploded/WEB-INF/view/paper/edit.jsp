@@ -58,8 +58,8 @@
                 <%--<small>Preview</small>--%>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">论文管理</a></li>
+                <li><a href="/achie/home/index"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li><a href="/achie/paper/index">论文管理</a></li>
                 <li class="active">编辑论文</li>
             </ol>
         </section>

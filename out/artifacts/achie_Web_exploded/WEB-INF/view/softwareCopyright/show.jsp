@@ -58,8 +58,8 @@
                 <%--<small>Preview</small>--%>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">软件著作权管理</a></li>
+                <li><a href="/achie/home/index"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li><a href="/achie/softwareCopyright/index">软件著作权管理</a></li>
                 <li class="active">查看软件著作权</li>
             </ol>
         </section>

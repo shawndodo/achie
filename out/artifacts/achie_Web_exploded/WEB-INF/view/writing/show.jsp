@@ -54,8 +54,8 @@
                 <%--<small>Preview</small>--%>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">著作管理</a></li>
+                <li><a href="/achie/home/index"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li><a href="/achie/writing/index">著作管理</a></li>
                 <li class="active">查看著作</li>
             </ol>
         </section>

@@ -54,8 +54,8 @@
                 <%--<small>Preview</small>--%>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">指导学生项目管理</a></li>
+                <li><a href="/achie/home/index"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li><a href="achie/studentProject/index">指导学生项目管理</a></li>
                 <li class="active">新增指导学生项目</li>
             </ol>
         </section>

@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>成果管理系统 | 查看指导学生项目</title>
+    <title>成果管理系统 | 编辑教学论文</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -54,13 +54,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                查看指导学生项目
+                编辑教学论文
                 <%--<small>Preview</small>--%>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="/achie/home/index"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="/achie/studentProject/index">教学奖项管理</a></li>
-                <li class="active">查看指导学生项目</li>
+                <li><a href="/achie/user/show">教学论文管理</a></li>
+                <li class="active">编辑教学论文</li>
             </ol>
         </section>
 
@@ -72,74 +72,90 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">信息查看</h3>
+                            <h3 class="box-title">信息填写</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form action="edit" method="get" role="form">
+                        <form action="update" method="post" role="form" enctype="multipart/form-data">
                             <div class="box-body">
+                                <%--<%@include file="_paper_form.jsp" %>--%>
                                 <div class="form-group">
-                                    <label for="code">项目编号</label>
+                                    <label for="userName">登录名</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="code"
-                                           id="code"
-                                           value="${studentProject.code}"
-                                           disabled="disabled"
+                                           name="userName"
+                                           id="userName"
+                                           value="${user.userName}"
                                            placeholder="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">项目名称</label>
+                                    <label for="realName">真实姓名</label>
                                     <input type="text"
                                            class="form-control"
-                                           name="name"
-                                           id="name"
-                                           value="${studentProject.name}"
-                                           disabled="disabled"
+                                           name="realName"
+                                           id="realName"
+                                           value="${user.realName}"
                                            placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>级别</label>
-                                    <select class="form-control" name="projectType" id="projectType" disabled="disabled">
-                                        <option value="国家级" selected="selected">国家级</option>
-                                        <option value="省部级">省部级</option>
-                                        <option value="校级">校级</option>
-                                        <option value="其他">其他</option>
+                                    <label for="age">年龄</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="age"
+                                           id="age"
+                                           value="${user.age}"
+                                           placeholder="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">密码</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="password"
+                                           id="password"
+                                           value="${user.password}"
+                                           placeholder="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="job">职务</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="job"
+                                           id="job"
+                                           value="${user.job}"
+                                           placeholder="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="position">职称</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="position"
+                                           id="position"
+                                           value="${user.position}"
+                                           placeholder="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>入职时间</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" name="startWorkingTime"
+                                               value="${user.startWorkingTime}"
+                                               id="startWorkingTime">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>当前状态</label>
+                                    <select class="form-control" id="status" name="status">
+                                        <option value="在职">在职</option>
+                                        <option value="离职">离职</option>
                                     </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="leader">项目负责人</label>
-                                    <input type="text"
-                                           class="form-control"
-                                           name="leader"
-                                           id="leader"
-                                           value="${studentProject.leader}"
-                                           disabled="disabled"
-                                           placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="studentNum">学生数</label>
-                                    <input type="text"
-                                           class="form-control"
-                                           name="studentNum"
-                                           id="studentNum"
-                                           value="${studentProject.studentNum}"
-                                           disabled="disabled"
-                                           placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="mentorName">导师姓名</label>
-                                    <input type="text"
-                                           class="form-control"
-                                           name="mentorName"
-                                           id="mentorName"
-                                           value="${studentProject.mentorName}"
-                                           disabled="disabled"
-                                           placeholder="">
                                 </div>
 
                                 <div class="form-group">
@@ -147,25 +163,28 @@
                                     <textarea class="form-control"
                                               rows="3"
                                               name="remark"
-                                              disabled="disabled"
-                                              placeholder="请输入备注信息">${studentProject.remark}</textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputFile">上传指导学生项目</label>
-                                    <input id="exampleInputFile" name="file" disabled="disabled">
-                                    <div class="showFile">
-                                        <span>"${attachment.fileName}"</span>
-                                        <button type="button" class="btn btn-block btn-default btn-xs"
-                                                style="width:40px;display:inline;">
-                                            <a href="${attachment.attachmentUrl}" download="" target="_blank">下载</a>
-                                        </button>
-                                    </div>
-                                    <%--<p class="help-block">Example block-level help text here.</p>--%>
+                                              placeholder="请输入备注信息">${user.remark}</textarea>
                                 </div>
                                 <div>
-                                    <input type="hidden" name="studentProjectId" value="${studentProject.id}">
+                                    <input type="hidden" name="id" value="${user.id}">
                                 </div>
+                                <div>
+                                    <input type="hidden" name="createdAt" value="${user.createdAt}">
+                                </div>
+                                <%--<div class="form-group">--%>
+                                    <%--<label for="exampleInputFile">上传教学论文</label>--%>
+                                    <%--<input type="file" id="exampleInputFile" name="file">--%>
+                                    <%--<div class="showFile">--%>
+                                        <%--<span>"${attachment.fileName}"</span>--%>
+                                        <%--<button type="button" class="btn btn-block btn-default btn-xs"--%>
+                                                <%--style="width:40px;display:inline;">下载--%>
+                                        <%--</button>--%>
+                                    <%--</div>--%>
+                                    <%--&lt;%&ndash;<p class="help-block">Example block-level help text here.</p>&ndash;%&gt;--%>
+                                <%--</div>--%>
+                                <%--<div>--%>
+                                <%--<input type="hidden" name="patentId" value="${patent.id}">--%>
+                                <%--</div>--%>
                                 <%--<div class="checkbox">--%>
                                 <%--<label>--%>
                                 <%--<input type="checkbox"> Check me out--%>
@@ -175,7 +194,7 @@
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">编辑</button>
+                                <button type="submit" class="btn btn-primary">确认</button>
                             </div>
                         </form>
                     </div>
@@ -213,11 +232,20 @@
 <script>
     $(function () {
 
-        $("#projectType").val("${studentProject.projectType}");
-
-        $("#exampleInputFile").hide();
+        $('#startWorkingTime').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd'
+        })
 
     })
+
+    $('#exampleInputFile').bind('input exampleInputFile', function () {
+        var fileValue = $(this).val();
+        if (fileValue != "" || fileValue != null || fileValue != undefined) {
+            $('.showFile').hide();
+        }
+    });
+
 </script>
 </body>
 </html>

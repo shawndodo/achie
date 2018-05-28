@@ -58,8 +58,8 @@
                 <%--<small>Preview</small>--%>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">主持教学改革研究项目管理</a></li>
+                <li><a href="/achie/home/index"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li><a href="/achie/teachReformResearchProject/index">主持教学改革研究项目管理</a></li>
                 <li class="active">查看主持教学改革研究项目</li>
             </ol>
         </section>

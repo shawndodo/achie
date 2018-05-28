@@ -44,7 +44,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">菜单</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="#"><i class="fa fa-user"></i> <span>个人中心</span></a></li>
+            <li class="active"><a href="/achie/user/show"><i class="fa fa-user"></i> <span>个人中心</span></a></li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-bookmark-o"></i> <span>教学成果</span>
                     <span class="pull-right-container">
