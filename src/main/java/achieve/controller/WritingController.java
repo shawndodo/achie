@@ -92,7 +92,7 @@ public class WritingController {
         }
 
 
-        teacherAchieService.setValue(writingId, teacher, "Writing", "research", "submit");
+        teacherAchieService.setValue(writingId, teacher, "Writing", "teach", "submit");
 
         return "redirect:index";
     }
