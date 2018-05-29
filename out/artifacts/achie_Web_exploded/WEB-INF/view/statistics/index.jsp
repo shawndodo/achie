@@ -126,24 +126,37 @@
                                 <tr>
                                     <th>教师姓名</th>
                                     <th>科研成果数</th>
+                                    <th>专利</th>
+                                    <th>软件著作权</th>
+                                    <th>论文</th>
+                                    <th>参与学术会议</th>
+                                    <th>获奖成果</th>
+                                    <th>科研项目</th>
                                     <th>教学成果数</th>
-                                    <%--<th>是否独著</th>--%>
-                                    <%--<th>通讯作者</th>--%>
-                                    <%--<th>刊物名称</th>--%>
-                                    <%--<th>收录检索(刊物级别)</th>--%>
-                                    <%--<th>发表时间</th>--%>
-                                    <%--<th>备注</th>--%>
-                                    <%--<th>提交时间</th>--%>
-                                    <%--<th>修改时间</th>--%>
-                                    <%--<th>操作</th>--%>
+                                    <th>著作</th>
+                                    <th>教学奖项</th>
+                                    <th>指导学生项目</th>
+                                    <th>教学论文</th>
+                                    <th>主持教学改革研究项目</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <c:forEach items="${list}" var="lis" begin="0" end="9" step="1">
                                     <tr>
                                         <td>${lis.userName}</td>
-                                        <td>${lis.researchCount}</td>
                                         <td>${lis.teachCount}</td>
+                                        <td>${lis.writingCount}</td>
+                                        <td>${lis.teachAwardCount}</td>
+                                        <td>${lis.studentProjectCount}</td>
+                                        <td>${lis.teachPaperCount}</td>
+                                        <td>${lis.teachReformResearchProjectCount}</td>
+                                        <td>${lis.researchCount}</td>
+                                        <td>${lis.patentCount}</td>
+                                        <td>${lis.softwareCopyrightCount}</td>
+                                        <td>${lis.paperCount}</td>
+                                        <td>${lis.joinAcademicConferenceCount}</td>
+                                        <td>${lis.researchAwardCount}</td>
+                                        <td>${lis.researchProjectCount}</td>
                                         <%--<td>${fn:substring(paper.createdAt, 0, 19)}</td>--%>
                                         <%--<td>${fn:substring(paper.updatedAt, 0, 19)}</td>--%>
                                         <%--<td>--%>
