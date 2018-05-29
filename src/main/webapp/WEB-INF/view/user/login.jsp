@@ -24,6 +24,8 @@
     <!-- iCheck -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/plugins/iCheck/square/blue.css">
 
+    <%@include file="../share/header_logo.jsp" %>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -34,10 +36,10 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition login-page" style="background: url(<%=request.getContextPath()%>/statics/image/achie_background2.png); background-size:cover;">
+<body class="hold-transition login-page" style="background: url(<%=request.getContextPath()%>/statics/image/achie_background3.jpg); background-size:cover;">
 <div class="login-box">
     <div class="login-logo">
-        <a href="login.jsp">教师教学与科研成果管理系统</a>
+        <a href="login">教师教学与科研成果管理系统</a>
     </div>
     <!-- /.servlets-logo -->
     <div class="login-box-body" style="background: none;">

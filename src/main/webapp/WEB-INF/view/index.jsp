@@ -10,6 +10,9 @@
 <head>
     <title>Index</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/test.css"/> "/>
+
+    <%@include file="share/header_logo.jsp" %>
+
 </head>
 <body>
 <p>Hello World!</p>
