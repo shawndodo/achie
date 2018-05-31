@@ -7,48 +7,48 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>成果管理系统 | 成果统计</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- 页面css -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/css/paper/index.css">
-    <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet"
-          href="<%=request.getContextPath()%>/statics/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-          href="<%=request.getContextPath()%>/statics/bower_components/font-awesome/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/Ionicons/css/ionicons.min.css">
-    <!-- DataTables -->
-    <link rel="stylesheet"
-          href="<%=request.getContextPath()%>/statics/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/dist/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/dist/css/skins/_all-skins.min.css">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/select2/dist/css/select2.min.css">
+<%--<head>--%>
+    <%--<meta charset="utf-8">--%>
+    <%--<meta http-equiv="X-UA-Compatible" content="IE=edge">--%>
+    <%--<title>成果管理系统 | 成果统计</title>--%>
+    <%--<!-- Tell the browser to be responsive to screen width -->--%>
+    <%--<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">--%>
+    <%--<!-- 页面css -->--%>
+    <%--<link rel="stylesheet" href="<%=request.getContextPath()%>/statics/css/paper/index.css">--%>
+    <%--<!-- Bootstrap 3.3.7 -->--%>
+    <%--<link rel="stylesheet"--%>
+          <%--href="<%=request.getContextPath()%>/statics/bower_components/bootstrap/dist/css/bootstrap.min.css">--%>
+    <%--<!-- Font Awesome -->--%>
+    <%--<link rel="stylesheet"--%>
+          <%--href="<%=request.getContextPath()%>/statics/bower_components/font-awesome/css/font-awesome.min.css">--%>
+    <%--<!-- Ionicons -->--%>
+    <%--<link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/Ionicons/css/ionicons.min.css">--%>
+    <%--<!-- DataTables -->--%>
+    <%--<link rel="stylesheet"--%>
+          <%--href="<%=request.getContextPath()%>/statics/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">--%>
+    <%--<!-- Theme style -->--%>
+    <%--<link rel="stylesheet" href="<%=request.getContextPath()%>/statics/dist/css/AdminLTE.min.css">--%>
+    <%--<!-- AdminLTE Skins. Choose a skin from the css/skins--%>
+         <%--folder instead of downloading all of them to reduce the load. -->--%>
+    <%--<link rel="stylesheet" href="<%=request.getContextPath()%>/statics/dist/css/skins/_all-skins.min.css">--%>
+    <%--<!-- Select2 -->--%>
+    <%--<link rel="stylesheet" href="<%=request.getContextPath()%>/statics/bower_components/select2/dist/css/select2.min.css">--%>
 
-    <%@include file="../share/header_logo.jsp" %>
+    <%--<%@include file="../share/header_logo.jsp" %>--%>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <%--<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->--%>
+    <%--<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->--%>
+    <%--<!--[if lt IE 9]>--%>
+    <%--<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>--%>
+    <%--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>--%>
+    <%--<![endif]-->--%>
 
 
-    <!-- Google Font -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-</head>
-<section class="content" id="searchContent">
+    <%--<!-- Google Font -->--%>
+    <%--<link rel="stylesheet"--%>
+          <%--href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">--%>
+<%--</head>--%>
+<%--<section class="content" id="searchContent">--%>
     <div class="row">
         <p>${list}</p>
         <%--<div class="col-xs-2">--%>
@@ -137,4 +137,4 @@
         <!-- /.col -->
     </div>
     <!-- /.row -->
-</section>
+<%--</section>--%>
