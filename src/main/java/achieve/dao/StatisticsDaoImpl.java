@@ -40,6 +40,7 @@ public class StatisticsDaoImpl implements StatisticsDao {
                 map.put("teacherId", rs.getInt("teacherId"));
                 map.put("userName", rs.getString("userName"));
                 map.put("researchCount", rs.getInt("research_count"));
+                map.put("teachCount", rs.getInt("teach_count"));
                 map.put("joinAcademicConferenceCount", rs.getInt("join_academic_conference_count"));
                 map.put("paperCount", rs.getInt("paper_count"));
                 map.put("patentCount", rs.getInt("patent_count"));

@@ -80,7 +80,7 @@
                         <div class="search-query">
                             <div class="form-group">
                                 <label>教师姓名</label>
-                                <input type="text" class="form-control" placeholder="请输入..">
+                                <input type="text" class="form-control" id="teacherName" placeholder="请输入..">
                             </div>
 
                             <%--<div class="form-group">--%>
@@ -96,7 +96,7 @@
                         </div>
                         <div>
                             <div class="col-xs-2">
-                                <button type="button" class="btn btn-block btn-primary" onclick="window.location.href='index'">
+                                <button type="button" class="btn btn-block btn-primary" id="searchButton">
                                     查询
                                 </button>
                             </div>
@@ -107,7 +107,7 @@
         </section>
 
         <!-- Main content -->
-        <section class="content">
+        <section class="content" id="searchContent">
             <div class="row">
                 <%--<div class="col-xs-2">--%>
                     <%--<button type="button" class="btn btn-block btn-primary" onclick="window.location.href='add'">--%>
@@ -225,5 +225,39 @@
 <script src="<%=request.getContextPath()%>/statics/bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- page script -->
 <script src="<%=request.getContextPath()%>/statics/js/paper/index.js"></script>
+<script>
+    $(function() {
+        $("#searchButton").click(function() {
+            var searchParams = {
+            teacherName : $("#teacherName").val(),
+            };
+            $.ajax({
+                type: "POST",
+                url: "search",
+                data : searchParams,
+                dataType: "text", //return dataType: text or json
+                contentType:'application/json;charset=UTF-8',
+                success: function(json) {
+                    // alert(json.strResult)
+                    $('#searchContent').html(json);
+                    // var obj = $.parseJSON(json); // if dataType: text then change dataType to json
+                    // alert(obj.strResult);
+                    // alert("success");
+                },
+                error: function(json) {
+                    alert("json=" + json);
+                    return false;
+                }
+            });
+        });
+
+
+
+    });
+
+
+
+</script>
+
 </body>
 </html>

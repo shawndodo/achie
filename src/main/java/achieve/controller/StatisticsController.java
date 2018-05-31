@@ -7,6 +7,7 @@ import achieve.pojo.Teacher;
 import achieve.service.AttachmentService;
 import achieve.service.TeacherAchieService;
 import achieve.util.QiniuUtil;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -58,6 +59,39 @@ public class StatisticsController {
         return "statistics/index";
     }
 
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search(HttpServletRequest request, Map<String,Object> model) throws Exception {
 
+        try {
+            System.out.println("request===>" + request);
+
+            String str = request.getParameter("teacherName");
+
+            System.out.println("str===>" + str);
+
+//            JSONObject jasonObject = JSONObject.fromObject(str);
+//            Map map = (Map) jasonObject;
+
+
+            List<HashMap> list = statisticsDaoImpl.findBasicInfo();
+
+            System.out.println("list====>" + list);
+
+            model.put("list", list);
+
+            System.out.println("model====>" + model);
+
+            return "statistics/search";
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
+
+    }
+
+    public static String getType(Object o){ //获取变量类型方法
+        return o.getClass().toString(); //使用int类型的getClass()方法
+    }
 
 }
