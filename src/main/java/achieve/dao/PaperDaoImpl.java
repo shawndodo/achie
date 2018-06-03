@@ -10,13 +10,13 @@ import java.util.List;
 
 public class PaperDaoImpl implements PaperDao {
 
-    public List<Paper> findAll(Integer teacherId) {
+    public List<Paper> findAll(Integer teacherId, String querySql) {
         Connection conn = null ;
         try {
             conn = DBUtil.getConnection() ;
             String sql = "SELECT * FROM paper " +
                     "LEFT JOIN teacher_achie ON paper.id = teacher_achie.achieId " +
-                    "WHERE teacher_achie.achieType = 'Paper' AND teacher_achie.teacherId = " + teacherId.toString();
+                    "WHERE teacher_achie.achieType = 'Paper' AND teacher_achie.teacherId = " + teacherId.toString() + querySql;
             Statement state = conn.createStatement() ;
             ResultSet rs = state.executeQuery(sql) ;
             List<Paper> list = new ArrayList<Paper>() ;

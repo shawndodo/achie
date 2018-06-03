@@ -11,6 +11,7 @@ import achieve.pojo.Writing;
 import achieve.service.AttachmentService;
 import achieve.service.TeacherAchieService;
 import achieve.util.QiniuUtil;
+import achieve.util.QueryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,7 +59,7 @@ public class WritingController {
     public String index(Map<String,Object> model, HttpSession session){
         Integer userId = (Integer) session.getAttribute("userId");
         Teacher teacher = teacherDaoImpl.findByUserId(userId);
-        List<Writing> writingList = writingDaoImpl.findAll(teacher.getId());
+        List<Writing> writingList = writingDaoImpl.findAll(teacher.getId(), "");
         model.put("writingList", writingList);
 
         return "writing/index";
@@ -152,5 +154,54 @@ public class WritingController {
 
         return "redirect:index";
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            map.put("like_writing.writingName", request.getParameter("like_writing.writingName"));
+            map.put("like_writing.publicationNumber", request.getParameter("like_writing.publicationNumber"));
+            map.put("between_writing.createdAt", request.getParameter("between_writing.createdAt"));
+            map.put("writing.writingType", request.getParameter("writing.writingType"));
+            System.out.println("map====" + map);
+
+            String querySql = QueryUtil.convertQueryParams(map);
+
+            System.out.println("querysql====>" + querySql);
+
+            Integer userId = (Integer) session.getAttribute("userId");
+            Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+            List<Writing> writingList = writingDaoImpl.findAll(teacher.getId(), querySql);
+
+            System.out.println("writingList====>" + writingList);
+
+            model.put("writingList", writingList);
+
+            System.out.println("model====>" + model);
+
+            return "writing/search";
+
+//            if(paperList != null && !paperList.isEmpty()){
+//                System.out.println("2222");
+//                return "paper/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+
 
 }

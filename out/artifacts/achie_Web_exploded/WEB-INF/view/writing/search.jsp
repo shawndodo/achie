@@ -11,12 +11,13 @@
 <table id="example2" class="table table-bordered table-hover">
     <thead>
     <tr>
-        <th>学术会议名称</th>
-        <th>会议地点</th>
-        <th>会议等级</th>
-        <th>提交论文名称</th>
-        <th>是否特邀报告</th>
-        <th>所属学科</th>
+        <th>著作名称</th>
+        <th>出版号</th>
+        <th>身份</th>
+        <th>本人排名</th>
+        <th>出版社</th>
+        <th>著作类型</th>
+        <th>出版时间</th>
         <th>备注</th>
         <th>提交时间</th>
         <th>修改时间</th>
@@ -24,20 +25,21 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${joinAcademicConferenceList}" var="joinAcademicConference" begin="0" end="9" step="1">
+    <c:forEach items="${writingList}" var="writing" begin="0" end="9" step="1">
         <tr>
-            <td>${joinAcademicConference.name}</td>
-            <td>${joinAcademicConference.location}</td>
-            <td>${joinAcademicConference.level}</td>
-            <td>${joinAcademicConference.paperName}</td>
-            <td>${joinAcademicConference.isInviteReport}</td>
-            <td>${joinAcademicConference.subjectCategory}</td>
-            <td>${joinAcademicConference.remark}</td>
-            <td>${fn:substring(joinAcademicConference.createdAt, 0, 19)}</td>
-            <td>${fn:substring(joinAcademicConference.updatedAt, 0, 19)}</td>
+            <td>${writing.writingName}</td>
+            <td>${writing.publicationNumber}</td>
+            <td>${writing.selfPosition}</td>
+            <td>${writing.selfRank}</td>
+            <td>${writing.press}</td>
+            <td>${writing.writingType}</td>
+            <td>${writing.publishTime}</td>
+            <td>${writing.remark}</td>
+            <td>${fn:substring(writing.createdAt, 0, 19)}</td>
+            <td>${fn:substring(writing.updatedAt, 0, 19)}</td>
             <td>
                 <div>
-                    <a href="/achie/joinAcademicConference/show?joinAcademicConferenceId=${joinAcademicConference.id}">
+                    <a href="/achie/writing/show?writingId=${writing.id}">
                         <i></i>
                         查看详情
                     </a>
@@ -49,10 +51,10 @@
     </tbody>
     <%--<tfoot>--%>
     <%--<tr>--%>
-    <%--<th>获奖成果名称</th>--%>
-    <%--<th>获奖成果类型</th>--%>
-    <%--<th>获奖成果状态</th>--%>
-    <%--<th>获奖成果编号</th>--%>
+    <%--<th>专利名称</th>--%>
+    <%--<th>专利类型</th>--%>
+    <%--<th>专利状态</th>--%>
+    <%--<th>专利编号</th>--%>
     <%--<th>获得时间</th>--%>
     <%--<th>申请编号</th>--%>
     <%--<th>申请时间</th>--%>
@@ -81,7 +83,5 @@
 <!-- bootstrap datepicker -->
 <script src="<%=request.getContextPath()%>/statics/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- page script -->
-<script src="<%=request.getContextPath()%>/statics/js/joinAcademicConference/index.js"></script>
-
-
+<script src="<%=request.getContextPath()%>/statics/js/writing/index.js"></script>
 

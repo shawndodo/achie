@@ -141,7 +141,7 @@
                         <%--<h3 class="box-title">Hover Data Table</h3>--%>
                         <%--</div>--%>
                         <!-- /.box-header -->
-                        <div class="box-body">
+                        <div class="box-body" id="table_content">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -161,7 +161,7 @@
                                     <th>主持教学改革研究项目</th>
                                 </tr>
                                 </thead>
-                                <tbody id="table_content">
+                                <tbody>
                                 <c:forEach items="${list}" var="lis" begin="0" end="9" step="1">
                                     <tr>
                                         <td>${lis.userName}</td>

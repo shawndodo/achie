@@ -10,13 +10,13 @@ import java.util.List;
 
 public class WritingDaoImpl implements WritingDao {
 
-    public List<Writing> findAll(Integer teacherId) {
+    public List<Writing> findAll(Integer teacherId, String querySql) {
         Connection conn = null ;
         try {
             conn = DBUtil.getConnection() ;
             String sql = "SELECT * FROM writing " +
                     "LEFT JOIN teacher_achie ON writing.id = teacher_achie.achieId " +
-                    "WHERE teacher_achie.achieType = 'Writing' AND teacher_achie.teacherId = " + teacherId.toString();
+                    "WHERE teacher_achie.achieType = 'Writing' AND teacher_achie.teacherId = " + teacherId.toString() + querySql;
             Statement state = conn.createStatement() ;
             ResultSet rs = state.executeQuery(sql) ;
             List<Writing> list = new ArrayList<Writing>() ;

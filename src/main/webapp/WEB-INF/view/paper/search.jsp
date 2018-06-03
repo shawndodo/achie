@@ -11,12 +11,14 @@
 <table id="example2" class="table table-bordered table-hover">
     <thead>
     <tr>
-        <th>学术会议名称</th>
-        <th>会议地点</th>
-        <th>会议等级</th>
-        <th>提交论文名称</th>
-        <th>是否特邀报告</th>
-        <th>所属学科</th>
+        <th>论文名称</th>
+        <th>论文类型</th>
+        <th>本人排名</th>
+        <th>是否独著</th>
+        <th>通讯作者</th>
+        <th>刊物名称</th>
+        <th>收录检索(刊物级别)</th>
+        <th>发表时间</th>
         <th>备注</th>
         <th>提交时间</th>
         <th>修改时间</th>
@@ -24,20 +26,22 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${joinAcademicConferenceList}" var="joinAcademicConference" begin="0" end="9" step="1">
+    <c:forEach items="${paperList}" var="paper" begin="0" end="9" step="1">
         <tr>
-            <td>${joinAcademicConference.name}</td>
-            <td>${joinAcademicConference.location}</td>
-            <td>${joinAcademicConference.level}</td>
-            <td>${joinAcademicConference.paperName}</td>
-            <td>${joinAcademicConference.isInviteReport}</td>
-            <td>${joinAcademicConference.subjectCategory}</td>
-            <td>${joinAcademicConference.remark}</td>
-            <td>${fn:substring(joinAcademicConference.createdAt, 0, 19)}</td>
-            <td>${fn:substring(joinAcademicConference.updatedAt, 0, 19)}</td>
+            <td>${paper.paperName}</td>
+            <td>${paper.paperType}</td>
+            <td>${paper.selfRank}</td>
+            <td>${paper.isAlone}</td>
+            <td>${paper.messageAuthor}</td>
+            <td>${paper.periodicalName}</td>
+            <td>${paper.inclusionSearch}</td>
+            <td>${paper.publishTime}</td>
+            <td>${paper.remark}</td>
+            <td>${fn:substring(paper.createdAt, 0, 19)}</td>
+            <td>${fn:substring(paper.updatedAt, 0, 19)}</td>
             <td>
                 <div>
-                    <a href="/achie/joinAcademicConference/show?joinAcademicConferenceId=${joinAcademicConference.id}">
+                    <a href="/achie/paper/show?paperId=${paper.id}">
                         <i></i>
                         查看详情
                     </a>
@@ -47,21 +51,8 @@
     </c:forEach>
 
     </tbody>
-    <%--<tfoot>--%>
-    <%--<tr>--%>
-    <%--<th>获奖成果名称</th>--%>
-    <%--<th>获奖成果类型</th>--%>
-    <%--<th>获奖成果状态</th>--%>
-    <%--<th>获奖成果编号</th>--%>
-    <%--<th>获得时间</th>--%>
-    <%--<th>申请编号</th>--%>
-    <%--<th>申请时间</th>--%>
-    <%--<th>本人排名</th>--%>
-    <%--<th>备注</th>--%>
-    <%--<th>操作</th>--%>
-    <%--</tr>--%>
-    <%--</tfoot>--%>
 </table>
+
 
 <!-- jQuery 3 -->
 <script src="<%=request.getContextPath()%>/statics/bower_components/jquery/dist/jquery.min.js"></script>
@@ -81,7 +72,4 @@
 <!-- bootstrap datepicker -->
 <script src="<%=request.getContextPath()%>/statics/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- page script -->
-<script src="<%=request.getContextPath()%>/statics/js/joinAcademicConference/index.js"></script>
-
-
-
+<script src="<%=request.getContextPath()%>/statics/js/paper/index.js"></script>

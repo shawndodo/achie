@@ -190,13 +190,15 @@ public class TeachAwardController {
 
             System.out.println("model====>" + model);
 
-            if(teachAwardList != null && !teachAwardList.isEmpty()){
-                System.out.println("2222");
-                return "teachAward/search";
-            }else{
-                System.out.println("3333");
-                return "share/noDate";
-            }
+            return "teachAward/search";
+
+//            if(teachAwardList != null && !teachAwardList.isEmpty()){
+//                System.out.println("2222");
+//                return "teachAward/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
 
 
         }catch (Exception e) {

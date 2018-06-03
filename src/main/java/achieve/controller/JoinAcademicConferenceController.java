@@ -190,13 +190,15 @@ public class JoinAcademicConferenceController {
 
             System.out.println("model====>" + model);
 
-            if(joinAcademicConferenceList != null && !joinAcademicConferenceList.isEmpty()){
-                System.out.println("2222");
-                return "joinAcademicConference/search";
-            }else{
-                System.out.println("3333");
-                return "share/noDate";
-            }
+            return "joinAcademicConference/search";
+
+//            if(joinAcademicConferenceList != null && !joinAcademicConferenceList.isEmpty()){
+//                System.out.println("2222");
+//                return "joinAcademicConference/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
 
 
         }catch (Exception e) {

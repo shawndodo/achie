@@ -90,13 +90,15 @@ public class StatisticsController {
 
             System.out.println("model====>" + model);
 
-            if(list != null && !list.isEmpty()){
-                System.out.println("2222");
-                return "statistics/search";
-            }else{
-                System.out.println("3333");
-                return "share/noDate";
-            }
+            return "statistics/search";
+
+//            if(list != null && !list.isEmpty()){
+//                System.out.println("2222");
+//                return "statistics/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
 
 
         }catch (Exception e) {

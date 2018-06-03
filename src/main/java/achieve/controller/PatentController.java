@@ -186,13 +186,15 @@ public class PatentController {
 
             System.out.println("model====>" + model);
 
-            if(patentList != null && !patentList.isEmpty()){
-                System.out.println("2222");
-                return "patent/search";
-            }else{
-                System.out.println("3333");
-                return "share/noDate";
-            }
+            return "patent/search";
+
+//            if(patentList != null && !patentList.isEmpty()){
+//                System.out.println("2222");
+//                return "patent/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
 
 
         }catch (Exception e) {

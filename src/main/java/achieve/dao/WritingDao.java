@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface WritingDao {
 
-    List<Writing> findAll(Integer teacherId);
+    List<Writing> findAll(Integer teacherId, String querySql);
 
     Integer addWriting(Writing writing);
 
