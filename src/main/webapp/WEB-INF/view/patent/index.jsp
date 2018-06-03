@@ -80,28 +80,50 @@
                         <div class="search-query">
                             <div class="form-group">
                                 <label>专利名称</label>
-                                <input type="text" class="form-control" placeholder="请输入..">
+                                <input type="text" class="form-control" placeholder="请输入.." id="patentName">
                             </div>
 
                             <div class="form-group">
                                 <label>专利编号</label>
-                                <input type="text" class="form-control" placeholder="请输入..">
+                                <input type="text" class="form-control" placeholder="请输入.." id="patentCode">
                             </div>
 
                             <div class="form-group">
                                 <label>专利类型</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                    <option selected="selected">发明</option>
+                                <select class="form-control select2" style="width: 100%;" id="patentType">
+                                    <option selected="selected">全部</option>
+                                    <option>发明</option>
                                     <option>实用新型</option>
                                     <option>外型</option>
                                     <option>国际专利</option>
                                 </select>
                             </div>
 
+                            <div class="form-group">
+                                <label>提交时间</label>
+
+                                <div style="display: flex">
+                                    <div class="input-group date" style="width: 11rem;margin-right: 10px;">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" name="startDate"
+                                               id="startDate">
+                                    </div>
+                                    <div class="input-group date" style="width: 11rem;">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" name="endDate"
+                                               id="endDate">
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div>
                             <div class="col-xs-2">
-                                <button type="button" class="btn btn-block btn-primary" onclick="window.location.href='add'">
+                                <button type="button" class="btn btn-block btn-primary" id="searchButton">
                                     查询
                                 </button>
                             </div>
@@ -143,7 +165,7 @@
                                     <th>操作</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="table_content">
                                 <c:forEach items="${patentList}" var="patent" begin="0" end="9" step="1">
                                     <tr>
                                         <td>${patent.patentName}</td>
@@ -221,7 +243,67 @@
 <script src="<%=request.getContextPath()%>/statics/dist/js/demo.js"></script>
 <!-- Select2 -->
 <script src="<%=request.getContextPath()%>/statics/bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="<%=request.getContextPath()%>/statics/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- page script -->
-<script src="<%=request.getContextPath()%>/statics/js/patent/index.js"></script>
+<script src="<%=request.getContextPath()%>/statics/js/joinAcademicConference/index.js"></script>
+
+<script>
+    $(function() {
+
+        $('#startDate').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd'
+        })
+        $('#endDate').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd'
+        })
+
+        $("#searchButton").click(function() {
+            var startDate = $("#startDate").val();
+            var endDate = $("#endDate").val();
+            var createdAt = "";
+            if(startDate != "" && endDate != ""){
+                createdAt = startDate + " " + endDate
+            }else if(startDate == "" && endDate != "") {
+                createdAt = " " + endDate
+            }else if(startDate != "" && endDate == "") {
+                createdAt = startDate + " "
+            }
+            var patentType = $('#patentType').val();
+            if(patentType == "全部"){
+                patentType = ""
+            }
+            var searchParams = {
+                "like_patent.patentName": $("#patentName").val(),
+                "like_patent.patentCode": $("#patentCode").val(),
+                "between_patent.createdAt": createdAt,
+                "patent.patentType": patentType
+            };
+            $.ajax({
+                type: "POST",
+                url: "search",
+                data : searchParams,
+                dataType: "text", //return dataType: text or json
+                // contentType:'application/json;charset=UTF-8',
+                success: function(json) {
+                    // alert(json.strResult)
+                    $('#table_content').html(json);
+                    // var obj = $.parseJSON(json); // if dataType: text then change dataType to json
+                    // alert(obj.strResult);
+                    // alert("success");
+                },
+                error: function(json) {
+                    alert("json=" + json);
+                    return false;
+                }
+            });
+        });
+
+
+
+    });
+</script>
 </body>
 </html>

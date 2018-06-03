@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface JoinAcademicConferenceDao {
 
-    List<JoinAcademicConference> findAll(Integer teacherId);
+    List<JoinAcademicConference> findAll(Integer teacherId, String querySql);
 
     Integer addJoinAcademicConference(JoinAcademicConference joinAcademicConference);
 

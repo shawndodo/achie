@@ -10,13 +10,13 @@ import java.util.List;
 
 public class PatentDaoImpl implements PatentDao {
 
-    public List<Patent> findAll(Integer teacherId) {
+    public List<Patent> findAll(Integer teacherId, String querySql) {
         Connection conn = null ;
         try {
             conn = DBUtil.getConnection() ;
             String sql = "SELECT * FROM patent " +
                     "LEFT JOIN teacher_achie ON patent.id = teacher_achie.achieId " +
-                    "WHERE teacher_achie.achieType = 'Patent' AND teacher_achie.teacherId = " + teacherId.toString();
+                    "WHERE teacher_achie.achieType = 'Patent' AND teacher_achie.teacherId = " + teacherId.toString() + querySql;
             Statement state = conn.createStatement() ;
             ResultSet rs = state.executeQuery(sql) ;
             List<Patent> list = new ArrayList<Patent>() ;

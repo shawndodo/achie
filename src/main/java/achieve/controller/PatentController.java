@@ -9,6 +9,7 @@ import achieve.service.AttachmentGroupService;
 import achieve.service.AttachmentService;
 import achieve.service.TeacherAchieService;
 import achieve.util.QiniuUtil;
+import achieve.util.QueryUtil;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -61,7 +62,7 @@ public class PatentController {
     public String index(Map<String,Object> model, HttpSession session){
         Integer userId = (Integer) session.getAttribute("userId");
         Teacher teacher = teacherDaoImpl.findByUserId(userId);
-        List<Patent> patentList = patentDaoImpl.findAll(teacher.getId());
+        List<Patent> patentList = patentDaoImpl.findAll(teacher.getId(), "");
         model.put("patentList", patentList);
 
         return "patent/index";
@@ -153,6 +154,59 @@ public class PatentController {
         }
 
         return "redirect:index";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+//            String nameValue = request.getParameter("like_patent.patentName");
+//            String createdAt = request.getParameter("between_join_academic_conference.createdAt");
+//            String level = request.getParameter("between_patent.createdAt");
+//
+//            System.out.println("nameValue===>" + nameValue);
+//            System.out.println("createdAt===>" + createdAt);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            map.put("like_patent.patentName", request.getParameter("like_patent.patentName"));
+            map.put("like_patent.patentCode", request.getParameter("like_patent.patentCode"));
+            map.put("between_patent.createdAt", request.getParameter("between_patent.createdAt"));
+            map.put("patent.patentType", request.getParameter("patent.patentType"));
+            System.out.println("map====" + map);
+
+            String querySql = QueryUtil.convertQueryParams(map);
+
+            System.out.println("querysql====>" + querySql);
+
+            Integer userId = (Integer) session.getAttribute("userId");
+            Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+            List<Patent> patentList = patentDaoImpl.findAll(teacher.getId(), querySql);
+
+            System.out.println("patentList====>" + patentList);
+
+            model.put("patentList", patentList);
+
+            System.out.println("model====>" + model);
+
+            if(patentList != null && !patentList.isEmpty()){
+                System.out.println("2222");
+                return "patent/search";
+            }else{
+                System.out.println("3333");
+                return "share/noDate";
+            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
     }
 
 }

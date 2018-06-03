@@ -80,21 +80,44 @@
                         <div class="search-query">
                             <div class="form-group">
                                 <label>学术会议名称</label>
-                                <input type="text" class="form-control" placeholder="请输入..">
+                                <input type="text" class="form-control" id="name" placeholder="请输入..">
                             </div>
 
                             <div class="form-group">
                                 <label>会议等级</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                    <option selected="selected">国际</option>
+                                <select class="form-control select2" style="width: 100%;" id="level">
+                                    <option selected="selected">全部</option>
+                                    <option>国际</option>
                                     <option>国家</option>
                                     <option>省市</option>
                                 </select>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label>提交时间</label>
+
+                            <div style="display: flex">
+                                <div class="input-group date" style="width: 11rem;margin-right: 10px;">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right" name="startDate"
+                                           id="startDate">
+                                </div>
+                                <div class="input-group date" style="width: 11rem;">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right" name="endDate"
+                                           id="endDate">
+                                </div>
+                            </div>
+                        </div>
+
                         <div>
                             <div class="col-xs-2">
-                                <button type="button" class="btn btn-block btn-primary" onclick="window.location.href='add'">
+                                <button type="button" class="btn btn-block btn-primary" id="searchButton">
                                     查询
                                 </button>
                             </div>
@@ -134,7 +157,7 @@
                                     <th>操作</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="table_content">
                                 <c:forEach items="${joinAcademicConferenceList}" var="joinAcademicConference" begin="0" end="9" step="1">
                                     <tr>
                                         <td>${joinAcademicConference.name}</td>
@@ -144,7 +167,7 @@
                                         <td>${joinAcademicConference.isInviteReport}</td>
                                         <td>${joinAcademicConference.subjectCategory}</td>
                                         <td>${joinAcademicConference.remark}</td>
-                                        <td>${fn:substring(joinAcademicConference.submitDate, 0, 19)}</td>
+                                        <td>${fn:substring(joinAcademicConference.createdAt, 0, 19)}</td>
                                         <td>${fn:substring(joinAcademicConference.updatedAt, 0, 19)}</td>
                                         <td>
                                             <div>
@@ -210,7 +233,67 @@
 <script src="<%=request.getContextPath()%>/statics/dist/js/demo.js"></script>
 <!-- Select2 -->
 <script src="<%=request.getContextPath()%>/statics/bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="<%=request.getContextPath()%>/statics/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- page script -->
 <script src="<%=request.getContextPath()%>/statics/js/joinAcademicConference/index.js"></script>
+
+<script>
+    $(function() {
+
+        $('#startDate').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd'
+        })
+        $('#endDate').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd'
+        })
+
+        $("#searchButton").click(function() {
+            var startDate = $("#startDate").val();
+            var endDate = $("#endDate").val();
+            var createdAt = "";
+            if(startDate != "" && endDate != ""){
+                createdAt = startDate + " " + endDate
+            }else if(startDate == "" && endDate != "") {
+                createdAt = " " + endDate
+            }else if(startDate != "" && endDate == "") {
+                createdAt = startDate + " "
+            }
+            var level = $('#level').val();
+            if(level == "全部"){
+                level = ""
+            }
+            var searchParams = {
+                "like_join_academic_conference.name": $("#name").val(),
+                "between_join_academic_conference.createdAt": createdAt,
+                "join_academic_conference.level": level
+            };
+            $.ajax({
+                type: "POST",
+                url: "search",
+                data : searchParams,
+                dataType: "text", //return dataType: text or json
+                // contentType:'application/json;charset=UTF-8',
+                success: function(json) {
+                    // alert(json.strResult)
+                    $('#table_content').html(json);
+                    // var obj = $.parseJSON(json); // if dataType: text then change dataType to json
+                    // alert(obj.strResult);
+                    // alert("success");
+                },
+                error: function(json) {
+                    alert("json=" + json);
+                    return false;
+                }
+            });
+        });
+
+
+
+    });
+</script>
+
 </body>
 </html>

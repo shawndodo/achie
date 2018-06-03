@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PatentDao {
 
-    List<Patent> findAll(Integer teacherId);
+    List<Patent> findAll(Integer teacherId, String querySql);
 
     Integer addPatent(Patent patent);
 

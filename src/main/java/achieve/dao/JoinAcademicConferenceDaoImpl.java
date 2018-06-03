@@ -10,13 +10,13 @@ import java.util.List;
 
 public class JoinAcademicConferenceDaoImpl implements JoinAcademicConferenceDao {
 
-    public List<JoinAcademicConference> findAll(Integer teacherId) {
+    public List<JoinAcademicConference> findAll(Integer teacherId, String querySql) {
         Connection conn = null ;
         try {
             conn = DBUtil.getConnection() ;
             String sql = "SELECT * FROM join_academic_conference " +
                     "LEFT JOIN teacher_achie ON join_academic_conference.id = teacher_achie.achieId " +
-                    "WHERE teacher_achie.achieType = 'JoinAcademicConference' AND teacher_achie.teacherId = " + teacherId.toString();
+                    "WHERE teacher_achie.achieType = 'JoinAcademicConference' AND teacher_achie.teacherId = " + teacherId.toString() + querySql;
             Statement state = conn.createStatement() ;
             ResultSet rs = state.executeQuery(sql) ;
             List<JoinAcademicConference> list = new ArrayList<JoinAcademicConference>() ;

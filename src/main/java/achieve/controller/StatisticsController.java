@@ -61,13 +61,6 @@ public class StatisticsController {
     public String search(HttpServletRequest request, Map<String,Object> model) throws Exception {
 
         try {
-//            Map<String, Object> testMap = request.getParameterMap();
-//
-//            for (Map<String, String[]>  m : testMap.entrySet())  {
-//                System.out.println(m.getKey()+"\t"+m.getValue());
-//            }
-
-//            System.out.println("map====" + dataMap);
 
             System.out.println("request===>" + request);
 
@@ -87,10 +80,6 @@ public class StatisticsController {
             String querySql = QueryUtil.convertQueryParams(map);
 
             System.out.println("querysql====>" + querySql);
-
-
-//            JSONObject jasonObject = JSONObject.fromObject(str);
-//            Map map = (Map) jasonObject;
 
 
             List<HashMap> list = statisticsDaoImpl.findBasicInfo(querySql);
@@ -115,11 +104,6 @@ public class StatisticsController {
             return "";
         }
 
-
-    }
-
-    public static String getType(Object o){ //获取变量类型方法
-        return o.getClass().toString(); //使用int类型的getClass()方法
     }
 
 }

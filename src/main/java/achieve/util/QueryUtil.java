@@ -9,7 +9,9 @@ public class QueryUtil {
         String querySql = "";
 
         for (Map.Entry<String, Object> m :params.entrySet())  {
-            if(m.getValue() == null){continue;}
+            System.out.println("value===>" + m.getValue());
+            if(m.getValue() == null || m.getValue() == ""){continue;}
+            System.out.println("value2===>" + m.getValue());
             String key = m.getKey();
             if(key.contains("like_")){
                 String convertKey = key.replaceAll("like_", "");
