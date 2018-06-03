@@ -163,13 +163,6 @@ public class PatentController {
 
             System.out.println("request===>" + request);
 
-//            String nameValue = request.getParameter("like_patent.patentName");
-//            String createdAt = request.getParameter("between_join_academic_conference.createdAt");
-//            String level = request.getParameter("between_patent.createdAt");
-//
-//            System.out.println("nameValue===>" + nameValue);
-//            System.out.println("createdAt===>" + createdAt);
-
             Map<String, Object> map = new HashMap<String, Object>();
 
             map.put("like_patent.patentName", request.getParameter("like_patent.patentName"));

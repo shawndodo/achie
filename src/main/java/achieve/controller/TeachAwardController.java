@@ -10,6 +10,7 @@ import achieve.pojo.Teacher;
 import achieve.service.AttachmentService;
 import achieve.service.TeacherAchieService;
 import achieve.util.QiniuUtil;
+import achieve.util.QueryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,7 +59,7 @@ public class TeachAwardController {
     public String index(Map<String,Object> model, HttpSession session){
         Integer userId = (Integer) session.getAttribute("userId");
         Teacher teacher = teacherDaoImpl.findByUserId(userId);
-        List<TeachAward> teachAwardList = teachAwardDaoImpl.findAll(teacher.getId());
+        List<TeachAward> teachAwardList = teachAwardDaoImpl.findAll(teacher.getId(), "");
         model.put("teachAwardList", teachAwardList);
 
         return "teachAward/index";
@@ -149,6 +151,59 @@ public class TeachAwardController {
         }
 
         return "redirect:index";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+//            String nameValue = request.getParameter("like_patent.patentName");
+//            String createdAt = request.getParameter("between_join_academic_conference.createdAt");
+//            String level = request.getParameter("between_patent.createdAt");
+//
+//            System.out.println("nameValue===>" + nameValue);
+//            System.out.println("createdAt===>" + createdAt);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            map.put("like_teach_award.awardName", request.getParameter("like_teach_award.awardName"));
+            map.put("teach_award.level", request.getParameter("teach_award.level"));
+            map.put("between_teach_award.createdAt", request.getParameter("between_teach_award.createdAt"));
+            System.out.println("map====" + map);
+
+            String querySql = QueryUtil.convertQueryParams(map);
+
+            System.out.println("querysql====>" + querySql);
+
+            Integer userId = (Integer) session.getAttribute("userId");
+            Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+            List<TeachAward> teachAwardList = teachAwardDaoImpl.findAll(teacher.getId(), querySql);
+            model.put("teachAwardList", teachAwardList);
+
+            System.out.println("teachAwardList====>" + teachAwardList);
+
+            model.put("teachAwardList", teachAwardList);
+
+            System.out.println("model====>" + model);
+
+            if(teachAwardList != null && !teachAwardList.isEmpty()){
+                System.out.println("2222");
+                return "teachAward/search";
+            }else{
+                System.out.println("3333");
+                return "share/noDate";
+            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
     }
 
 }

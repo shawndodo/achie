@@ -73,11 +73,6 @@ public class UserController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(@ModelAttribute("user") User user, HttpSession session) throws Exception{
-//        System.out.println("file1=" + file);
-//        String url = null;
-//        if(!file.isEmpty()) {
-//            url = QiniuUtil.uploadToQiNiuYun(file);
-//        }
 
 //        Integer userId = (Integer) session.getAttribute("userId");
 

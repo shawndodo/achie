@@ -246,7 +246,7 @@
 <!-- bootstrap datepicker -->
 <script src="<%=request.getContextPath()%>/statics/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- page script -->
-<script src="<%=request.getContextPath()%>/statics/js/joinAcademicConference/index.js"></script>
+<script src="<%=request.getContextPath()%>/statics/js/patent/index.js"></script>
 
 <script>
     $(function() {

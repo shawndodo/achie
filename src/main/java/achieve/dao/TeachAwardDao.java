@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TeachAwardDao {
 
-    List<TeachAward> findAll(Integer teacherId);
+    List<TeachAward> findAll(Integer teacherId, String querySql);
 
     Integer addTeachAward(TeachAward TeachAward);
 
