@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface StatisticsDao {
 
-    List<HashMap> findBasicInfo();
+    List<HashMap> findBasicInfo(String querySql);
 
 }

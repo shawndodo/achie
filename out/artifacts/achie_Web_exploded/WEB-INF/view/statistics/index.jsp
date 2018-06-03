@@ -83,6 +83,27 @@
                                 <input type="text" class="form-control" id="teacherName" placeholder="请输入..">
                             </div>
 
+                            <div class="form-group">
+                                <label>提交时间</label>
+
+                                <div style="display: flex">
+                                    <div class="input-group date" style="width: 11rem;margin-right: 10px;">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" name="startDate"
+                                               id="startDate">
+                                    </div>
+                                    <div class="input-group date" style="width: 11rem;">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" name="endDate"
+                                               id="endDate">
+                                    </div>
+                                </div>
+                            </div>
+
                             <%--<div class="form-group">--%>
                                 <%--<label>论文类型</label>--%>
                                 <%--<select class="form-control select2" style="width: 100%;">--%>
@@ -140,7 +161,7 @@
                                     <th>主持教学改革研究项目</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="table_content">
                                 <c:forEach items="${list}" var="lis" begin="0" end="9" step="1">
                                     <tr>
                                         <td>${lis.userName}</td>
@@ -223,23 +244,46 @@
 <script src="<%=request.getContextPath()%>/statics/dist/js/demo.js"></script>
 <!-- Select2 -->
 <script src="<%=request.getContextPath()%>/statics/bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="<%=request.getContextPath()%>/statics/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- page script -->
 <script src="<%=request.getContextPath()%>/statics/js/paper/index.js"></script>
 <script>
     $(function() {
+
+        $('#startDate').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd'
+        })
+        $('#endDate').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd'
+        })
+
         $("#searchButton").click(function() {
+            var startDate = $("#startDate").val();
+            var endDate = $("#endDate").val();
+            var createdAt = "";
+            if(startDate != "" && endDate != ""){
+                createdAt = startDate + " " + endDate
+            }else if(startDate == "" && endDate != "") {
+                createdAt = " " + endDate
+            }else if(startDate != "" && endDate == "") {
+                createdAt = startDate + " "
+            }
             var searchParams = {
-            teacherName : $("#teacherName").val(),
+                "like_user.realName": $("#teacherName").val(),
+                "between_teacher_achie.createdAt": createdAt
             };
             $.ajax({
                 type: "POST",
                 url: "search",
                 data : searchParams,
                 dataType: "text", //return dataType: text or json
-                contentType:'application/json;charset=UTF-8',
+                // contentType:'application/json;charset=UTF-8',
                 success: function(json) {
                     // alert(json.strResult)
-                    $('#searchContent').html(json);
+                    $('#table_content').html(json);
                     // var obj = $.parseJSON(json); // if dataType: text then change dataType to json
                     // alert(obj.strResult);
                     // alert("success");

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class StatisticsDaoImpl implements StatisticsDao {
 
-    public List<HashMap> findBasicInfo() {
+    public List<HashMap> findBasicInfo(String querySql) {
         Connection conn = null ;
         try {
             conn = DBUtil.getConnection() ;
@@ -31,7 +31,9 @@ public class StatisticsDaoImpl implements StatisticsDao {
                     "FROM teacher_achie " +
                     "LEFT OUTER JOIN teacher ON teacher_achie.teacherId = teacher.id " +
                     "LEFT OUTER JOIN user ON teacher.userId = user.id " +
+                    "WHERE 1=1 " + querySql +
                     "GROUP BY teacher_achie.`teacherId`, user.realName ";
+
             Statement state = conn.createStatement() ;
             ResultSet rs = state.executeQuery(sql) ;
             List<HashMap> list = new ArrayList<HashMap>() ;
