@@ -6,6 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String wrongMessage = (String) session.getAttribute("wrongMessage");
+    System.out.println("错误信息是====" + wrongMessage);
+    if(wrongMessage == null || wrongMessage == "" || wrongMessage == "null"){
+        wrongMessage = "不要显示";
+    }
+    System.out.println("错误信息是2====" + wrongMessage);
+%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -58,6 +66,7 @@
                 <input type="password" class="form-control" name="userPwd" placeholder="请填写密码">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
+
             <div class="row">
                 <div class="col-xs-8">
                     <%--<div class="checkbox icheck">--%>
@@ -105,6 +114,13 @@
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' /* optional */
         });
+
+        var wrongMessage = "<%=wrongMessage%>";
+
+        if((wrongMessage != undefined || wrongMessage != "" || wrongMessage != "null") && wrongMessage != "不要显示"){
+            "<%session.setAttribute("wrongMessage","null");%>";
+            alert(wrongMessage);
+        }
     });
 </script>
 </body>

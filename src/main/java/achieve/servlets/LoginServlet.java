@@ -27,11 +27,13 @@ public class LoginServlet extends HttpServlet {
 
         User user = new UserDaoImpl().findByUserName(userName);
 
+        //创建session对象
+        HttpSession session = request.getSession();
+        session.setAttribute("wrongMessage", "null");
         if(user != null && user.getPassword().equals(pwd)){
             //登陆成功
 
-            //创建session对象
-            HttpSession session = request.getSession();
+
             //把用户数据保存在session域对象中
             session.setAttribute("loginName", user.getRealName());
             session.setAttribute("userId", user.getId());
@@ -40,6 +42,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath()+"/home/index");
         } else {
             //登陆失败，请求重定向
+            session.setAttribute("wrongMessage", "用户名或密码错误，请重新登陆");
             response.sendRedirect(request.getContextPath() + "/user/login");
         }
 
