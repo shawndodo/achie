@@ -82,9 +82,8 @@
                             <div class="box-body">
                                 <%--<%@include file="_paper_form.jsp" %>--%>
                                 <div class="form-group">
-
                                     <label for="patentName">专利名称</label>
-                                    <span class="text-danger">*</span>
+                                    <%--<span class="text-danger">*</span>--%>
                                     <input type="text" class="form-control" disabled="disabled"
                                            value="${patent.patentName}" name="patentName" id="patentName"
                                            placeholder="请填写专利">

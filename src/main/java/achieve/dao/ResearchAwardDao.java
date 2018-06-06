@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ResearchAwardDao {
 
-    List<ResearchAward> findAll(Integer teacherId);
+    List<ResearchAward> findAll(Integer teacherId, String querySql);
 
     Integer addResearchAward(ResearchAward researchAward);
 

@@ -10,6 +10,7 @@ import achieve.pojo.Teacher;
 import achieve.service.AttachmentService;
 import achieve.service.TeacherAchieService;
 import achieve.util.QiniuUtil;
+import achieve.util.QueryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +45,7 @@ public class ResearchAwardController extends BaseController {
     public String index(Map<String,Object> model, HttpSession session){
         Integer userId = (Integer) session.getAttribute("userId");
         Teacher teacher = teacherDaoImpl.findByUserId(userId);
-        List<ResearchAward> researchAwardList = researchAwardDaoImpl.findAll(teacher.getId());
+        List<ResearchAward> researchAwardList = researchAwardDaoImpl.findAll(teacher.getId(), "");
         model.put("researchAwardList", researchAwardList);
 
         return "researchAward/index";
@@ -135,6 +137,53 @@ public class ResearchAwardController extends BaseController {
         }
 
         return "redirect:index";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            map.put("like_research_award.awardName", request.getParameter("like_research_award.awardName"));
+            map.put("between_research_award.createdAt", request.getParameter("between_research_award.createdAt"));
+            map.put("research_award.awardType", request.getParameter("research_award.awardType"));
+            System.out.println("map====" + map);
+
+            String querySql = QueryUtil.convertQueryParams(map);
+
+            System.out.println("querysql====>" + querySql);
+
+            Integer userId = (Integer) session.getAttribute("userId");
+            Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+            List<ResearchAward> researchAwardList = researchAwardDaoImpl.findAll(teacher.getId(), querySql);
+
+            System.out.println("researchAwardList====>" + researchAwardList);
+
+            model.put("researchAwardList", researchAwardList);
+
+            System.out.println("model====>" + model);
+
+            return "researchAward/search";
+
+//            if(patentList != null && !patentList.isEmpty()){
+//                System.out.println("2222");
+//                return "patent/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
     }
 
 }
