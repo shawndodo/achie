@@ -10,6 +10,7 @@ import achieve.pojo.Teacher;
 import achieve.service.AttachmentService;
 import achieve.service.TeacherAchieService;
 import achieve.util.QiniuUtil;
+import achieve.util.QueryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +45,7 @@ public class ResearchProjectController extends BaseController {
     public String index(Map<String,Object> model, HttpSession session){
         Integer userId = (Integer) session.getAttribute("userId");
         Teacher teacher = teacherDaoImpl.findByUserId(userId);
-        List<ResearchProject> researchProjectList = researchProjectDaoImpl.findAll(teacher.getId());
+        List<ResearchProject> researchProjectList = researchProjectDaoImpl.findAll(teacher.getId(), "");
         model.put("researchProjectList", researchProjectList);
 
         return "researchProject/index";
@@ -135,6 +137,55 @@ public class ResearchProjectController extends BaseController {
         }
 
         return "redirect:index";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            map.put("like_research_project.name", request.getParameter("like_research_project.name"));
+            map.put("between_research_project.createdAt", request.getParameter("between_research_project.createdAt"));
+            map.put("research_project.projectType", request.getParameter("research_project.projectType"));
+            map.put("research_project.researchCategory", request.getParameter("research_project.researchCategory"));
+            map.put("research_project.projectStatus", request.getParameter("research_project.projectStatus"));
+            System.out.println("map====" + map);
+
+            String querySql = QueryUtil.convertQueryParams(map);
+
+            System.out.println("querysql====>" + querySql);
+
+            Integer userId = (Integer) session.getAttribute("userId");
+            Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+            List<ResearchProject> researchProjectList = researchProjectDaoImpl.findAll(teacher.getId(), querySql);
+
+            System.out.println("researchProjectList====>" + researchProjectList);
+
+            model.put("researchProjectList", researchProjectList);
+
+            System.out.println("model====>" + model);
+
+            return "researchProject/search";
+
+//            if(patentList != null && !patentList.isEmpty()){
+//                System.out.println("2222");
+//                return "patent/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
     }
 
 }
