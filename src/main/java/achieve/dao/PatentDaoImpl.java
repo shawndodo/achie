@@ -48,6 +48,47 @@ public class PatentDaoImpl implements PatentDao {
         }
     }
 
+    public List<Patent> adminFindAll(String querySql) {
+        Connection conn = null ;
+        try {
+            conn = DBUtil.getConnection() ;
+            String sql = "SELECT * , user.realName AS teacherName, teacher.id AS teacherId  FROM patent " +
+                    "LEFT JOIN teacher_achie ON patent.id = teacher_achie.achieId " +
+                    "LEFT JOIN teacher ON teacher_achie.teacherId = teacher.id " +
+                    "LEFT JOIN user ON teacher.userId = user.id " +
+                    "WHERE teacher_achie.achieType = 'Patent' " + querySql;
+            Statement state = conn.createStatement() ;
+            ResultSet rs = state.executeQuery(sql) ;
+            List<Patent> list = new ArrayList<Patent>() ;
+            while(rs.next()){
+                Patent patent = new Patent() ;
+                patent.setId(rs.getInt("id")) ;
+                patent.setPatentName(rs.getString("patentName")) ;
+                patent.setPatentType(rs.getString("patentType")) ;
+                patent.setPatentStatus(rs.getString("patentStatus")) ;
+                patent.setPatentCode(rs.getString("patentCode")) ;
+                patent.setGetPatentDate(rs.getDate("getPatentDate")) ;
+                patent.setApplyCode(rs.getString("applyCode")) ;
+                patent.setApplyDate(rs.getDate("applyDate")) ;
+                patent.setSelfRank(rs.getInt("selfRank")) ;
+                patent.setRelatedCourseName(rs.getString("relatedCourseName")) ;
+                patent.setRemark(rs.getString("remark")) ;
+                patent.setCreatedAt(rs.getTimestamp("createdAt"));
+                patent.setUpdatedAt(rs.getTimestamp("updatedAt"));
+                patent.setTeacherName(rs.getString("teacherName"));
+                list.add(patent) ;
+            }
+            rs.close() ;
+            state.close() ;
+            return list ;
+        } catch (Exception e) {
+            e.printStackTrace() ;
+            return null ;
+        }finally{
+            DBUtil.close(conn) ;
+        }
+    }
+
     public Integer addPatent(Patent patent) {
         Connection conn = null ;
         try {

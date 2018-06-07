@@ -8,6 +8,8 @@ public interface PatentDao {
 
     List<Patent> findAll(Integer teacherId, String querySql);
 
+    List<Patent> adminFindAll(String querySql);
+
     Integer addPatent(Patent patent);
 
     Patent findById(Integer id) ;
