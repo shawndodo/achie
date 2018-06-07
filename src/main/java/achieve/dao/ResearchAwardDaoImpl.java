@@ -51,6 +51,50 @@ public class ResearchAwardDaoImpl implements ResearchAwardDao {
         }
     }
 
+    public List<ResearchAward> adminFindAll(String querySql) {
+        Connection conn = null ;
+        try {
+            conn = DBUtil.getConnection() ;
+            String sql = "SELECT * , user.realName AS teacherName, teacher.id AS teacherId FROM research_award " +
+                    "LEFT JOIN teacher_achie ON research_award.id = teacher_achie.achieId " +
+                    "LEFT JOIN teacher ON teacher_achie.teacherId = teacher.id " +
+                    "LEFT JOIN user ON teacher.userId = user.id " +
+                    "WHERE teacher_achie.achieType = 'ResearchAward' " + querySql;
+            Statement state = conn.createStatement() ;
+            ResultSet rs = state.executeQuery(sql) ;
+            List<ResearchAward> list = new ArrayList<ResearchAward>() ;
+            while(rs.next()){
+                ResearchAward researchAward = new ResearchAward() ;
+                researchAward.setId(rs.getInt("id")) ;
+                researchAward.setAwardName(rs.getString("awardName")) ;
+                researchAward.setPublishJournal(rs.getString("publishJournal")) ;
+                researchAward.setPublisher(rs.getString("publisher")) ;
+                researchAward.setPublishDate(rs.getDate("publishDate")) ;
+                researchAward.setAwardWinningName(rs.getString("awardWinningName")) ;
+                researchAward.setAwardType(rs.getString("awardType")) ;
+                researchAward.setAwardDepartment(rs.getString("awardDepartment")) ;
+                researchAward.setAwardDate(rs.getDate("awardDate")) ;
+                researchAward.setAwardNumber(rs.getString("awardNumber")) ;
+                researchAward.setUnitRank(rs.getInt("unitRank")) ;
+                researchAward.setSelfRank(rs.getInt("selfRank")) ;
+                researchAward.setSubjectCategory(rs.getString("subjectCategory")) ;
+                researchAward.setRemark(rs.getString("remark")) ;
+                researchAward.setCreatedAt(rs.getTimestamp("createdAt"));
+                researchAward.setUpdatedAt(rs.getTimestamp("updatedAt"));
+                researchAward.setTeachername(rs.getString("teacherName"));
+                list.add(researchAward) ;
+            }
+            rs.close() ;
+            state.close() ;
+            return list ;
+        } catch (Exception e) {
+            e.printStackTrace() ;
+            return null ;
+        }finally{
+            DBUtil.close(conn) ;
+        }
+    }
+
     public Integer addResearchAward(ResearchAward researchAward) {
         Connection conn = null ;
         try {

@@ -21,6 +21,7 @@ public class ResearchAward {
     private String remark;
     private Date createdAt;
     private Date updatedAt;
+    private String teachername;
 
     public int getId() {
         return id;
@@ -148,6 +149,14 @@ public class ResearchAward {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getTeachername() {
+        return teachername;
+    }
+
+    public void setTeachername(String teachername) {
+        this.teachername = teachername;
     }
 
     @Override
