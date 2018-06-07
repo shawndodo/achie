@@ -52,6 +52,51 @@ public class ResearchProjectDaoImpl implements ResearchProjectDao {
         }
     }
 
+    public List<ResearchProject> adminFindAll(String querySql) {
+        Connection conn = null ;
+        try {
+            conn = DBUtil.getConnection() ;
+            String sql = "SELECT * , user.realName AS teacherName, teacher.id AS teacherId FROM research_project " +
+                    "LEFT JOIN teacher_achie ON research_project.id = teacher_achie.achieId " +
+                    "LEFT JOIN teacher ON teacher_achie.teacherId = teacher.id " +
+                    "LEFT JOIN user ON teacher.userId = user.id " +
+                    "WHERE teacher_achie.achieType = 'ResearchProject' " + querySql;
+            Statement state = conn.createStatement() ;
+            ResultSet rs = state.executeQuery(sql) ;
+            List<ResearchProject> list = new ArrayList<ResearchProject>() ;
+            while(rs.next()){
+                ResearchProject researchProject = new ResearchProject() ;
+                researchProject.setId(rs.getInt("id")) ;
+                researchProject.setLeader(rs.getString("leader")) ;
+                researchProject.setName(rs.getString("name")) ;
+                researchProject.setProjectType(rs.getString("projectType")) ;
+                researchProject.setApprovalNumber(rs.getString("approvalNumber")) ;
+                researchProject.setResearchCategory(rs.getString("researchCategory")) ;
+                researchProject.setApprovalFund(rs.getInt("approvalFund")) ;
+                researchProject.setCurrentYearInMoney(rs.getInt("currentYearInMoney")) ;
+                researchProject.setCurrentYearOutMoney(rs.getInt("currentYearOutMoney")) ;
+                researchProject.setSubjectCategory(rs.getString("subjectCategory")) ;
+                researchProject.setOrganizationForm(rs.getString("organizationForm")) ;
+                researchProject.setServeNationalEconomyIndustry(rs.getString("serveNationalEconomyIndustry")) ;
+                researchProject.setProjectGoal(rs.getString("projectGoal")) ;
+                researchProject.setProjectStatus(rs.getString("projectStatus")) ;
+                researchProject.setRemark(rs.getString("remark")) ;
+                researchProject.setCreatedAt(rs.getTimestamp("createdAt"));
+                researchProject.setUpdatedAt(rs.getTimestamp("updatedAt"));
+                researchProject.setTeacherName(rs.getString("teacherName"));
+                list.add(researchProject) ;
+            }
+            rs.close() ;
+            state.close() ;
+            return list ;
+        } catch (Exception e) {
+            e.printStackTrace() ;
+            return null ;
+        }finally{
+            DBUtil.close(conn) ;
+        }
+    }
+
     public Integer addResearchProject(ResearchProject researchProject) {
         Connection conn = null ;
         try {

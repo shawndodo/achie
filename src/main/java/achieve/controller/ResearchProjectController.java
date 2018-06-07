@@ -51,6 +51,16 @@ public class ResearchProjectController extends BaseController {
         return "researchProject/index";
     }
 
+    @RequestMapping("/admin_index")
+    public String admin_index(Map<String,Object> model, HttpSession session){
+        Integer userId = (Integer) session.getAttribute("userId");
+        Teacher teacher = teacherDaoImpl.findByUserId(userId);
+        List<ResearchProject> researchProjectList = researchProjectDaoImpl.adminFindAll("");
+        model.put("researchProjectList", researchProjectList);
+
+        return "researchProject/admin_index";
+    }
+
     @RequestMapping("/add")
     public String add(){
         return "researchProject/add";
@@ -79,7 +89,11 @@ public class ResearchProjectController extends BaseController {
 
         teacherAchieService.setValue(researchProjectId, teacher, "ResearchProject", "research", "submit");
 
-        return "redirect:index";
+        if(userId == 1){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping("/show")
@@ -136,7 +150,11 @@ public class ResearchProjectController extends BaseController {
 
         }
 
-        return "redirect:index";
+        if(userId == 1){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
@@ -171,6 +189,56 @@ public class ResearchProjectController extends BaseController {
             System.out.println("model====>" + model);
 
             return "researchProject/search";
+
+//            if(patentList != null && !patentList.isEmpty()){
+//                System.out.println("2222");
+//                return "patent/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+
+    @RequestMapping(value = "/admin_search", method = RequestMethod.POST)
+    public String admin_search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            map.put("like_research_project.name", request.getParameter("like_research_project.name"));
+            map.put("between_research_project.createdAt", request.getParameter("between_research_project.createdAt"));
+            map.put("research_project.projectType", request.getParameter("research_project.projectType"));
+            map.put("research_project.researchCategory", request.getParameter("research_project.researchCategory"));
+            map.put("research_project.projectStatus", request.getParameter("research_project.projectStatus"));
+            map.put("like_user.realName", request.getParameter("like_user.realName"));
+            System.out.println("map====" + map);
+
+            String querySql = QueryUtil.convertQueryParams(map);
+
+            System.out.println("querysql====>" + querySql);
+
+            Integer userId = (Integer) session.getAttribute("userId");
+            Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+            List<ResearchProject> researchProjectList = researchProjectDaoImpl.adminFindAll(querySql);
+
+            System.out.println("researchProjectList====>" + researchProjectList);
+
+            model.put("researchProjectList", researchProjectList);
+
+            System.out.println("model====>" + model);
+
+            return "researchProject/admin_search";
 
 //            if(patentList != null && !patentList.isEmpty()){
 //                System.out.println("2222");

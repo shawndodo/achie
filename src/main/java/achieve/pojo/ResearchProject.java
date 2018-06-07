@@ -22,6 +22,7 @@ public class ResearchProject {
     private String remark;
     private Date createdAt;
     private Date updatedAt;
+    private String teacherName;
 
     public int getId() {
         return id;
@@ -157,6 +158,14 @@ public class ResearchProject {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     @Override

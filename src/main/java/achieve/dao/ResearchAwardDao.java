@@ -8,6 +8,8 @@ public interface ResearchAwardDao {
 
     List<ResearchAward> findAll(Integer teacherId, String querySql);
 
+    List<ResearchAward> adminFindAll(String querySql);
+
     Integer addResearchAward(ResearchAward researchAward);
 
     ResearchAward findById(Integer id) ;

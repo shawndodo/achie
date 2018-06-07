@@ -59,10 +59,10 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="/achie/writing/admin_index"><i class="fa fa-circle-o text-aqua"></i>著作管理</a></li>
-                        <li><a href="/achie/teachAward/admin_index"><i class="fa fa-circle-o text-aqua"></i>教学奖项管理</a></li>
-                        <li><a href="/achie/studentProject/admin_index"><i class="fa fa-circle-o text-aqua"></i>指导学生项目管理</a></li>
-                        <li><a href="/achie/teachPaper/admin_index"><i class="fa fa-circle-o text-aqua"></i>教学论文管理</a></li>
-                        <li><a href="/achie/teachReformResearchProject/admin_index"><i class="fa fa-circle-o text-aqua"></i>主持教学改革研究项目管理</a></li>
+                        <li><a href="/achie/teachAward/index"><i class="fa fa-circle-o text-aqua"></i>教学奖项管理</a></li>
+                        <li><a href="/achie/studentProject/index"><i class="fa fa-circle-o text-aqua"></i>指导学生项目管理</a></li>
+                        <li><a href="/achie/teachPaper/index"><i class="fa fa-circle-o text-aqua"></i>教学论文管理</a></li>
+                        <li><a href="/achie/teachReformResearchProject/index"><i class="fa fa-circle-o text-aqua"></i>主持教学改革研究项目管理</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -73,9 +73,9 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="/achie/patent/admin_index"><i class="fa fa-circle-o text-aqua"></i>专利管理</a></li>
-                        <li><a href="/achie/softwareCopyright/admin_index"><i class="fa fa-circle-o text-aqua"></i>软件著作权管理</a></li>
+                        <li><a href="/achie/softwareCopyright/index"><i class="fa fa-circle-o text-aqua"></i>软件著作权管理</a></li>
                         <li><a href="/achie/paper/admin_index"><i class="fa fa-circle-o text-aqua"></i>论文管理</a></li>
-                        <li><a href="/achie/joinAcademicConference/admin_index"><i class="fa fa-circle-o text-aqua"></i>参与学术会议管理</a></li>
+                        <li><a href="/achie/joinAcademicConference/index"><i class="fa fa-circle-o text-aqua"></i>参与学术会议管理</a></li>
                         <li><a href="/achie/researchAward/admin_index"><i class="fa fa-circle-o text-aqua"></i>获奖成果管理</a></li>
                         <li><a href="/achie/researchProject/admin_index"><i class="fa fa-circle-o text-aqua"></i>科研项目管理</a></li>
                     </ul>
