@@ -8,6 +8,8 @@ public interface WritingDao {
 
     List<Writing> findAll(Integer teacherId, String querySql);
 
+    List<Writing> adminFindAll(String querySql);
+
     Integer addWriting(Writing writing);
 
     Writing findById(Integer id) ;

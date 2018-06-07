@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String realName = (String) session.getAttribute("loginName");
+    String userType = (String) session.getAttribute("userType");
+    Boolean flag = (userType == "admin");
 %>
 <!-- Main Header -->
 <header class="main-header">

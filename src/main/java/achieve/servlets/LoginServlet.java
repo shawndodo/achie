@@ -33,11 +33,11 @@ public class LoginServlet extends HttpServlet {
         if(user != null && user.getPassword().equals(pwd)){
             //登陆成功
 
-
             //把用户数据保存在session域对象中
             session.setAttribute("loginName", user.getRealName());
             session.setAttribute("userId", user.getId());
             session.setAttribute("currentUser", user);
+            session.setAttribute("userType", user.getType());
             //跳转到用户主页
             response.sendRedirect(request.getContextPath()+"/home/index");
         } else {

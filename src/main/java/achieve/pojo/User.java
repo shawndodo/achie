@@ -16,6 +16,7 @@ public class User {
     private String status;
     private Date createdAt;
     private Date updatedAt;
+    private String type;
 
     public int getId() {
         return id;
@@ -113,6 +114,14 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -128,6 +137,7 @@ public class User {
                 ", status='" + status + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

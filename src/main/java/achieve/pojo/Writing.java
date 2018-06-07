@@ -16,6 +16,7 @@ public class Writing {
     private String remark;
     private Date createdAt;
     private Date updatedAt;
+    private String teacherName;
 //    private int researchAchievementId;
 
     public int getId() {
@@ -122,6 +123,10 @@ public class Writing {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    public void setTeacherName(String teacherName) {this.teacherName = teacherName;}
+
+    public String getTeacherName() {return teacherName;}
 
     @Override
     public String toString() {

@@ -52,6 +52,16 @@ public class WritingController extends BaseController {
         return "writing/index";
     }
 
+    @RequestMapping("/admin_index")
+    public String admin_index(Map<String,Object> model, HttpSession session){
+        Integer userId = (Integer) session.getAttribute("userId");
+        Teacher teacher = teacherDaoImpl.findByUserId(userId);
+        List<Writing> writingList = writingDaoImpl.adminFindAll("");
+        model.put("writingList", writingList);
+
+        return "writing/admin_index";
+    }
+
     @RequestMapping("/add")
     public String add(){
         return "writing/add";
@@ -83,7 +93,13 @@ public class WritingController extends BaseController {
 
         teacherAchieService.setValue(writingId, teacher, "Writing", "teach", "submit");
 
-        return "redirect:index";
+        if(userId == 1){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
+
+
     }
 
     @RequestMapping("/show")
@@ -139,7 +155,11 @@ public class WritingController extends BaseController {
             attachmentService.setValue(file, url, userId, writing.getId(), "Writing");
         }
 
-        return "redirect:index";
+        if(userId == 1){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
@@ -173,6 +193,55 @@ public class WritingController extends BaseController {
             System.out.println("model====>" + model);
 
             return "writing/search";
+
+//            if(paperList != null && !paperList.isEmpty()){
+//                System.out.println("2222");
+//                return "paper/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+
+    @RequestMapping(value = "/admin_search", method = RequestMethod.POST)
+    public String admin_search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            map.put("like_writing.writingName", request.getParameter("like_writing.writingName"));
+            map.put("like_writing.publicationNumber", request.getParameter("like_writing.publicationNumber"));
+            map.put("between_writing.createdAt", request.getParameter("between_writing.createdAt"));
+            map.put("writing.writingType", request.getParameter("writing.writingType"));
+            map.put("like_user.realName", request.getParameter("like_user.realName"));
+            System.out.println("map====" + map);
+
+            String querySql = QueryUtil.convertQueryParams(map);
+
+            System.out.println("querysql====>" + querySql);
+
+            Integer userId = (Integer) session.getAttribute("userId");
+            Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+            List<Writing> writingList = writingDaoImpl.adminFindAll(querySql);
+
+            System.out.println("writingList====>" + writingList);
+
+            model.put("writingList", writingList);
+
+            System.out.println("model====>" + model);
+
+            return "writing/admin_search";
 
 //            if(paperList != null && !paperList.isEmpty()){
 //                System.out.println("2222");

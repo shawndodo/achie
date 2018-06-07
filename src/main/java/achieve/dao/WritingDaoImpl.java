@@ -47,6 +47,46 @@ public class WritingDaoImpl implements WritingDao {
         }
     }
 
+    public List<Writing> adminFindAll(String querySql) {
+        Connection conn = null ;
+        try {
+            conn = DBUtil.getConnection() ;
+            String sql = "SELECT *, user.realName AS teacherName, teacher.id AS teacherId FROM writing " +
+                    "LEFT JOIN teacher_achie ON writing.id = teacher_achie.achieId " +
+                    "LEFT JOIN teacher ON teacher_achie.teacherId = teacher.id " +
+                    "LEFT JOIN user ON teacher.userId = user.id " +
+                    "WHERE teacher_achie.achieType = 'Writing' " + querySql;
+            Statement state = conn.createStatement() ;
+            ResultSet rs = state.executeQuery(sql) ;
+            List<Writing> list = new ArrayList<Writing>() ;
+            while(rs.next()){
+                Writing writing = new Writing() ;
+                writing.setId(rs.getInt("id")) ;
+                writing.setWritingName(rs.getString("writingName")) ;
+                writing.setPublicationNumber(rs.getString("publicationNumber")) ;
+                writing.setSelfPosition(rs.getString("selfPosition")) ;
+                writing.setSelfRank(rs.getInt("selfRank")) ;
+                writing.setPress(rs.getString("press")) ;
+                writing.setWritingType(rs.getString("writingType")) ;
+                writing.setPublishTime(rs.getDate("publishTime")) ;
+                writing.setRelatedCourseName(rs.getString("relatedCourseName")) ;
+                writing.setRemark(rs.getString("remark")) ;
+                writing.setCreatedAt(rs.getTimestamp("createdAt"));
+                writing.setUpdatedAt(rs.getTimestamp("updatedAt"));
+                writing.setTeacherName(rs.getString("teacherName"));
+                list.add(writing) ;
+            }
+            rs.close() ;
+            state.close() ;
+            return list ;
+        } catch (Exception e) {
+            e.printStackTrace() ;
+            return null ;
+        }finally{
+            DBUtil.close(conn) ;
+        }
+    }
+
     public Integer addWriting(Writing writing) {
         Connection conn = null ;
         try {

@@ -30,6 +30,7 @@ public class UserDaoImpl implements UserDao {
                 user.setStartWorkingTime(rs.getDate("startWorkingTime"));
                 user.setRemark(rs.getString("remark"));
                 user.setStatus(rs.getString("status"));
+                user.setType(rs.getString("type"));
             }
             rs.close() ;
             ps.close() ;

@@ -7,6 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- Left side column. contains the logo and sidebar -->
+<%
+    realName = (String) session.getAttribute("loginName");
+    userType = (String) session.getAttribute("userType");
+    flag = (userType == "admin");
+%>
 <aside class="main-sidebar">
 
     <!-- sidebar: style can be found in sidebar.less -->
@@ -45,36 +50,100 @@
             <li class="header">菜单</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="/achie/user/show"><i class="fa fa-user"></i> <span>个人中心</span></a></li>
-            <li class="treeview">
-                <a href="#"><i class="fa fa-bookmark-o"></i> <span>教学成果</span>
-                    <span class="pull-right-container">
+            <%if(userType == "admin" || userType.equals("admin")){%>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-bookmark-o"></i> <span>教学成果</span>
+                        <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="/achie/writing/index"><i class="fa fa-circle-o text-aqua"></i>著作管理</a></li>
-                    <li><a href="/achie/teachAward/index"><i class="fa fa-circle-o text-aqua"></i>教学奖项管理</a></li>
-                    <li><a href="/achie/studentProject/index"><i class="fa fa-circle-o text-aqua"></i>指导学生项目管理</a></li>
-                    <li><a href="/achie/teachPaper/index"><i class="fa fa-circle-o text-aqua"></i>教学论文管理</a></li>
-                    <li><a href="/achie/teachReformResearchProject/index"><i class="fa fa-circle-o text-aqua"></i>主持教学改革研究项目管理</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#"><i class="fa fa-balance-scale"></i> <span>科研成果</span>
-                    <span class="pull-right-container">
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/achie/writing/admin_index"><i class="fa fa-circle-o text-aqua"></i>著作管理</a></li>
+                        <li><a href="/achie/teachAward/admin_index"><i class="fa fa-circle-o text-aqua"></i>教学奖项管理</a></li>
+                        <li><a href="/achie/studentProject/admin_index"><i class="fa fa-circle-o text-aqua"></i>指导学生项目管理</a></li>
+                        <li><a href="/achie/teachPaper/admin_index"><i class="fa fa-circle-o text-aqua"></i>教学论文管理</a></li>
+                        <li><a href="/achie/teachReformResearchProject/admin_index"><i class="fa fa-circle-o text-aqua"></i>主持教学改革研究项目管理</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-balance-scale"></i> <span>科研成果</span>
+                        <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="/achie/patent/index"><i class="fa fa-circle-o text-aqua"></i>专利管理</a></li>
-                    <li><a href="/achie/softwareCopyright/index"><i class="fa fa-circle-o text-aqua"></i>软件著作权管理</a></li>
-                    <li><a href="/achie/paper/index"><i class="fa fa-circle-o text-aqua"></i>论文管理</a></li>
-                    <li><a href="/achie/joinAcademicConference/index"><i class="fa fa-circle-o text-aqua"></i>参与学术会议管理</a></li>
-                    <li><a href="/achie/researchAward/index"><i class="fa fa-circle-o text-aqua"></i>获奖成果管理</a></li>
-                    <li><a href="/achie/researchProject/index"><i class="fa fa-circle-o text-aqua"></i>科研项目管理</a></li>
-                </ul>
-            </li>
-            <li><a href="/achie/statistics/index"><i class="fa fa-bar-chart"></i> <span>成果统计</span></a></li>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/achie/patent/admin_index"><i class="fa fa-circle-o text-aqua"></i>专利管理</a></li>
+                        <li><a href="/achie/softwareCopyright/admin_index"><i class="fa fa-circle-o text-aqua"></i>软件著作权管理</a></li>
+                        <li><a href="/achie/paper/admin_index"><i class="fa fa-circle-o text-aqua"></i>论文管理</a></li>
+                        <li><a href="/achie/joinAcademicConference/admin_index"><i class="fa fa-circle-o text-aqua"></i>参与学术会议管理</a></li>
+                        <li><a href="/achie/researchAward/admin_index"><i class="fa fa-circle-o text-aqua"></i>获奖成果管理</a></li>
+                        <li><a href="/achie/researchProject/admin_index"><i class="fa fa-circle-o text-aqua"></i>科研项目管理</a></li>
+                    </ul>
+                </li>
+                <li><a href="/achie/statistics/index"><i class="fa fa-bar-chart"></i> <span>成果统计</span></a></li>
+            <%}%>
+            <%if(realName != "管理员" && !userType.equals("admin")){%>
+            <%--<c:if test="${userType == 'teacher'}">--%>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-bookmark-o"></i> <span>教学成果</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/achie/writing/index"><i class="fa fa-circle-o text-aqua"></i>著作管理</a></li>
+                        <li><a href="/achie/teachAward/index"><i class="fa fa-circle-o text-aqua"></i>教学奖项管理</a></li>
+                        <li><a href="/achie/studentProject/index"><i class="fa fa-circle-o text-aqua"></i>指导学生项目管理</a></li>
+                        <li><a href="/achie/teachPaper/index"><i class="fa fa-circle-o text-aqua"></i>教学论文管理</a></li>
+                        <li><a href="/achie/teachReformResearchProject/index"><i class="fa fa-circle-o text-aqua"></i>主持教学改革研究项目管理</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-balance-scale"></i> <span>科研成果</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/achie/patent/index"><i class="fa fa-circle-o text-aqua"></i>专利管理</a></li>
+                        <li><a href="/achie/softwareCopyright/index"><i class="fa fa-circle-o text-aqua"></i>软件著作权管理</a></li>
+                        <li><a href="/achie/paper/index"><i class="fa fa-circle-o text-aqua"></i>论文管理</a></li>
+                        <li><a href="/achie/joinAcademicConference/index"><i class="fa fa-circle-o text-aqua"></i>参与学术会议管理</a></li>
+                        <li><a href="/achie/researchAward/index"><i class="fa fa-circle-o text-aqua"></i>获奖成果管理</a></li>
+                        <li><a href="/achie/researchProject/index"><i class="fa fa-circle-o text-aqua"></i>科研项目管理</a></li>
+                    </ul>
+                </li>
+            <%}%>
+            <%--<li class="treeview">--%>
+                <%--<a href="#"><i class="fa fa-bookmark-o"></i> <span>教学成果</span>--%>
+                    <%--<span class="pull-right-container">--%>
+                <%--<i class="fa fa-angle-left pull-right"></i>--%>
+              <%--</span>--%>
+                <%--</a>--%>
+                <%--<ul class="treeview-menu">--%>
+                    <%--<li><a href="/achie/writing/index"><i class="fa fa-circle-o text-aqua"></i>著作管理</a></li>--%>
+                    <%--<li><a href="/achie/teachAward/index"><i class="fa fa-circle-o text-aqua"></i>教学奖项管理</a></li>--%>
+                    <%--<li><a href="/achie/studentProject/index"><i class="fa fa-circle-o text-aqua"></i>指导学生项目管理</a></li>--%>
+                    <%--<li><a href="/achie/teachPaper/index"><i class="fa fa-circle-o text-aqua"></i>教学论文管理</a></li>--%>
+                    <%--<li><a href="/achie/teachReformResearchProject/index"><i class="fa fa-circle-o text-aqua"></i>主持教学改革研究项目管理</a></li>--%>
+                <%--</ul>--%>
+            <%--</li>--%>
+            <%--<li class="treeview">--%>
+                <%--<a href="#"><i class="fa fa-balance-scale"></i> <span>科研成果</span>--%>
+                    <%--<span class="pull-right-container">--%>
+                <%--<i class="fa fa-angle-left pull-right"></i>--%>
+              <%--</span>--%>
+                <%--</a>--%>
+                <%--<ul class="treeview-menu">--%>
+                    <%--<li><a href="/achie/patent/index"><i class="fa fa-circle-o text-aqua"></i>专利管理</a></li>--%>
+                    <%--<li><a href="/achie/softwareCopyright/index"><i class="fa fa-circle-o text-aqua"></i>软件著作权管理</a></li>--%>
+                    <%--<li><a href="/achie/paper/index"><i class="fa fa-circle-o text-aqua"></i>论文管理</a></li>--%>
+                    <%--<li><a href="/achie/joinAcademicConference/index"><i class="fa fa-circle-o text-aqua"></i>参与学术会议管理</a></li>--%>
+                    <%--<li><a href="/achie/researchAward/index"><i class="fa fa-circle-o text-aqua"></i>获奖成果管理</a></li>--%>
+                    <%--<li><a href="/achie/researchProject/index"><i class="fa fa-circle-o text-aqua"></i>科研项目管理</a></li>--%>
+                <%--</ul>--%>
+            <%--</li>--%>
+            <%--<li><a href="/achie/statistics/index"><i class="fa fa-bar-chart"></i> <span>成果统计</span></a></li>--%>
         </ul>
         <!-- /.sidebar-menu -->
     </section>
