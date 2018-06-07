@@ -56,6 +56,55 @@ public class PaperDaoImpl implements PaperDao {
         }
     }
 
+    public List<Paper> adminFindAll(String querySql) {
+        Connection conn = null ;
+        try {
+            conn = DBUtil.getConnection() ;
+            String sql = "SELECT * , user.realName AS teacherName, teacher.id AS teacherId FROM paper " +
+                    "LEFT JOIN teacher_achie ON paper.id = teacher_achie.achieId " +
+                    "LEFT JOIN teacher ON teacher_achie.teacherId = teacher.id " +
+                    "LEFT JOIN user ON teacher.userId = user.id " +
+                    "WHERE teacher_achie.achieType = 'Paper' " + querySql;
+            Statement state = conn.createStatement() ;
+            ResultSet rs = state.executeQuery(sql) ;
+            List<Paper> list = new ArrayList<Paper>() ;
+            while(rs.next()){
+                Paper paper = new Paper() ;
+                paper.setId(rs.getInt("id")) ;
+                paper.setPaperName(rs.getString("paperName")) ;
+                paper.setPaperType(rs.getString("paperType")) ;
+                paper.setSelfRank(rs.getInt("selfRank")) ;
+                paper.setIsAlone(rs.getString("isAlone")) ;
+                paper.setMessageAuthor(rs.getString("messageAuthor")) ;
+                paper.setPeriodicalName(rs.getString("periodicalName")) ;
+                paper.setInclusionSearch(rs.getString("inclusionSearch")) ;
+                paper.setPublishTime(rs.getDate("publishTime")) ;
+                paper.setKeyWord(rs.getString("keyWord")) ;
+                paper.setRelatedCourseName(rs.getString("relatedCourseName")) ;
+                paper.setRemark(rs.getString("remark")) ;
+                paper.setEdition(rs.getString("edition")) ;
+                paper.setStartEndPageNum(rs.getString("startEndPageNum")) ;
+                paper.setDoiNum(rs.getString("doiNum")) ;
+                paper.setIssnNum(rs.getString("issnNum")) ;
+                paper.setCnNum(rs.getString("cnNum")) ;
+                paper.setImpactFactor(rs.getString("impactFactor")) ;
+                paper.setQuotesNum(rs.getString("quotesNum")) ;
+                paper.setCreatedAt(rs.getTimestamp("createdAt"));
+                paper.setUpdatedAt(rs.getTimestamp("updatedAt"));
+                paper.setTeacherName(rs.getString("teacherName"));
+                list.add(paper) ;
+            }
+            rs.close() ;
+            state.close() ;
+            return list ;
+        } catch (Exception e) {
+            e.printStackTrace() ;
+            return null ;
+        }finally{
+            DBUtil.close(conn) ;
+        }
+    }
+
     public Integer addPaper(Paper paper) {
         Connection conn = null ;
         try {

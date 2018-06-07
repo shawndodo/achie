@@ -26,6 +26,7 @@ public class Paper {
     private String quotesNum;
     private Date createdAt;
     private Date updatedAt;
+    private String teacherName;
 //    private int researchAchievementId;
 
     public int getId() {
@@ -203,6 +204,14 @@ public class Paper {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     @Override
