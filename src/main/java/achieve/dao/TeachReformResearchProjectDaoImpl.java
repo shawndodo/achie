@@ -10,13 +10,13 @@ import java.util.List;
 
 public class TeachReformResearchProjectDaoImpl implements TeachReformResearchProjectDao {
 
-    public List<TeachReformResearchProject> findAll(Integer teacherId) {
+    public List<TeachReformResearchProject> findAll(Integer teacherId, String querySql) {
         Connection conn = null ;
         try {
             conn = DBUtil.getConnection() ;
             String sql = "SELECT * FROM teach_reform_research_project " +
                     "LEFT JOIN teacher_achie ON teach_reform_research_project.id = teacher_achie.achieId " +
-                    "WHERE teacher_achie.achieType = 'TeachReformResearchProject' AND teacher_achie.teacherId = " + teacherId.toString();
+                    "WHERE teacher_achie.achieType = 'TeachReformResearchProject' AND teacher_achie.teacherId = " + teacherId.toString() + querySql;
             Statement state = conn.createStatement() ;
             ResultSet rs = state.executeQuery(sql) ;
             List<TeachReformResearchProject> list = new ArrayList<TeachReformResearchProject>() ;

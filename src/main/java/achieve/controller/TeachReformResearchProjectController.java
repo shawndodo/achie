@@ -10,6 +10,7 @@ import achieve.pojo.Teacher;
 import achieve.service.AttachmentService;
 import achieve.service.TeacherAchieService;
 import achieve.util.QiniuUtil;
+import achieve.util.QueryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +45,7 @@ public class TeachReformResearchProjectController extends BaseController {
     public String index(Map<String,Object> model, HttpSession session){
         Integer userId = (Integer) session.getAttribute("userId");
         Teacher teacher = teacherDaoImpl.findByUserId(userId);
-        List<TeachReformResearchProject> teachReformResearchProjectList = teachReformResearchProjectDaoImpl.findAll(teacher.getId());
+        List<TeachReformResearchProject> teachReformResearchProjectList = teachReformResearchProjectDaoImpl.findAll(teacher.getId(), "");
         model.put("teachReformResearchProjectList", teachReformResearchProjectList);
 
         return "teachReformResearchProject/index";
@@ -135,6 +137,54 @@ public class TeachReformResearchProjectController extends BaseController {
         }
 
         return "redirect:index";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            map.put("like_teach_reform_research_project.code", request.getParameter("like_teach_reform_research_project.code"));
+            map.put("like_teach_reform_research_project.name", request.getParameter("like_teach_reform_research_project.name"));
+            map.put("teach_reform_research_project.level", request.getParameter("teach_reform_research_project.level"));
+            map.put("between_teach_reform_research_project.createdAt", request.getParameter("between_teach_reform_research_project.createdAt"));
+            System.out.println("map====" + map);
+
+            String querySql = QueryUtil.convertQueryParams(map);
+
+            System.out.println("querysql====>" + querySql);
+
+            Integer userId = (Integer) session.getAttribute("userId");
+            Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+            List<TeachReformResearchProject> teachReformResearchProjectList = teachReformResearchProjectDaoImpl.findAll(teacher.getId(), querySql);
+
+            System.out.println("teachReformResearchProjectList====>" + teachReformResearchProjectList);
+
+            model.put("teachReformResearchProjectList", teachReformResearchProjectList);
+
+            System.out.println("model====>" + model);
+
+            return "teachReformResearchProject/search";
+
+//            if(teachAwardList != null && !teachAwardList.isEmpty()){
+//                System.out.println("2222");
+//                return "teachAward/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
     }
 
 }
