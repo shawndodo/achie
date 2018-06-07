@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface StudentProjectDao {
 
-    List<StudentProject> findAll(Integer teacherId);
+    List<StudentProject> findAll(Integer teacherId, String querySql);
 
     Integer addStudentProject(StudentProject studentProject);
 

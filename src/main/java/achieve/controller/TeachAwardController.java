@@ -168,7 +168,6 @@ public class TeachAwardController extends BaseController {
             Teacher teacher = teacherDaoImpl.findByUserId(userId);
 
             List<TeachAward> teachAwardList = teachAwardDaoImpl.findAll(teacher.getId(), querySql);
-            model.put("teachAwardList", teachAwardList);
 
             System.out.println("teachAwardList====>" + teachAwardList);
 

@@ -10,13 +10,13 @@ import java.util.List;
 
 public class StudentProjectDaoImpl implements StudentProjectDao {
 
-    public List<StudentProject> findAll(Integer teacherId) {
+    public List<StudentProject> findAll(Integer teacherId, String querySql) {
         Connection conn = null ;
         try {
             conn = DBUtil.getConnection() ;
             String sql = "SELECT * FROM student_project " +
                     "LEFT JOIN teacher_achie ON student_project.id = teacher_achie.achieId " +
-                    "WHERE teacher_achie.achieType = 'StudentProject' AND teacher_achie.teacherId = " + teacherId.toString();
+                    "WHERE teacher_achie.achieType = 'StudentProject' AND teacher_achie.teacherId = " + teacherId.toString() + querySql;
             Statement state = conn.createStatement() ;
             ResultSet rs = state.executeQuery(sql) ;
             List<StudentProject> list = new ArrayList<StudentProject>() ;

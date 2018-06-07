@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TeachPaperDao {
 
-    List<TeachPaper> findAll(Integer teacherId);
+    List<TeachPaper> findAll(Integer teacherId, String querySql);
 
     Integer addTeachPaper(TeachPaper teachPaper);
 

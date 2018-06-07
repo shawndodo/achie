@@ -7,6 +7,7 @@ import achieve.pojo.Teacher;
 import achieve.service.AttachmentService;
 import achieve.service.TeacherAchieService;
 import achieve.util.QiniuUtil;
+import achieve.util.QueryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +42,7 @@ public class StudentProjectController extends BaseController {
     public String index(Map<String,Object> model, HttpSession session){
         Integer userId = (Integer) session.getAttribute("userId");
         Teacher teacher = teacherDaoImpl.findByUserId(userId);
-        List<StudentProject> studentProjectList = studentProjectDaoImpl.findAll(teacher.getId());
+        List<StudentProject> studentProjectList = studentProjectDaoImpl.findAll(teacher.getId(), "");
         model.put("studentProjectList", studentProjectList);
 
         return "studentProject/index";
@@ -132,6 +134,55 @@ public class StudentProjectController extends BaseController {
         }
 
         return "redirect:index";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            map.put("like_student_project.code", request.getParameter("like_student_project.code"));
+            map.put("like_student_project.name", request.getParameter("like_student_project.name"));
+            map.put("student_project.projectType", request.getParameter("student_project.projectType"));
+            map.put("between_student_project.createdAt", request.getParameter("between_student_project.createdAt"));
+            System.out.println("map====" + map);
+
+            String querySql = QueryUtil.convertQueryParams(map);
+
+            System.out.println("querysql====>" + querySql);
+
+            Integer userId = (Integer) session.getAttribute("userId");
+            Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+            List<StudentProject> studentProjectList = studentProjectDaoImpl.findAll(teacher.getId(), querySql);
+            model.put("studentProjectList", studentProjectList);
+
+            System.out.println("studentProjectList====>" + studentProjectList);
+
+            model.put("studentProjectList", studentProjectList);
+
+            System.out.println("model====>" + model);
+
+            return "studentProject/search";
+
+//            if(teachAwardList != null && !teachAwardList.isEmpty()){
+//                System.out.println("2222");
+//                return "teachAward/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
     }
 
 }

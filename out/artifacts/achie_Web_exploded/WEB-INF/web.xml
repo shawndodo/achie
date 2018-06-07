@@ -61,6 +61,9 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <session-config>
+        <session-timeout>40</session-timeout>
+    </session-config>
 
     <!--log4j配置文件地址-->
     <!--<context-param>-->

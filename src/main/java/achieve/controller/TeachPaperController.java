@@ -10,6 +10,7 @@ import achieve.pojo.Teacher;
 import achieve.service.AttachmentService;
 import achieve.service.TeacherAchieService;
 import achieve.util.QiniuUtil;
+import achieve.util.QueryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +45,7 @@ public class TeachPaperController extends BaseController {
     public String index(Map<String,Object> model, HttpSession session){
         Integer userId = (Integer) session.getAttribute("userId");
         Teacher teacher = teacherDaoImpl.findByUserId(userId);
-        List<TeachPaper> teachPaperList = teachPaperDaoImpl.findAll(teacher.getId());
+        List<TeachPaper> teachPaperList = teachPaperDaoImpl.findAll(teacher.getId(), "");
         model.put("teachPaperList", teachPaperList);
 
         return "teachPaper/index";
@@ -135,6 +137,52 @@ public class TeachPaperController extends BaseController {
         }
 
         return "redirect:index";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            map.put("like_teach_paper.paperName", request.getParameter("like_teach_paper.paperName"));
+            map.put("between_teach_paper.createdAt", request.getParameter("between_teach_paper.createdAt"));
+            System.out.println("map====" + map);
+
+            String querySql = QueryUtil.convertQueryParams(map);
+
+            System.out.println("querysql====>" + querySql);
+
+            Integer userId = (Integer) session.getAttribute("userId");
+            Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+            List<TeachPaper> teachPaperList = teachPaperDaoImpl.findAll(teacher.getId(), querySql);
+
+            System.out.println("teachPaperList====>" + teachPaperList);
+
+            model.put("teachPaperList", teachPaperList);
+
+            System.out.println("model====>" + model);
+
+            return "teachPaper/search";
+
+//            if(teachAwardList != null && !teachAwardList.isEmpty()){
+//                System.out.println("2222");
+//                return "teachAward/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
     }
 
 }
