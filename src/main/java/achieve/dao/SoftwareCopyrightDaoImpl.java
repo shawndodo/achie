@@ -11,13 +11,13 @@ import java.util.List;
 
 public class SoftwareCopyrightDaoImpl implements SoftwareCopyrightDao {
 
-    public List<SoftwareCopyright> findAll(Integer teacherId) {
+    public List<SoftwareCopyright> findAll(Integer teacherId, String querySql) {
         Connection conn = null ;
         try {
             conn = DBUtil.getConnection() ;
             String sql = "SELECT * FROM software_copyright " +
                     "LEFT JOIN teacher_achie ON software_copyright.id = teacher_achie.achieId " +
-                    "WHERE teacher_achie.achieType = 'SoftwareCopyright' AND teacher_achie.teacherId = " + teacherId.toString();
+                    "WHERE teacher_achie.achieType = 'SoftwareCopyright' AND teacher_achie.teacherId = " + teacherId.toString() + querySql;
             Statement state = conn.createStatement() ;
             ResultSet rs = state.executeQuery(sql) ;
             List<SoftwareCopyright> list = new ArrayList<SoftwareCopyright>() ;

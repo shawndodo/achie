@@ -159,7 +159,6 @@ public class StudentProjectController extends BaseController {
             Teacher teacher = teacherDaoImpl.findByUserId(userId);
 
             List<StudentProject> studentProjectList = studentProjectDaoImpl.findAll(teacher.getId(), querySql);
-            model.put("studentProjectList", studentProjectList);
 
             System.out.println("studentProjectList====>" + studentProjectList);
 

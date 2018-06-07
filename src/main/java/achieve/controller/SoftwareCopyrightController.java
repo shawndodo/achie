@@ -7,6 +7,7 @@ import achieve.pojo.Teacher;
 import achieve.service.AttachmentService;
 import achieve.service.TeacherAchieService;
 import achieve.util.QiniuUtil;
+import achieve.util.QueryUtil;
 import org.codehaus.jackson.map.Serializers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +43,7 @@ public class SoftwareCopyrightController extends BaseController {
     public String index(Map<String,Object> model, HttpSession session){
         Integer userId = (Integer) session.getAttribute("userId");
         Teacher teacher = teacherDaoImpl.findByUserId(userId);
-        List<SoftwareCopyright> softwareCopyrightList = softwareCopyrightDaoImpl.findAll(teacher.getId());
+        List<SoftwareCopyright> softwareCopyrightList = softwareCopyrightDaoImpl.findAll(teacher.getId(), "");
         model.put("softwareCopyrightList", softwareCopyrightList);
 
         return "softwareCopyright/index";
@@ -133,6 +135,53 @@ public class SoftwareCopyrightController extends BaseController {
         }
 
         return "redirect:index";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            map.put("like_software_copyright.copyrightName", request.getParameter("like_software_copyright.copyrightName"));
+            map.put("software_copyright.copyrightType", request.getParameter("software_copyright.copyrightType"));
+            map.put("between_software_copyright.createdAt", request.getParameter("between_software_copyright.createdAt"));
+            System.out.println("map====" + map);
+
+            String querySql = QueryUtil.convertQueryParams(map);
+
+            System.out.println("querysql====>" + querySql);
+
+            Integer userId = (Integer) session.getAttribute("userId");
+            Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+            List<SoftwareCopyright> softwareCopyrightList = softwareCopyrightDaoImpl.findAll(teacher.getId(), querySql);
+
+            System.out.println("softwareCopyrightList====>" + softwareCopyrightList);
+
+            model.put("softwareCopyrightList", softwareCopyrightList);
+
+            System.out.println("model====>" + model);
+
+            return "softwareCopyright/search";
+
+//            if(teachAwardList != null && !teachAwardList.isEmpty()){
+//                System.out.println("2222");
+//                return "teachAward/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
     }
 
 }

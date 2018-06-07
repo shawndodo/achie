@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SoftwareCopyrightDao {
 
-    List<SoftwareCopyright> findAll(Integer teacherId);
+    List<SoftwareCopyright> findAll(Integer teacherId, String querySql);
 
     Integer addSoftwareCopyright(SoftwareCopyright softwareCopyright);
 
