@@ -8,6 +8,8 @@ public interface TeachAwardDao {
 
     List<TeachAward> findAll(Integer teacherId, String querySql);
 
+    List<TeachAward> adminFindAll(String querySql);
+
     Integer addTeachAward(TeachAward TeachAward);
 
     TeachAward findById(Integer id) ;

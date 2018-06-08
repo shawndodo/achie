@@ -51,6 +51,16 @@ public class TeachAwardController extends BaseController {
         return "teachAward/index";
     }
 
+    @RequestMapping("/admin_index")
+    public String admin_index(Map<String,Object> model, HttpSession session){
+        Integer userId = (Integer) session.getAttribute("userId");
+        Teacher teacher = teacherDaoImpl.findByUserId(userId);
+        List<TeachAward> teachAwardList = teachAwardDaoImpl.adminFindAll("");
+        model.put("teachAwardList", teachAwardList);
+
+        return "teachAward/admin_index";
+    }
+
     @RequestMapping("/add")
     public String add(){
         return "teachAward/add";
@@ -79,7 +89,11 @@ public class TeachAwardController extends BaseController {
 
         teacherAchieService.setValue(teachAwardId, teacher, "TeachAward", "teach", "submit");
 
-        return "redirect:index";
+        if(userId == 1){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping("/show")
@@ -136,7 +150,11 @@ public class TeachAwardController extends BaseController {
 
         }
 
-        return "redirect:index";
+        if(userId == 1){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
@@ -176,6 +194,61 @@ public class TeachAwardController extends BaseController {
             System.out.println("model====>" + model);
 
             return "teachAward/search";
+
+//            if(teachAwardList != null && !teachAwardList.isEmpty()){
+//                System.out.println("2222");
+//                return "teachAward/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+
+    @RequestMapping(value = "/admin_search", method = RequestMethod.POST)
+    public String admin_search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+//            String nameValue = request.getParameter("like_patent.patentName");
+//            String createdAt = request.getParameter("between_join_academic_conference.createdAt");
+//            String level = request.getParameter("between_patent.createdAt");
+//
+//            System.out.println("nameValue===>" + nameValue);
+//            System.out.println("createdAt===>" + createdAt);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            map.put("like_teach_award.awardName", request.getParameter("like_teach_award.awardName"));
+            map.put("teach_award.level", request.getParameter("teach_award.level"));
+            map.put("between_teach_award.createdAt", request.getParameter("between_teach_award.createdAt"));
+            map.put("like_user.realName", request.getParameter("like_user.realName"));
+            System.out.println("map====" + map);
+
+            String querySql = QueryUtil.convertQueryParams(map);
+
+            System.out.println("querysql====>" + querySql);
+
+            Integer userId = (Integer) session.getAttribute("userId");
+            Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+            List<TeachAward> teachAwardList = teachAwardDaoImpl.adminFindAll(querySql);
+
+            System.out.println("teachAwardList====>" + teachAwardList);
+
+            model.put("teachAwardList", teachAwardList);
+
+            System.out.println("model====>" + model);
+
+            return "teachAward/admin_search";
 
 //            if(teachAwardList != null && !teachAwardList.isEmpty()){
 //                System.out.println("2222");

@@ -45,6 +45,44 @@ public class TeachAwardDaoImpl implements TeachAwardDao {
         }
     }
 
+    public List<TeachAward> adminFindAll(String querySql) {
+        Connection conn = null ;
+        try {
+            conn = DBUtil.getConnection() ;
+            String sql = "SELECT *  , user.realName AS teacherName, teacher.id AS teacherId  FROM teach_award " +
+                    "LEFT JOIN teacher_achie ON teach_award.id = teacher_achie.achieId " +
+                    "LEFT JOIN teacher ON teacher_achie.teacherId = teacher.id " +
+                    "LEFT JOIN user ON teacher.userId = user.id " +
+                    "WHERE teacher_achie.achieType = 'TeachAward' " + querySql;
+            Statement state = conn.createStatement() ;
+            ResultSet rs = state.executeQuery(sql) ;
+            List<TeachAward> list = new ArrayList<TeachAward>() ;
+            while(rs.next()){
+                TeachAward teachAward = new TeachAward() ;
+                teachAward.setId(rs.getInt("id")) ;
+                teachAward.setAwardName(rs.getString("awardName")) ;
+                teachAward.setSelfRank(rs.getInt("selfRank")) ;
+                teachAward.setLevel(rs.getString("level")) ;
+                teachAward.setAwardDepartment(rs.getString("awardDepartment")) ;
+                teachAward.setAwardDate(rs.getDate("awardDate")) ;
+                teachAward.setRemark(rs.getString("remark")) ;
+                teachAward.setRelatedCourseName(rs.getString("relatedCourseName")) ;
+                teachAward.setCreatedAt(rs.getTimestamp("createdAt"));
+                teachAward.setUpdatedAt(rs.getTimestamp("updatedAt"));
+                teachAward.setTeacherName(rs.getString("teacherName"));
+                list.add(teachAward) ;
+            }
+            rs.close() ;
+            state.close() ;
+            return list ;
+        } catch (Exception e) {
+            e.printStackTrace() ;
+            return null ;
+        }finally{
+            DBUtil.close(conn) ;
+        }
+    }
+
     public Integer addTeachAward(TeachAward teachAward) {
         Connection conn = null ;
         try {
