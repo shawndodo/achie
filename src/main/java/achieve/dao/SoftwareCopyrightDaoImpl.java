@@ -48,6 +48,46 @@ public class SoftwareCopyrightDaoImpl implements SoftwareCopyrightDao {
         }
     }
 
+    public List<SoftwareCopyright> adminFindAll(String querySql) {
+        Connection conn = null ;
+        try {
+            conn = DBUtil.getConnection() ;
+            String sql = "SELECT * , user.realName AS teacherName, teacher.id AS teacherId  FROM software_copyright " +
+                    "LEFT JOIN teacher_achie ON software_copyright.id = teacher_achie.achieId " +
+                    "LEFT JOIN teacher ON teacher_achie.teacherId = teacher.id " +
+                    "LEFT JOIN user ON teacher.userId = user.id " +
+                    "WHERE teacher_achie.achieType = 'SoftwareCopyright' " + querySql;
+            Statement state = conn.createStatement() ;
+            ResultSet rs = state.executeQuery(sql) ;
+            List<SoftwareCopyright> list = new ArrayList<SoftwareCopyright>() ;
+            while(rs.next()){
+                SoftwareCopyright softwareCopyright = new SoftwareCopyright() ;
+                softwareCopyright.setId(rs.getInt("id")) ;
+                softwareCopyright.setCopyrightName(rs.getString("copyrightName")) ;
+                softwareCopyright.setCertificateNum(rs.getString("certificateNum")) ;
+                softwareCopyright.setSelfRank(rs.getInt("selfRank")) ;
+                softwareCopyright.setGetDate(rs.getDate("getDate")) ;
+                softwareCopyright.setDevelopFinishDate(rs.getDate("developFinishDate")) ;
+                softwareCopyright.setCopyrightType(rs.getString("copyrightType")) ;
+                softwareCopyright.setCopyrightPerson(rs.getString("copyrightPerson")) ;
+                softwareCopyright.setRelatedCourseName(rs.getString("relatedCourseName")) ;
+                softwareCopyright.setRemark(rs.getString("remark")) ;
+                softwareCopyright.setCreatedAt(rs.getTimestamp("createdAt"));
+                softwareCopyright.setUpdatedAt(rs.getTimestamp("updatedAt"));
+                softwareCopyright.setTeacherName(rs.getString("teacherName"));
+                list.add(softwareCopyright) ;
+            }
+            rs.close() ;
+            state.close() ;
+            return list ;
+        } catch (Exception e) {
+            e.printStackTrace() ;
+            return null ;
+        }finally{
+            DBUtil.close(conn) ;
+        }
+    }
+
     public Integer addSoftwareCopyright(SoftwareCopyright softwareCopyright) {
         Connection conn = null ;
         try {

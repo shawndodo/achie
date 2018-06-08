@@ -17,6 +17,7 @@ public class SoftwareCopyright {
     private String remark;
     private Date createdAt;
     private Date updatedAt;
+    private String teacherName;
 //    private int researchAchievementId;
 
 
@@ -114,6 +115,14 @@ public class SoftwareCopyright {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     @Override

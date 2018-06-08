@@ -49,6 +49,16 @@ public class SoftwareCopyrightController extends BaseController {
         return "softwareCopyright/index";
     }
 
+    @RequestMapping("/admin_index")
+    public String admin_index(Map<String,Object> model, HttpSession session){
+        Integer userId = (Integer) session.getAttribute("userId");
+        Teacher teacher = teacherDaoImpl.findByUserId(userId);
+        List<SoftwareCopyright> softwareCopyrightList = softwareCopyrightDaoImpl.adminFindAll("");
+        model.put("softwareCopyrightList", softwareCopyrightList);
+
+        return "softwareCopyright/admin_index";
+    }
+
     @RequestMapping("/add")
     public String add(){
         return "softwareCopyright/add";
@@ -77,7 +87,11 @@ public class SoftwareCopyrightController extends BaseController {
 
         teacherAchieService.setValue(softwareCopyrightId, teacher, "SoftwareCopyright", "research", "submit");
 
-        return "redirect:index";
+        if(userId == 1){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping("/show")
@@ -134,7 +148,11 @@ public class SoftwareCopyrightController extends BaseController {
 
         }
 
-        return "redirect:index";
+        if(userId == 1){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
@@ -167,6 +185,54 @@ public class SoftwareCopyrightController extends BaseController {
             System.out.println("model====>" + model);
 
             return "softwareCopyright/search";
+
+//            if(teachAwardList != null && !teachAwardList.isEmpty()){
+//                System.out.println("2222");
+//                return "teachAward/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+
+    @RequestMapping(value = "/admin_search", method = RequestMethod.POST)
+    public String admin_search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            map.put("like_software_copyright.copyrightName", request.getParameter("like_software_copyright.copyrightName"));
+            map.put("software_copyright.copyrightType", request.getParameter("software_copyright.copyrightType"));
+            map.put("between_software_copyright.createdAt", request.getParameter("between_software_copyright.createdAt"));
+            map.put("like_user.realName", request.getParameter("like_user.realName"));
+            System.out.println("map====" + map);
+
+            String querySql = QueryUtil.convertQueryParams(map);
+
+            System.out.println("querysql====>" + querySql);
+
+            Integer userId = (Integer) session.getAttribute("userId");
+            Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+            List<SoftwareCopyright> softwareCopyrightList = softwareCopyrightDaoImpl.adminFindAll(querySql);
+
+            System.out.println("softwareCopyrightList====>" + softwareCopyrightList);
+
+            model.put("softwareCopyrightList", softwareCopyrightList);
+
+            System.out.println("model====>" + model);
+
+            return "softwareCopyright/admin_search";
 
 //            if(teachAwardList != null && !teachAwardList.isEmpty()){
 //                System.out.println("2222");
