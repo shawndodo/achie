@@ -130,11 +130,11 @@
         <!-- Main content -->
         <section class="content" id="searchContent">
             <div class="row">
-                <%--<div class="col-xs-2">--%>
-                    <%--<button type="button" class="btn btn-block btn-primary" onclick="window.location.href='add'">--%>
-                        <%--新增论文--%>
-                    <%--</button>--%>
-                <%--</div>--%>
+                <div class="col-xs-2">
+                    <button type="button" class="btn btn-block btn-primary" id="js-export">
+                        导出excel
+                    </button>
+                </div>
                 <div class="col-xs-12">
                     <div class="box">
                         <%--<div class="box-header">--%>
@@ -293,6 +293,10 @@
                     return false;
                 }
             });
+        });
+
+        $('#js-export').click(function(){
+            window.location.href="/achie/report/export"
         });
 
     });
