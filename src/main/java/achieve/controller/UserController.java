@@ -84,7 +84,7 @@ public class UserController extends BaseController {
 //
 //        }
 
-        return "redirect:index";
+        return "redirect:show";
     }
 
 

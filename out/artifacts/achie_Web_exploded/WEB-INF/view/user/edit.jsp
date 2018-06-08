@@ -110,15 +110,15 @@
                                            placeholder="">
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="password">密码</label>
-                                    <input type="text"
-                                           class="form-control"
-                                           name="password"
-                                           id="password"
-                                           value="${user.password}"
-                                           placeholder="">
-                                </div>
+                                <%--<div class="form-group">--%>
+                                    <%--<label for="password">密码</label>--%>
+                                    <%--<input type="text"--%>
+                                           <%--class="form-control"--%>
+                                           <%--name="password"--%>
+                                           <%--id="password"--%>
+                                           <%--value="${user.password}"--%>
+                                           <%--placeholder="">--%>
+                                <%--</div>--%>
 
                                 <div class="form-group">
                                     <label for="job">职务</label>
