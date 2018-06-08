@@ -18,6 +18,7 @@ public class JoinAcademicConference {
     private String subjectCategory;
     private Date createdAt;
     private Date updatedAt;
+    private String teacherName;
 
     public int getId() {
         return id;
@@ -121,6 +122,14 @@ public class JoinAcademicConference {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     @Override

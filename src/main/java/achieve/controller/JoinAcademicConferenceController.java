@@ -51,6 +51,16 @@ public class JoinAcademicConferenceController extends BaseController {
         return "joinAcademicConference/index";
     }
 
+    @RequestMapping("/admin_index")
+    public String admin_index(Map<String,Object> model, HttpSession session){
+        Integer userId = (Integer) session.getAttribute("userId");
+        Teacher teacher = teacherDaoImpl.findByUserId(userId);
+        List<JoinAcademicConference> joinAcademicConferenceList = joinAcademicConferenceDaoImpl.adminFindAll("");
+        model.put("joinAcademicConferenceList", joinAcademicConferenceList);
+
+        return "joinAcademicConference/admin_index";
+    }
+
     @RequestMapping("/add")
     public String add(){
         return "joinAcademicConference/add";
@@ -79,7 +89,11 @@ public class JoinAcademicConferenceController extends BaseController {
 
         teacherAchieService.setValue(joinAcademicConferenceId, teacher, "JoinAcademicConference", "research", "submit");
 
-        return "redirect:index";
+        if(userId == 1){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping("/show")
@@ -136,7 +150,11 @@ public class JoinAcademicConferenceController extends BaseController {
 
         }
 
-        return "redirect:index";
+        if(userId == 1){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
@@ -177,6 +195,62 @@ public class JoinAcademicConferenceController extends BaseController {
             System.out.println("model====>" + model);
 
             return "joinAcademicConference/search";
+
+//            if(joinAcademicConferenceList != null && !joinAcademicConferenceList.isEmpty()){
+//                System.out.println("2222");
+//                return "joinAcademicConference/search";
+//            }else{
+//                System.out.println("3333");
+//                return "share/noDate";
+//            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+
+    @RequestMapping(value = "/admin_search", method = RequestMethod.POST)
+    public String admin_search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+            String nameValue = request.getParameter("like_join_academic_conference.name");
+            String createdAt = request.getParameter("between_join_academic_conference.createdAt");
+            String level = request.getParameter("join_academic_conference.level");
+
+            System.out.println("nameValue===>" + nameValue);
+            System.out.println("createdAt===>" + createdAt);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            if(nameValue != null){
+                map.put("like_join_academic_conference.name", nameValue);
+                map.put("between_join_academic_conference.createdAt", createdAt);
+                map.put("join_academic_conference.level", level);
+                map.put("like_user.realName", request.getParameter("like_user.realName"));
+            }
+
+            String querySql = QueryUtil.convertQueryParams(map);
+
+            System.out.println("querysql====>" + querySql);
+
+            Integer userId = (Integer) session.getAttribute("userId");
+            Teacher teacher = teacherDaoImpl.findByUserId(userId);
+
+            List<JoinAcademicConference> joinAcademicConferenceList = joinAcademicConferenceDaoImpl.adminFindAll(querySql);
+
+            System.out.println("joinAcademicConferenceList====>" + joinAcademicConferenceList);
+
+            model.put("joinAcademicConferenceList", joinAcademicConferenceList);
+
+            System.out.println("model====>" + model);
+
+            return "joinAcademicConference/admin_search";
 
 //            if(joinAcademicConferenceList != null && !joinAcademicConferenceList.isEmpty()){
 //                System.out.println("2222");

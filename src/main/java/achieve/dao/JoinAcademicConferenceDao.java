@@ -8,6 +8,8 @@ public interface JoinAcademicConferenceDao {
 
     List<JoinAcademicConference> findAll(Integer teacherId, String querySql);
 
+    List<JoinAcademicConference> adminFindAll(String querySql);
+
     Integer addJoinAcademicConference(JoinAcademicConference joinAcademicConference);
 
     JoinAcademicConference findById(Integer id) ;

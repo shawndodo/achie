@@ -48,6 +48,47 @@ public class JoinAcademicConferenceDaoImpl implements JoinAcademicConferenceDao 
         }
     }
 
+    public List<JoinAcademicConference> adminFindAll(String querySql) {
+        Connection conn = null ;
+        try {
+            conn = DBUtil.getConnection() ;
+            String sql = "SELECT * , user.realName AS teacherName, teacher.id AS teacherId FROM join_academic_conference " +
+                    "LEFT JOIN teacher_achie ON join_academic_conference.id = teacher_achie.achieId " +
+                    "LEFT JOIN teacher ON teacher_achie.teacherId = teacher.id " +
+                    "LEFT JOIN user ON teacher.userId = user.id " +
+                    "WHERE teacher_achie.achieType = 'JoinAcademicConference' " + querySql;
+            Statement state = conn.createStatement() ;
+            ResultSet rs = state.executeQuery(sql) ;
+            List<JoinAcademicConference> list = new ArrayList<JoinAcademicConference>() ;
+            while(rs.next()){
+                JoinAcademicConference joinAcademicConference = new JoinAcademicConference() ;
+                joinAcademicConference.setId(rs.getInt("id")) ;
+                joinAcademicConference.setName(rs.getString("name")) ;
+                joinAcademicConference.setLocation(rs.getString("location")) ;
+                joinAcademicConference.setLevel(rs.getString("level")) ;
+                joinAcademicConference.setPaperName(rs.getString("paperName")) ;
+                joinAcademicConference.setIsInviteReport(rs.getString("isInviteReport")) ;
+                joinAcademicConference.setSubmitDate(rs.getDate("submitDate")) ;
+                joinAcademicConference.setParticipant(rs.getString("participant"));
+                joinAcademicConference.setTitle(rs.getString("title"));
+                joinAcademicConference.setSubjectCategory(rs.getString("subjectCategory"));
+                joinAcademicConference.setRemark(rs.getString("remark")) ;
+                joinAcademicConference.setCreatedAt(rs.getTimestamp("createdAt"));
+                joinAcademicConference.setUpdatedAt(rs.getTimestamp("updatedAt"));
+                joinAcademicConference.setTeacherName(rs.getString("teacherName"));
+                list.add(joinAcademicConference) ;
+            }
+            rs.close() ;
+            state.close() ;
+            return list ;
+        } catch (Exception e) {
+            e.printStackTrace() ;
+            return null ;
+        }finally{
+            DBUtil.close(conn) ;
+        }
+    }
+
     public Integer addJoinAcademicConference(JoinAcademicConference joinAcademicConference) {
         Connection conn = null ;
         try {
