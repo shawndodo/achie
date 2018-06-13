@@ -50,6 +50,14 @@ public class TeachReformResearchProjectController extends BaseController {
         return "teachReformResearchProject/index";
     }
 
+    @RequestMapping("/admin_index")
+    public String admin_index(Map<String,Object> model, HttpSession session){
+        List<TeachReformResearchProject> teachReformResearchProjectList = teachReformResearchProjectDaoImpl.adminFindAll("");
+        model.put("teachReformResearchProjectList", teachReformResearchProjectList);
+
+        return "teachReformResearchProject/admin_index";
+    }
+
     @RequestMapping("/add")
     public String add(){
         return "teachReformResearchProject/add";
@@ -172,6 +180,34 @@ public class TeachReformResearchProjectController extends BaseController {
             System.out.println("model====>" + model);
 
             return "teachReformResearchProject/search";
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+
+    @RequestMapping(value = "/admin_search", method = RequestMethod.POST)
+    public String admin_search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+            String querySql = QueryUtil.generateQuerySql(request);
+
+            System.out.println("querysql====>" + querySql);
+
+            List<TeachReformResearchProject> teachReformResearchProjectList = teachReformResearchProjectDaoImpl.adminFindAll(querySql);
+
+            System.out.println("teachReformResearchProjectList====>" + teachReformResearchProjectList);
+
+            model.put("teachReformResearchProjectList", teachReformResearchProjectList);
+
+            System.out.println("model====>" + model);
+
+            return "teachReformResearchProject/admin_search";
 
         }catch (Exception e) {
             e.printStackTrace();

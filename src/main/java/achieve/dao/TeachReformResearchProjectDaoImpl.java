@@ -44,6 +44,43 @@ public class TeachReformResearchProjectDaoImpl implements TeachReformResearchPro
         }
     }
 
+    public List<TeachReformResearchProject> adminFindAll(String querySql) {
+        Connection conn = null ;
+        try {
+            conn = DBUtil.getConnection() ;
+            String sql = "SELECT * , user.realName AS teacherName, teacher.id AS teacherId FROM teach_reform_research_project " +
+                    "LEFT JOIN teacher_achie ON teach_reform_research_project.id = teacher_achie.achieId " +
+                    "LEFT JOIN teacher ON teacher_achie.teacherId = teacher.id " +
+                    "LEFT JOIN user ON teacher.userId = user.id " +
+                    "WHERE teacher_achie.achieType = 'TeachReformResearchProject' " + querySql;
+            Statement state = conn.createStatement() ;
+            ResultSet rs = state.executeQuery(sql) ;
+            List<TeachReformResearchProject> list = new ArrayList<TeachReformResearchProject>() ;
+            while(rs.next()){
+                TeachReformResearchProject teachReformResearchProject = new TeachReformResearchProject() ;
+                teachReformResearchProject.setId(rs.getInt("id")) ;
+                teachReformResearchProject.setCode(rs.getString("code")) ;
+                teachReformResearchProject.setName(rs.getString("name")) ;
+                teachReformResearchProject.setLevel(rs.getString("level")) ;
+                teachReformResearchProject.setLeader(rs.getString("leader")) ;
+                teachReformResearchProject.setYear(rs.getString("year")) ;
+                teachReformResearchProject.setRemark(rs.getString("remark")) ;
+                teachReformResearchProject.setCreatedAt(rs.getTimestamp("createdAt"));
+                teachReformResearchProject.setUpdatedAt(rs.getTimestamp("updatedAt"));
+                teachReformResearchProject.setTeacherName(rs.getString("teacherName"));
+                list.add(teachReformResearchProject) ;
+            }
+            rs.close() ;
+            state.close() ;
+            return list ;
+        } catch (Exception e) {
+            e.printStackTrace() ;
+            return null ;
+        }finally{
+            DBUtil.close(conn) ;
+        }
+    }
+
     public Integer addTeachReformResearchProject(TeachReformResearchProject teachReformResearchProject) {
         Connection conn = null ;
         try {

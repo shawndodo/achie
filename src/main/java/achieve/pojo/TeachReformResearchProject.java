@@ -14,6 +14,7 @@ public class TeachReformResearchProject {
     private String remark;
     private Date createdAt;
     private Date updatedAt;
+    private String teacherName;
 
     public int getId() {
         return id;
@@ -85,6 +86,14 @@ public class TeachReformResearchProject {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     @Override

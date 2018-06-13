@@ -59,9 +59,9 @@
                     <ul class="treeview-menu">
                         <li><a href="/achie/writing/admin_index"><i class="fa fa-circle-o text-aqua"></i>著作管理</a></li>
                         <li><a href="/achie/teachAward/admin_index"><i class="fa fa-circle-o text-aqua"></i>教学奖项管理</a></li>
-                        <li><a href="/achie/studentProject/index"><i class="fa fa-circle-o text-aqua"></i>指导学生项目管理</a></li>
+                        <li><a href="/achie/studentProject/admin_index"><i class="fa fa-circle-o text-aqua"></i>指导学生项目管理</a></li>
                         <li><a href="/achie/teachPaper/admin_index"><i class="fa fa-circle-o text-aqua"></i>教学论文管理</a></li>
-                        <li><a href="/achie/teachReformResearchProject/index"><i class="fa fa-circle-o text-aqua"></i>主持教学改革研究项目管理</a></li>
+                        <li><a href="/achie/teachReformResearchProject/admin_index"><i class="fa fa-circle-o text-aqua"></i>主持教学改革研究项目管理</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
