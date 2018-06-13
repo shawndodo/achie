@@ -37,7 +37,6 @@ public class TeachReformResearchProjectController extends BaseController {
     private TeacherAchieService teacherAchieService;
 
     private static TeachReformResearchProjectDaoImpl teachReformResearchProjectDaoImpl =  new TeachReformResearchProjectDaoImpl();
-    private static TeacherAchieDaoImpl teacherAchieDaoImpl = new TeacherAchieDaoImpl();
     private static TeacherDaoImpl teacherDaoImpl = new TeacherDaoImpl();
     private static AttachmentDaoImpl attachmentDaoImpl = new AttachmentDaoImpl();
 
@@ -146,16 +145,7 @@ public class TeachReformResearchProjectController extends BaseController {
 
             System.out.println("request===>" + request);
 
-            Map<String, Object> map = new HashMap<String, Object>();
-
-            map.put("like_teach_reform_research_project.code", request.getParameter("like_teach_reform_research_project.code"));
-            map.put("like_teach_reform_research_project.name", request.getParameter("like_teach_reform_research_project.name"));
-            map.put("teach_reform_research_project.level", request.getParameter("teach_reform_research_project.level"));
-            map.put("between_teach_reform_research_project.createdAt", request.getParameter("between_teach_reform_research_project.createdAt"));
-            System.out.println("map====" + map);
-
-            String querySql = QueryUtil.convertQueryParams(map);
-
+            String querySql = QueryUtil.generateQuerySql(request);
             System.out.println("querysql====>" + querySql);
 
             Integer userId = (Integer) session.getAttribute("userId");
@@ -170,15 +160,6 @@ public class TeachReformResearchProjectController extends BaseController {
             System.out.println("model====>" + model);
 
             return "teachReformResearchProject/search";
-
-//            if(teachAwardList != null && !teachAwardList.isEmpty()){
-//                System.out.println("2222");
-//                return "teachAward/search";
-//            }else{
-//                System.out.println("3333");
-//                return "share/noDate";
-//            }
-
 
         }catch (Exception e) {
             e.printStackTrace();

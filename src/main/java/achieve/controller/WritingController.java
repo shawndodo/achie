@@ -38,7 +38,6 @@ public class WritingController extends BaseController {
     private TeacherAchieService teacherAchieService;
 
     private static WritingDaoImpl writingDaoImpl =  new WritingDaoImpl();
-    private static TeacherAchieDaoImpl teacherAchieDaoImpl = new TeacherAchieDaoImpl();
     private static TeacherDaoImpl teacherDaoImpl = new TeacherDaoImpl();
     private static AttachmentDaoImpl attachmentDaoImpl = new AttachmentDaoImpl();
 
@@ -54,8 +53,6 @@ public class WritingController extends BaseController {
 
     @RequestMapping("/admin_index")
     public String admin_index(Map<String,Object> model, HttpSession session){
-        Integer userId = (Integer) session.getAttribute("userId");
-        Teacher teacher = teacherDaoImpl.findByUserId(userId);
         List<Writing> writingList = writingDaoImpl.adminFindAll("");
         model.put("writingList", writingList);
 
@@ -169,16 +166,7 @@ public class WritingController extends BaseController {
 
             System.out.println("request===>" + request);
 
-            Map<String, Object> map = new HashMap<String, Object>();
-
-            map.put("like_writing.writingName", request.getParameter("like_writing.writingName"));
-            map.put("like_writing.publicationNumber", request.getParameter("like_writing.publicationNumber"));
-            map.put("between_writing.createdAt", request.getParameter("between_writing.createdAt"));
-            map.put("writing.writingType", request.getParameter("writing.writingType"));
-            System.out.println("map====" + map);
-
-            String querySql = QueryUtil.convertQueryParams(map);
-
+            String querySql = QueryUtil.generateQuerySql(request);
             System.out.println("querysql====>" + querySql);
 
             Integer userId = (Integer) session.getAttribute("userId");
@@ -194,15 +182,6 @@ public class WritingController extends BaseController {
 
             return "writing/search";
 
-//            if(paperList != null && !paperList.isEmpty()){
-//                System.out.println("2222");
-//                return "paper/search";
-//            }else{
-//                System.out.println("3333");
-//                return "share/noDate";
-//            }
-
-
         }catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -217,21 +196,8 @@ public class WritingController extends BaseController {
 
             System.out.println("request===>" + request);
 
-            Map<String, Object> map = new HashMap<String, Object>();
-
-            map.put("like_writing.writingName", request.getParameter("like_writing.writingName"));
-            map.put("like_writing.publicationNumber", request.getParameter("like_writing.publicationNumber"));
-            map.put("between_writing.createdAt", request.getParameter("between_writing.createdAt"));
-            map.put("writing.writingType", request.getParameter("writing.writingType"));
-            map.put("like_user.realName", request.getParameter("like_user.realName"));
-            System.out.println("map====" + map);
-
-            String querySql = QueryUtil.convertQueryParams(map);
-
+            String querySql = QueryUtil.generateQuerySql(request);
             System.out.println("querysql====>" + querySql);
-
-            Integer userId = (Integer) session.getAttribute("userId");
-            Teacher teacher = teacherDaoImpl.findByUserId(userId);
 
             List<Writing> writingList = writingDaoImpl.adminFindAll(querySql);
 
@@ -242,14 +208,6 @@ public class WritingController extends BaseController {
             System.out.println("model====>" + model);
 
             return "writing/admin_search";
-
-//            if(paperList != null && !paperList.isEmpty()){
-//                System.out.println("2222");
-//                return "paper/search";
-//            }else{
-//                System.out.println("3333");
-//                return "share/noDate";
-//            }
 
 
         }catch (Exception e) {

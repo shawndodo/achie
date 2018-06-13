@@ -44,6 +44,43 @@ public class TeachPaperDaoImpl implements TeachPaperDao {
         }
     }
 
+    public List<TeachPaper> adminFindAll(String querySql) {
+        Connection conn = null ;
+        try {
+            conn = DBUtil.getConnection() ;
+            String sql = "SELECT * , user.realName AS teacherName, teacher.id AS teacherId FROM teach_paper " +
+                    "LEFT JOIN teacher_achie ON teach_paper.id = teacher_achie.achieId " +
+                    "LEFT JOIN teacher ON teacher_achie.teacherId = teacher.id " +
+                    "LEFT JOIN user ON teacher.userId = user.id " +
+                    "WHERE teacher_achie.achieType = 'TeachPaper' " + querySql;
+            Statement state = conn.createStatement() ;
+            ResultSet rs = state.executeQuery(sql) ;
+            List<TeachPaper> list = new ArrayList<TeachPaper>() ;
+            while(rs.next()){
+                TeachPaper teachPaper = new TeachPaper() ;
+                teachPaper.setId(rs.getInt("id")) ;
+                teachPaper.setPaperName(rs.getString("paperName")) ;
+                teachPaper.setPeriodicalName(rs.getString("periodicalName")) ;
+                teachPaper.setVol(rs.getString("vol")) ;
+                teachPaper.setPage(rs.getString("page")) ;
+                teachPaper.setRemark(rs.getString("remark")) ;
+                teachPaper.setRelatedCourseName(rs.getString("relatedCourseName")) ;
+                teachPaper.setCreatedAt(rs.getTimestamp("createdAt"));
+                teachPaper.setUpdatedAt(rs.getTimestamp("updatedAt"));
+                teachPaper.setTeacherName(rs.getString("teacherName"));
+                list.add(teachPaper) ;
+            }
+            rs.close() ;
+            state.close() ;
+            return list ;
+        } catch (Exception e) {
+            e.printStackTrace() ;
+            return null ;
+        }finally{
+            DBUtil.close(conn) ;
+        }
+    }
+
     public Integer addTeachPaper(TeachPaper teachPaper) {
         Connection conn = null ;
         try {

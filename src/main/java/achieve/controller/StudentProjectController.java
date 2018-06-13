@@ -34,7 +34,6 @@ public class StudentProjectController extends BaseController {
     private TeacherAchieService teacherAchieService;
 
     private static StudentProjectDaoImpl studentProjectDaoImpl =  new StudentProjectDaoImpl();
-    private static TeacherAchieDaoImpl teacherAchieDaoImpl = new TeacherAchieDaoImpl();
     private static TeacherDaoImpl teacherDaoImpl = new TeacherDaoImpl();
     private static AttachmentDaoImpl attachmentDaoImpl = new AttachmentDaoImpl();
 
@@ -143,16 +142,7 @@ public class StudentProjectController extends BaseController {
 
             System.out.println("request===>" + request);
 
-            Map<String, Object> map = new HashMap<String, Object>();
-
-            map.put("like_student_project.code", request.getParameter("like_student_project.code"));
-            map.put("like_student_project.name", request.getParameter("like_student_project.name"));
-            map.put("student_project.projectType", request.getParameter("student_project.projectType"));
-            map.put("between_student_project.createdAt", request.getParameter("between_student_project.createdAt"));
-            System.out.println("map====" + map);
-
-            String querySql = QueryUtil.convertQueryParams(map);
-
+            String querySql = QueryUtil.generateQuerySql(request);
             System.out.println("querysql====>" + querySql);
 
             Integer userId = (Integer) session.getAttribute("userId");
@@ -167,15 +157,6 @@ public class StudentProjectController extends BaseController {
             System.out.println("model====>" + model);
 
             return "studentProject/search";
-
-//            if(teachAwardList != null && !teachAwardList.isEmpty()){
-//                System.out.println("2222");
-//                return "teachAward/search";
-//            }else{
-//                System.out.println("3333");
-//                return "share/noDate";
-//            }
-
 
         }catch (Exception e) {
             e.printStackTrace();

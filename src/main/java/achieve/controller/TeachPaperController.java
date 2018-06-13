@@ -37,7 +37,6 @@ public class TeachPaperController extends BaseController {
     private TeacherAchieService teacherAchieService;
 
     private static TeachPaperDaoImpl teachPaperDaoImpl =  new TeachPaperDaoImpl();
-    private static TeacherAchieDaoImpl teacherAchieDaoImpl = new TeacherAchieDaoImpl();
     private static TeacherDaoImpl teacherDaoImpl = new TeacherDaoImpl();
     private static AttachmentDaoImpl attachmentDaoImpl = new AttachmentDaoImpl();
 
@@ -49,6 +48,14 @@ public class TeachPaperController extends BaseController {
         model.put("teachPaperList", teachPaperList);
 
         return "teachPaper/index";
+    }
+
+    @RequestMapping("/admin_index")
+    public String admin_index(Map<String,Object> model, HttpSession session){
+        List<TeachPaper> teachPaperList = teachPaperDaoImpl.adminFindAll("");
+        model.put("teachPaperList", teachPaperList);
+
+        return "teachPaper/admin_index";
     }
 
     @RequestMapping("/add")
@@ -79,7 +86,11 @@ public class TeachPaperController extends BaseController {
 
         teacherAchieService.setValue(teachPaperId, teacher, "TeachPaper", "teach", "submit");
 
-        return "redirect:index";
+        if(userId == 1){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping("/show")
@@ -136,7 +147,11 @@ public class TeachPaperController extends BaseController {
 
         }
 
-        return "redirect:index";
+        if(userId == 1){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
@@ -146,14 +161,7 @@ public class TeachPaperController extends BaseController {
 
             System.out.println("request===>" + request);
 
-            Map<String, Object> map = new HashMap<String, Object>();
-
-            map.put("like_teach_paper.paperName", request.getParameter("like_teach_paper.paperName"));
-            map.put("between_teach_paper.createdAt", request.getParameter("between_teach_paper.createdAt"));
-            System.out.println("map====" + map);
-
-            String querySql = QueryUtil.convertQueryParams(map);
-
+            String querySql = QueryUtil.generateQuerySql(request);
             System.out.println("querysql====>" + querySql);
 
             Integer userId = (Integer) session.getAttribute("userId");
@@ -169,14 +177,33 @@ public class TeachPaperController extends BaseController {
 
             return "teachPaper/search";
 
-//            if(teachAwardList != null && !teachAwardList.isEmpty()){
-//                System.out.println("2222");
-//                return "teachAward/search";
-//            }else{
-//                System.out.println("3333");
-//                return "share/noDate";
-//            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
 
+    }
+
+    @RequestMapping(value = "/admin_search", method = RequestMethod.POST)
+    public String admin_search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+            String querySql = QueryUtil.generateQuerySql(request);
+
+            System.out.println("querysql====>" + querySql);
+
+            List<TeachPaper> teachPaperList = teachPaperDaoImpl.adminFindAll(querySql);
+
+            System.out.println("teachPaperList====>" + teachPaperList);
+
+            model.put("teachPaperList", teachPaperList);
+
+            System.out.println("model====>" + model);
+
+            return "teachPaper/admin_search";
 
         }catch (Exception e) {
             e.printStackTrace();

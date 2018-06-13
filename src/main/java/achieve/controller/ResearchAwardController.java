@@ -37,7 +37,6 @@ public class ResearchAwardController extends BaseController {
     private TeacherAchieService teacherAchieService;
 
     private static ResearchAwardDaoImpl researchAwardDaoImpl =  new ResearchAwardDaoImpl();
-    private static TeacherAchieDaoImpl teacherAchieDaoImpl = new TeacherAchieDaoImpl();
     private static TeacherDaoImpl teacherDaoImpl = new TeacherDaoImpl();
     private static AttachmentDaoImpl attachmentDaoImpl = new AttachmentDaoImpl();
 
@@ -53,8 +52,6 @@ public class ResearchAwardController extends BaseController {
 
     @RequestMapping("/admin_index")
     public String admin_index(Map<String,Object> model, HttpSession session){
-        Integer userId = (Integer) session.getAttribute("userId");
-        Teacher teacher = teacherDaoImpl.findByUserId(userId);
         List<ResearchAward> researchAwardList = researchAwardDaoImpl.adminFindAll("");
         model.put("researchAwardList", researchAwardList);
 
@@ -164,15 +161,7 @@ public class ResearchAwardController extends BaseController {
 
             System.out.println("request===>" + request);
 
-            Map<String, Object> map = new HashMap<String, Object>();
-
-            map.put("like_research_award.awardName", request.getParameter("like_research_award.awardName"));
-            map.put("between_research_award.createdAt", request.getParameter("between_research_award.createdAt"));
-            map.put("research_award.awardType", request.getParameter("research_award.awardType"));
-            System.out.println("map====" + map);
-
-            String querySql = QueryUtil.convertQueryParams(map);
-
+            String querySql = QueryUtil.generateQuerySql(request);
             System.out.println("querysql====>" + querySql);
 
             Integer userId = (Integer) session.getAttribute("userId");
@@ -188,15 +177,6 @@ public class ResearchAwardController extends BaseController {
 
             return "researchAward/search";
 
-//            if(patentList != null && !patentList.isEmpty()){
-//                System.out.println("2222");
-//                return "patent/search";
-//            }else{
-//                System.out.println("3333");
-//                return "share/noDate";
-//            }
-
-
         }catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -211,20 +191,8 @@ public class ResearchAwardController extends BaseController {
 
             System.out.println("request===>" + request);
 
-            Map<String, Object> map = new HashMap<String, Object>();
-
-            map.put("like_research_award.awardName", request.getParameter("like_research_award.awardName"));
-            map.put("between_research_award.createdAt", request.getParameter("between_research_award.createdAt"));
-            map.put("research_award.awardType", request.getParameter("research_award.awardType"));
-            map.put("like_user.realName", request.getParameter("like_user.realName"));
-            System.out.println("map====" + map);
-
-            String querySql = QueryUtil.convertQueryParams(map);
-
+            String querySql = QueryUtil.generateQuerySql(request);
             System.out.println("querysql====>" + querySql);
-
-            Integer userId = (Integer) session.getAttribute("userId");
-            Teacher teacher = teacherDaoImpl.findByUserId(userId);
 
             List<ResearchAward> researchAwardList = researchAwardDaoImpl.adminFindAll(querySql);
 
@@ -235,15 +203,6 @@ public class ResearchAwardController extends BaseController {
             System.out.println("model====>" + model);
 
             return "researchAward/admin_search";
-
-//            if(patentList != null && !patentList.isEmpty()){
-//                System.out.println("2222");
-//                return "patent/search";
-//            }else{
-//                System.out.println("3333");
-//                return "share/noDate";
-//            }
-
 
         }catch (Exception e) {
             e.printStackTrace();

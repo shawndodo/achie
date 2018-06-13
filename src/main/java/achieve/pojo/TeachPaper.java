@@ -14,6 +14,7 @@ public class TeachPaper {
     private String relatedCourseName;
     private Date createdAt;
     private Date updatedAt;
+    private String teacherName;
 
     public int getId() {
         return id;
@@ -85,6 +86,14 @@ public class TeachPaper {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     @Override

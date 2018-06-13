@@ -37,7 +37,6 @@ public class ResearchProjectController extends BaseController {
     private TeacherAchieService teacherAchieService;
 
     private static ResearchProjectDaoImpl researchProjectDaoImpl =  new ResearchProjectDaoImpl();
-    private static TeacherAchieDaoImpl teacherAchieDaoImpl = new TeacherAchieDaoImpl();
     private static TeacherDaoImpl teacherDaoImpl = new TeacherDaoImpl();
     private static AttachmentDaoImpl attachmentDaoImpl = new AttachmentDaoImpl();
 
@@ -53,8 +52,6 @@ public class ResearchProjectController extends BaseController {
 
     @RequestMapping("/admin_index")
     public String admin_index(Map<String,Object> model, HttpSession session){
-        Integer userId = (Integer) session.getAttribute("userId");
-        Teacher teacher = teacherDaoImpl.findByUserId(userId);
         List<ResearchProject> researchProjectList = researchProjectDaoImpl.adminFindAll("");
         model.put("researchProjectList", researchProjectList);
 
@@ -164,17 +161,7 @@ public class ResearchProjectController extends BaseController {
 
             System.out.println("request===>" + request);
 
-            Map<String, Object> map = new HashMap<String, Object>();
-
-            map.put("like_research_project.name", request.getParameter("like_research_project.name"));
-            map.put("between_research_project.createdAt", request.getParameter("between_research_project.createdAt"));
-            map.put("research_project.projectType", request.getParameter("research_project.projectType"));
-            map.put("research_project.researchCategory", request.getParameter("research_project.researchCategory"));
-            map.put("research_project.projectStatus", request.getParameter("research_project.projectStatus"));
-            System.out.println("map====" + map);
-
-            String querySql = QueryUtil.convertQueryParams(map);
-
+            String querySql = QueryUtil.generateQuerySql(request);
             System.out.println("querysql====>" + querySql);
 
             Integer userId = (Integer) session.getAttribute("userId");
@@ -190,15 +177,6 @@ public class ResearchProjectController extends BaseController {
 
             return "researchProject/search";
 
-//            if(patentList != null && !patentList.isEmpty()){
-//                System.out.println("2222");
-//                return "patent/search";
-//            }else{
-//                System.out.println("3333");
-//                return "share/noDate";
-//            }
-
-
         }catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -213,22 +191,8 @@ public class ResearchProjectController extends BaseController {
 
             System.out.println("request===>" + request);
 
-            Map<String, Object> map = new HashMap<String, Object>();
-
-            map.put("like_research_project.name", request.getParameter("like_research_project.name"));
-            map.put("between_research_project.createdAt", request.getParameter("between_research_project.createdAt"));
-            map.put("research_project.projectType", request.getParameter("research_project.projectType"));
-            map.put("research_project.researchCategory", request.getParameter("research_project.researchCategory"));
-            map.put("research_project.projectStatus", request.getParameter("research_project.projectStatus"));
-            map.put("like_user.realName", request.getParameter("like_user.realName"));
-            System.out.println("map====" + map);
-
-            String querySql = QueryUtil.convertQueryParams(map);
-
+            String querySql = QueryUtil.generateQuerySql(request);
             System.out.println("querysql====>" + querySql);
-
-            Integer userId = (Integer) session.getAttribute("userId");
-            Teacher teacher = teacherDaoImpl.findByUserId(userId);
 
             List<ResearchProject> researchProjectList = researchProjectDaoImpl.adminFindAll(querySql);
 
@@ -239,15 +203,6 @@ public class ResearchProjectController extends BaseController {
             System.out.println("model====>" + model);
 
             return "researchProject/admin_search";
-
-//            if(patentList != null && !patentList.isEmpty()){
-//                System.out.println("2222");
-//                return "patent/search";
-//            }else{
-//                System.out.println("3333");
-//                return "share/noDate";
-//            }
-
 
         }catch (Exception e) {
             e.printStackTrace();

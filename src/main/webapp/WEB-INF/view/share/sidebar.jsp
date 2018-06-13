@@ -10,7 +10,6 @@
 <%
     realName = (String) session.getAttribute("loginName");
     userType = (String) session.getAttribute("userType");
-    flag = (userType == "admin");
 %>
 <aside class="main-sidebar">
 
@@ -50,7 +49,7 @@
             <li class="header">菜单</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="/achie/user/show"><i class="fa fa-user"></i> <span>个人中心</span></a></li>
-            <%if(userType == "admin" || userType.equals("admin")){%>
+            <%if(userType.equals("admin")){%>
                 <li class="treeview">
                     <a href="#"><i class="fa fa-bookmark-o"></i> <span>教学成果</span>
                         <span class="pull-right-container">
@@ -59,9 +58,9 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="/achie/writing/admin_index"><i class="fa fa-circle-o text-aqua"></i>著作管理</a></li>
-                        <li><a href="/achie/teachAward/index"><i class="fa fa-circle-o text-aqua"></i>教学奖项管理</a></li>
+                        <li><a href="/achie/teachAward/admin_index"><i class="fa fa-circle-o text-aqua"></i>教学奖项管理</a></li>
                         <li><a href="/achie/studentProject/index"><i class="fa fa-circle-o text-aqua"></i>指导学生项目管理</a></li>
-                        <li><a href="/achie/teachPaper/index"><i class="fa fa-circle-o text-aqua"></i>教学论文管理</a></li>
+                        <li><a href="/achie/teachPaper/admin_index"><i class="fa fa-circle-o text-aqua"></i>教学论文管理</a></li>
                         <li><a href="/achie/teachReformResearchProject/index"><i class="fa fa-circle-o text-aqua"></i>主持教学改革研究项目管理</a></li>
                     </ul>
                 </li>
@@ -82,7 +81,7 @@
                 </li>
                 <li><a href="/achie/statistics/index"><i class="fa fa-bar-chart"></i> <span>成果统计</span></a></li>
             <%}%>
-            <%if(realName != "管理员" && !userType.equals("admin")){%>
+            <%if(!(userType.equals("admin"))){%>
             <%--<c:if test="${userType == 'teacher'}">--%>
                 <li class="treeview">
                     <a href="#"><i class="fa fa-bookmark-o"></i> <span>教学成果</span>

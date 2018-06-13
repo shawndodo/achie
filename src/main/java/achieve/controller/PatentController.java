@@ -40,7 +40,6 @@ public class PatentController extends BaseController {
     private TeacherAchieService teacherAchieService;
 
     private static PatentDaoImpl patentDaoImpl =  new PatentDaoImpl();
-    private static TeacherAchieDaoImpl teacherAchieDaoImpl = new TeacherAchieDaoImpl();
     private static TeacherDaoImpl teacherDaoImpl = new TeacherDaoImpl();
     private static AttachmentDaoImpl attachmentDaoImpl = new AttachmentDaoImpl();
 
@@ -56,8 +55,6 @@ public class PatentController extends BaseController {
 
     @RequestMapping("/admin_index")
     public String admin_index(Map<String,Object> model, HttpSession session){
-        Integer userId = (Integer) session.getAttribute("userId");
-        Teacher teacher = teacherDaoImpl.findByUserId(userId);
         List<Patent> patentList = patentDaoImpl.adminFindAll("");
         model.put("patentList", patentList);
 
@@ -167,16 +164,7 @@ public class PatentController extends BaseController {
 
             System.out.println("request===>" + request);
 
-            Map<String, Object> map = new HashMap<String, Object>();
-
-            map.put("like_patent.patentName", request.getParameter("like_patent.patentName"));
-            map.put("like_patent.patentCode", request.getParameter("like_patent.patentCode"));
-            map.put("between_patent.createdAt", request.getParameter("between_patent.createdAt"));
-            map.put("patent.patentType", request.getParameter("patent.patentType"));
-            System.out.println("map====" + map);
-
-            String querySql = QueryUtil.convertQueryParams(map);
-
+            String querySql = QueryUtil.generateQuerySql(request);
             System.out.println("querysql====>" + querySql);
 
             Integer userId = (Integer) session.getAttribute("userId");
@@ -192,15 +180,6 @@ public class PatentController extends BaseController {
 
             return "patent/search";
 
-//            if(patentList != null && !patentList.isEmpty()){
-//                System.out.println("2222");
-//                return "patent/search";
-//            }else{
-//                System.out.println("3333");
-//                return "share/noDate";
-//            }
-
-
         }catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -215,21 +194,8 @@ public class PatentController extends BaseController {
 
             System.out.println("request===>" + request);
 
-            Map<String, Object> map = new HashMap<String, Object>();
-
-            map.put("like_patent.patentName", request.getParameter("like_patent.patentName"));
-            map.put("like_patent.patentCode", request.getParameter("like_patent.patentCode"));
-            map.put("between_patent.createdAt", request.getParameter("between_patent.createdAt"));
-            map.put("patent.patentType", request.getParameter("patent.patentType"));
-            map.put("like_user.realName", request.getParameter("like_user.realName"));
-            System.out.println("map====" + map);
-
-            String querySql = QueryUtil.convertQueryParams(map);
-
+            String querySql = QueryUtil.generateQuerySql(request);
             System.out.println("querysql====>" + querySql);
-
-            Integer userId = (Integer) session.getAttribute("userId");
-            Teacher teacher = teacherDaoImpl.findByUserId(userId);
 
             List<Patent> patentList = patentDaoImpl.adminFindAll(querySql);
 
@@ -240,15 +206,6 @@ public class PatentController extends BaseController {
             System.out.println("model====>" + model);
 
             return "patent/admin_search";
-
-//            if(patentList != null && !patentList.isEmpty()){
-//                System.out.println("2222");
-//                return "patent/search";
-//            }else{
-//                System.out.println("3333");
-//                return "share/noDate";
-//            }
-
 
         }catch (Exception e) {
             e.printStackTrace();

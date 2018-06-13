@@ -35,7 +35,6 @@ public class SoftwareCopyrightController extends BaseController {
     private TeacherAchieService teacherAchieService;
 
     private static SoftwareCopyrightDaoImpl softwareCopyrightDaoImpl =  new SoftwareCopyrightDaoImpl();
-    private static TeacherAchieDaoImpl teacherAchieDaoImpl = new TeacherAchieDaoImpl();
     private static TeacherDaoImpl teacherDaoImpl = new TeacherDaoImpl();
     private static AttachmentDaoImpl attachmentDaoImpl = new AttachmentDaoImpl();
 
@@ -51,8 +50,6 @@ public class SoftwareCopyrightController extends BaseController {
 
     @RequestMapping("/admin_index")
     public String admin_index(Map<String,Object> model, HttpSession session){
-        Integer userId = (Integer) session.getAttribute("userId");
-        Teacher teacher = teacherDaoImpl.findByUserId(userId);
         List<SoftwareCopyright> softwareCopyrightList = softwareCopyrightDaoImpl.adminFindAll("");
         model.put("softwareCopyrightList", softwareCopyrightList);
 
@@ -162,15 +159,7 @@ public class SoftwareCopyrightController extends BaseController {
 
             System.out.println("request===>" + request);
 
-            Map<String, Object> map = new HashMap<String, Object>();
-
-            map.put("like_software_copyright.copyrightName", request.getParameter("like_software_copyright.copyrightName"));
-            map.put("software_copyright.copyrightType", request.getParameter("software_copyright.copyrightType"));
-            map.put("between_software_copyright.createdAt", request.getParameter("between_software_copyright.createdAt"));
-            System.out.println("map====" + map);
-
-            String querySql = QueryUtil.convertQueryParams(map);
-
+            String querySql = QueryUtil.generateQuerySql(request);
             System.out.println("querysql====>" + querySql);
 
             Integer userId = (Integer) session.getAttribute("userId");
@@ -186,15 +175,6 @@ public class SoftwareCopyrightController extends BaseController {
 
             return "softwareCopyright/search";
 
-//            if(teachAwardList != null && !teachAwardList.isEmpty()){
-//                System.out.println("2222");
-//                return "teachAward/search";
-//            }else{
-//                System.out.println("3333");
-//                return "share/noDate";
-//            }
-
-
         }catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -209,20 +189,8 @@ public class SoftwareCopyrightController extends BaseController {
 
             System.out.println("request===>" + request);
 
-            Map<String, Object> map = new HashMap<String, Object>();
-
-            map.put("like_software_copyright.copyrightName", request.getParameter("like_software_copyright.copyrightName"));
-            map.put("software_copyright.copyrightType", request.getParameter("software_copyright.copyrightType"));
-            map.put("between_software_copyright.createdAt", request.getParameter("between_software_copyright.createdAt"));
-            map.put("like_user.realName", request.getParameter("like_user.realName"));
-            System.out.println("map====" + map);
-
-            String querySql = QueryUtil.convertQueryParams(map);
-
+            String querySql = QueryUtil.generateQuerySql(request);
             System.out.println("querysql====>" + querySql);
-
-            Integer userId = (Integer) session.getAttribute("userId");
-            Teacher teacher = teacherDaoImpl.findByUserId(userId);
 
             List<SoftwareCopyright> softwareCopyrightList = softwareCopyrightDaoImpl.adminFindAll(querySql);
 
@@ -233,15 +201,6 @@ public class SoftwareCopyrightController extends BaseController {
             System.out.println("model====>" + model);
 
             return "softwareCopyright/admin_search";
-
-//            if(teachAwardList != null && !teachAwardList.isEmpty()){
-//                System.out.println("2222");
-//                return "teachAward/search";
-//            }else{
-//                System.out.println("3333");
-//                return "share/noDate";
-//            }
-
 
         }catch (Exception e) {
             e.printStackTrace();

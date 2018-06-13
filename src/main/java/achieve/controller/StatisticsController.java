@@ -25,12 +25,6 @@ import java.util.*;
 @RequestMapping("/statistics")
 public class StatisticsController extends BaseController {
 
-    @Autowired
-    private AttachmentService attachmentService;
-
-    @Autowired
-    private TeacherAchieService teacherAchieService;
-
     private static StatisticsDaoImpl statisticsDaoImpl =  new StatisticsDaoImpl();
 
     @RequestMapping("/index")
@@ -50,23 +44,7 @@ public class StatisticsController extends BaseController {
 
             System.out.println("request===>" + request);
 
-            String nameValue = request.getParameter("like_user.realName");
-            String createdAt = request.getParameter("between_teacher_achie.createdAt");
-
-            System.out.println("nameValue===>" + nameValue);
-            System.out.println("createdAt===>" + createdAt);
-
-            Map<String, Object> map = new HashMap<String, Object>();
-
-            if(nameValue != null){
-                map.put("like_user.realName", nameValue);
-                map.put("between_teacher_achie.createdAt", createdAt);
-            }
-
-            String querySql = QueryUtil.convertQueryParams(map);
-
-            System.out.println("querysql====>" + querySql);
-
+            String querySql = QueryUtil.generateQuerySql(request);
 
             List<HashMap> list = statisticsDaoImpl.findBasicInfo(querySql);
 
@@ -77,15 +55,6 @@ public class StatisticsController extends BaseController {
             System.out.println("model====>" + model);
 
             return "statistics/search";
-
-//            if(list != null && !list.isEmpty()){
-//                System.out.println("2222");
-//                return "statistics/search";
-//            }else{
-//                System.out.println("3333");
-//                return "share/noDate";
-//            }
-
 
         }catch (Exception e) {
             e.printStackTrace();
