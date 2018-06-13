@@ -1,8 +1,10 @@
 package achieve.controller;
 
 import achieve.dao.JoinAcademicConferenceDaoImpl;
+import achieve.dao.PaperDaoImpl;
 import achieve.dao.StatisticsDaoImpl;
 import achieve.pojo.JoinAcademicConference;
+import achieve.pojo.Paper;
 import achieve.util.ExportUtil;
 import achieve.util.QueryUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -31,6 +33,8 @@ public class ReportFormController extends BaseController {
     private static StatisticsDaoImpl statisticsDaoImpl =  new StatisticsDaoImpl();
     @Autowired
     private static JoinAcademicConferenceDaoImpl joinAcademicConferenceDaoImpl = new JoinAcademicConferenceDaoImpl();
+    @Autowired
+    private static PaperDaoImpl paperDaoImpl = new PaperDaoImpl();
 
     /**
      * 导出报表
@@ -109,10 +113,10 @@ public class ReportFormController extends BaseController {
             };
 
             //excel文件名
-            fileName = "参加学术会议统计表" + System.currentTimeMillis() + ".xls";
+            fileName = "(科研)参加学术会议统计表" + System.currentTimeMillis() + ".xls";
 
             //sheet名
-            sheetName = "参加学术会议统计表";
+            sheetName = "(科研)参加学术会议统计表";
 
             for (int i = 0; i < list.size(); i++) {
                 content[i] = new String[title.length];
@@ -132,6 +136,43 @@ public class ReportFormController extends BaseController {
             //创建HSSFWorkbook
             wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
 
+        }else if("paper_export".equals(pageName)){
+            List<Paper> list = paperDaoImpl.adminFindAll(querySql);
+
+            content = new String[5][5];
+
+            //excel标题
+            title = new String[]{
+                    "教师姓名", "论文名称", "论文类型", "本人排名", "是否独著", "通讯作者",
+                    "刊物名称", "收录检索(刊物级别)", "发表时间", "备注", "提交时间", "修改时间"
+            };
+
+            //excel文件名
+            fileName = "(科研)论文统计表" + System.currentTimeMillis() + ".xls";
+
+            //sheet名
+            sheetName = "(科研)论文统计表";
+
+            for (int i = 0; i < list.size(); i++) {
+                content[i] = new String[title.length];
+                Paper paper = list.get(i);
+                content[i][0] = paper.getTeacherName();
+                content[i][1] = paper.getPaperName();
+                content[i][2] = paper.getPaperType();
+                content[i][3] = paper.getSelfRank() + "";
+                content[i][4] = paper.getIsAlone();
+                content[i][5] = paper.getMessageAuthor();
+                content[i][6] = paper.getPeriodicalName();
+                content[i][7] = paper.getInclusionSearch();
+                content[i][8] = paper.getPublishTime().toString();
+
+                content[i][9] = paper.getRemark();
+                content[i][10] = paper.getCreatedAt().toString().substring(0, 19);
+                content[i][11] = paper.getUpdatedAt().toString().substring(0, 19);
+            }
+
+            //创建HSSFWorkbook
+            wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
         }
 
         if(title.length != 0){

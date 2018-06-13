@@ -135,11 +135,18 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
-                <div class="col-xs-2">
+                <div class="col-xs-2" style="margin-bottom: 10px;">
                     <button type="button" class="btn btn-block btn-primary" onclick="window.location.href='add'">
                         新增论文
                     </button>
                 </div>
+
+                <div class="col-xs-2" style="margin-bottom: 10px;">
+                    <button type="button" class="btn btn-block btn-primary" id="js-export">
+                        导出excel
+                    </button>
+                </div>
+
                 <div class="col-xs-12">
                     <div class="box">
                         <%--<div class="box-header">--%>
@@ -304,7 +311,20 @@
             });
         });
 
+        $('#js-export').click(function(){
 
+            var querySql = "";
+
+            for(var key in searchParams){
+                querySql += key+"="+searchParams[key]+"&";
+            }
+
+            // 页面标识
+            querySql += "pageName=paper_export&";
+
+            window.location.href="/achie/report/export?"+querySql;
+
+        });
 
     });
 </script>
