@@ -266,6 +266,8 @@
             format: 'yyyy-mm-dd'
         })
 
+        var searchParams = {};
+
         $("#searchButton").click(function() {
             var startDate = $("#startDate").val();
             var endDate = $("#endDate").val();
@@ -281,7 +283,7 @@
             if(writingType == "全部"){
                 writingType = ""
             }
-            var searchParams = {
+            searchParams = {
                 "like_user.realName": $("#teacherName").val(),
                 "like_writing.writingName": $("#writingName").val(),
                 "like_writing.publicationNumber": $("#publicationNumber").val(),

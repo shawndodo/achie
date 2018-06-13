@@ -302,6 +302,8 @@
             format: 'yyyy-mm-dd'
         })
 
+        var searchParams = {};
+
         $("#searchButton").click(function() {
             var startDate = $("#startDate").val();
             var endDate = $("#endDate").val();
@@ -325,7 +327,7 @@
             if(projectStatus == "全部"){
                 projectStatus = ""
             }
-            var searchParams = {
+            searchParams = {
                 "like_user.realName": $("#teacherName").val(),
                 "like_research_project.name": $("#name").val(),
                 "between_research_project.createdAt": createdAt,

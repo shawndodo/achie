@@ -267,6 +267,8 @@
             format: 'yyyy-mm-dd'
         })
 
+        var searchParams = {};
+
         $("#searchButton").click(function() {
             var startDate = $("#startDate").val();
             var endDate = $("#endDate").val();
@@ -282,7 +284,7 @@
             if(patentType == "全部"){
                 patentType = ""
             }
-            var searchParams = {
+            searchParams = {
                 "like_user.realName": $("#teacherName").val(),
                 "like_patent.patentName": $("#patentName").val(),
                 "like_patent.patentCode": $("#patentCode").val(),

@@ -261,6 +261,8 @@
             format: 'yyyy-mm-dd'
         })
 
+        var searchParams = {};
+
         $("#searchButton").click(function() {
             var startDate = $("#startDate").val();
             var endDate = $("#endDate").val();
@@ -276,7 +278,7 @@
             if(paperType == "全部"){
                 paperType = ""
             }
-            var searchParams = {
+            searchParams = {
                 "like_user.realName": $("#teacherName").val(),
                 "like_paper.paperName": $("#paperName").val(),
                 "paper.paperType": paperType,

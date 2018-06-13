@@ -241,6 +241,8 @@
             format: 'yyyy-mm-dd'
         })
 
+        var searchParams = {};
+
         $("#searchButton").click(function() {
             var startDate = $("#startDate").val();
             var endDate = $("#endDate").val();
@@ -252,7 +254,7 @@
             }else if(startDate != "" && endDate == "") {
                 createdAt = startDate + " "
             }
-            var searchParams = {
+            searchParams = {
                 "like_user.realName": $("#teacherName").val(),
                 "like_teach_paper.paperName": $("#paperName").val(),
                 "between_teach_paper.createdAt": createdAt

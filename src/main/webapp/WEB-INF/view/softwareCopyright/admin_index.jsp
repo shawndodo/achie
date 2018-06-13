@@ -257,6 +257,8 @@
             format: 'yyyy-mm-dd'
         })
 
+        var searchParams = {};
+
         $("#searchButton").click(function() {
             var startDate = $("#startDate").val();
             var endDate = $("#endDate").val();
@@ -272,7 +274,7 @@
             if(copyrightType == "全部"){
                 copyrightType = ""
             }
-            var searchParams = {
+            searchParams = {
                 "like_user.realName": $("#teacherName").val(),
                 "like_software_copyright.copyrightName": $("#copyrightName").val(),
                 "software_copyright.copyrightType": copyrightType,

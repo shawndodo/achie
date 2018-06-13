@@ -262,6 +262,8 @@
             format: 'yyyy-mm-dd'
         })
 
+        var searchParams = {};
+
         $("#searchButton").click(function() {
             var startDate = $("#startDate").val();
             var endDate = $("#endDate").val();
@@ -277,7 +279,7 @@
             if(level == "全部"){
                 level = ""
             }
-            var searchParams = {
+            searchParams = {
                 "like_user.realName": $("#teacherName").val(),
                 "like_teach_reform_research_project.code": $("#code").val(),
                 "like_teach_reform_research_project.name": $("#name").val(),

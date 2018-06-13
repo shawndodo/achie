@@ -262,6 +262,8 @@
             format: 'yyyy-mm-dd'
         })
 
+        var searchParams = {};
+
         $("#searchButton").click(function() {
             var startDate = $("#startDate").val();
             var endDate = $("#endDate").val();
@@ -277,7 +279,7 @@
             if(projectType == "全部"){
                 projectType = ""
             }
-            var searchParams = {
+            searchParams = {
                 "like_user.realName": $("#teacherName").val(),
                 "like_student_project.code": $("#code").val(),
                 "like_student_project.name": $("#name").val(),

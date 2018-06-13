@@ -269,6 +269,8 @@
             format: 'yyyy-mm-dd'
         })
 
+        var searchParams = {};
+
         $("#searchButton").click(function() {
             var startDate = $("#startDate").val();
             var endDate = $("#endDate").val();
@@ -284,7 +286,7 @@
             if(awardType == "全部"){
                 awardType = ""
             }
-            var searchParams = {
+            searchParams = {
                 "like_user.realName": $("#teacherName").val(),
                 "like_research_award.awardName": $("#awardName").val(),
                 "between_research_award.createdAt": createdAt,
