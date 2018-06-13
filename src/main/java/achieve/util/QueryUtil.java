@@ -63,6 +63,8 @@ public class QueryUtil {
         while (entries.hasNext()) {
             entry = (Map.Entry) entries.next();
             name = (String) entry.getKey();
+//            省略掉这个参数 不需要用作查询
+            if(name == "pageName" || "pageName".equals(name)){ continue; }
             Object[] valueObj = (Object[]) entry.getValue();
             System.out.println("generate-name1===" + name);
             System.out.println("generate-value1===" + valueObj[0]);

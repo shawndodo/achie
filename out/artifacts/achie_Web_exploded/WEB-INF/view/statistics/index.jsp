@@ -260,6 +260,8 @@
             format: 'yyyy-mm-dd'
         })
 
+        var searchParams = {};
+
         $("#searchButton").click(function() {
             var startDate = $("#startDate").val();
             var endDate = $("#endDate").val();
@@ -271,7 +273,7 @@
             }else if(startDate != "" && endDate == "") {
                 createdAt = startDate + " "
             }
-            var searchParams = {
+            searchParams = {
                 "like_user.realName": $("#teacherName").val(),
                 "between_teacher_achie.createdAt": createdAt
             };
@@ -296,7 +298,18 @@
         });
 
         $('#js-export').click(function(){
-            window.location.href="/achie/report/export"
+
+            var querySql = "";
+
+            for(var key in searchParams){
+                querySql += key+"="+searchParams[key]+"&";
+            }
+
+            // 页面标识
+            querySql += "pageName=statistics_search&";
+
+            window.location.href="/achie/report/export?"+querySql;
+
         });
 
     });
