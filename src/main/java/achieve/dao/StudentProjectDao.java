@@ -8,6 +8,8 @@ public interface StudentProjectDao {
 
     List<StudentProject> findAll(Integer teacherId, String querySql);
 
+    List<StudentProject> adminFindAll(String querySql);
+
     Integer addStudentProject(StudentProject studentProject);
 
     StudentProject findById(Integer id) ;

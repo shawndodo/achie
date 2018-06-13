@@ -87,7 +87,9 @@ public class PaperController extends BaseController {
 
         teacherAchieService.setValue(paperId, teacher, "Paper", "research", "submit");
 
-        if(userId == 1){
+        String userType = (String) session.getAttribute("userType");
+
+        if("admin".equals(userType)){
             return "redirect:admin_index";
         }else{
             return "redirect:index";
@@ -148,7 +150,9 @@ public class PaperController extends BaseController {
 
         }
 
-        if(userId == 1){
+        String userType = (String) session.getAttribute("userType");
+
+        if("admin".equals(userType)){
             return "redirect:admin_index";
         }else{
             return "redirect:index";

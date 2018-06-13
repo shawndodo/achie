@@ -86,7 +86,9 @@ public class ResearchAwardController extends BaseController {
 
         teacherAchieService.setValue(researchAwardId, teacher, "ResearchAward", "research", "submit");
 
-        if(userId == 1){
+        String userType = (String) session.getAttribute("userType");
+
+        if("admin".equals(userType)){
             return "redirect:admin_index";
         }else{
             return "redirect:index";
@@ -147,7 +149,9 @@ public class ResearchAwardController extends BaseController {
 
         }
 
-        if(userId == 1){
+        String userType = (String) session.getAttribute("userType");
+
+        if("admin".equals(userType)){
             return "redirect:admin_index";
         }else{
             return "redirect:index";

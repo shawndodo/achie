@@ -78,7 +78,13 @@ public class TeachReformResearchProjectController extends BaseController {
 
         teacherAchieService.setValue(teachReformResearchProjectId, teacher, "TeachReformResearchProject", "teach", "submit");
 
-        return "redirect:index";
+        String userType = (String) session.getAttribute("userType");
+
+        if("admin".equals(userType)){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping("/show")
@@ -135,7 +141,13 @@ public class TeachReformResearchProjectController extends BaseController {
 
         }
 
-        return "redirect:index";
+        String userType = (String) session.getAttribute("userType");
+
+        if("admin".equals(userType)){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)

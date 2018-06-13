@@ -90,13 +90,13 @@ public class WritingController extends BaseController {
 
         teacherAchieService.setValue(writingId, teacher, "Writing", "teach", "submit");
 
-        if(userId == 1){
+        String userType = (String) session.getAttribute("userType");
+
+        if("admin".equals(userType)){
             return "redirect:admin_index";
         }else{
             return "redirect:index";
         }
-
-
     }
 
     @RequestMapping("/show")
@@ -152,7 +152,9 @@ public class WritingController extends BaseController {
             attachmentService.setValue(file, url, userId, writing.getId(), "Writing");
         }
 
-        if(userId == 1){
+        String userType = (String) session.getAttribute("userType");
+
+        if("admin".equals(userType)){
             return "redirect:admin_index";
         }else{
             return "redirect:index";

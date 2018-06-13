@@ -45,6 +45,44 @@ public class StudentProjectDaoImpl implements StudentProjectDao {
         }
     }
 
+    public List<StudentProject> adminFindAll(String querySql) {
+        Connection conn = null ;
+        try {
+            conn = DBUtil.getConnection() ;
+            String sql = "SELECT * , user.realName AS teacherName, teacher.id AS teacherId FROM student_project " +
+                    "LEFT JOIN teacher_achie ON student_project.id = teacher_achie.achieId " +
+                    "LEFT JOIN teacher ON teacher_achie.teacherId = teacher.id " +
+                    "LEFT JOIN user ON teacher.userId = user.id " +
+                    "WHERE teacher_achie.achieType = 'StudentProject' " + querySql;
+            Statement state = conn.createStatement() ;
+            ResultSet rs = state.executeQuery(sql) ;
+            List<StudentProject> list = new ArrayList<StudentProject>() ;
+            while(rs.next()){
+                StudentProject studentProject = new StudentProject() ;
+                studentProject.setId(rs.getInt("id")) ;
+                studentProject.setCode(rs.getString("code")) ;
+                studentProject.setName(rs.getString("name")) ;
+                studentProject.setProjectType(rs.getString("projectType")) ;
+                studentProject.setLeader(rs.getString("leader")) ;
+                studentProject.setStudentNum(rs.getString("studentNum")) ;
+                studentProject.setMentorName(rs.getString("mentorName")) ;
+                studentProject.setRemark(rs.getString("remark")) ;
+                studentProject.setCreatedAt(rs.getTimestamp("createdAt"));
+                studentProject.setUpdatedAt(rs.getTimestamp("updatedAt"));
+                studentProject.setTeacherName(rs.getString("teacherName"));
+                list.add(studentProject) ;
+            }
+            rs.close() ;
+            state.close() ;
+            return list ;
+        } catch (Exception e) {
+            e.printStackTrace() ;
+            return null ;
+        }finally{
+            DBUtil.close(conn) ;
+        }
+    }
+
     public Integer addStudentProject(StudentProject studentProject) {
         Connection conn = null ;
         try {

@@ -47,6 +47,14 @@ public class StudentProjectController extends BaseController {
         return "studentProject/index";
     }
 
+    @RequestMapping("/admin_index")
+    public String admin_index(Map<String,Object> model, HttpSession session){
+        List<StudentProject> studentProjectList = studentProjectDaoImpl.adminFindAll("");
+        model.put("studentProjectList", studentProjectList);
+
+        return "studentProject/admin_index";
+    }
+
     @RequestMapping("/add")
     public String add(){
         return "studentProject/add";
@@ -75,7 +83,13 @@ public class StudentProjectController extends BaseController {
 
         teacherAchieService.setValue(studentProjectId, teacher, "StudentProject", "teach", "submit");
 
-        return "redirect:index";
+        String userType = (String) session.getAttribute("userType");
+
+        if("admin".equals(userType)){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping("/show")
@@ -132,7 +146,13 @@ public class StudentProjectController extends BaseController {
 
         }
 
-        return "redirect:index";
+        String userType = (String) session.getAttribute("userType");
+
+        if("admin".equals(userType)){
+            return "redirect:admin_index";
+        }else{
+            return "redirect:index";
+        }
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
@@ -157,6 +177,34 @@ public class StudentProjectController extends BaseController {
             System.out.println("model====>" + model);
 
             return "studentProject/search";
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+
+    @RequestMapping(value = "/admin_search", method = RequestMethod.POST)
+    public String admin_search(HttpServletRequest request, Map<String,Object> model, HttpSession session) throws Exception {
+
+        try {
+
+            System.out.println("request===>" + request);
+
+            String querySql = QueryUtil.generateQuerySql(request);
+
+            System.out.println("querysql====>" + querySql);
+
+            List<StudentProject> studentProjectList = studentProjectDaoImpl.adminFindAll(querySql);
+
+            System.out.println("studentProjectList====>" + studentProjectList);
+
+            model.put("studentProjectList", studentProjectList);
+
+            System.out.println("model====>" + model);
+
+            return "studentProject/admin_search";
 
         }catch (Exception e) {
             e.printStackTrace();

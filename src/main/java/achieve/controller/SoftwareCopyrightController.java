@@ -84,7 +84,9 @@ public class SoftwareCopyrightController extends BaseController {
 
         teacherAchieService.setValue(softwareCopyrightId, teacher, "SoftwareCopyright", "research", "submit");
 
-        if(userId == 1){
+        String userType = (String) session.getAttribute("userType");
+
+        if("admin".equals(userType)){
             return "redirect:admin_index";
         }else{
             return "redirect:index";
@@ -145,7 +147,9 @@ public class SoftwareCopyrightController extends BaseController {
 
         }
 
-        if(userId == 1){
+        String userType = (String) session.getAttribute("userType");
+
+        if("admin".equals(userType)){
             return "redirect:admin_index";
         }else{
             return "redirect:index";
