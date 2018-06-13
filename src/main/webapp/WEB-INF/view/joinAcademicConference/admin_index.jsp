@@ -135,11 +135,18 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
-                <div class="col-xs-2">
+                <div class="col-xs-2" style="margin-bottom: 10px;">
                     <button type="button" class="btn btn-block btn-primary" onclick="window.location.href='add'">
                         新增教学论文
                     </button>
                 </div>
+
+                <div class="col-xs-2" style="margin-bottom: 10px;">
+                    <button type="button" class="btn btn-block btn-primary" id="js-export">
+                        导出excel
+                    </button>
+                </div>
+
                 <div class="col-xs-12">
                     <div class="box">
                         <%--<div class="box-header">--%>
@@ -257,6 +264,8 @@
             format: 'yyyy-mm-dd'
         })
 
+        var searchParams = {};
+
         $("#searchButton").click(function() {
             var startDate = $("#startDate").val();
             var endDate = $("#endDate").val();
@@ -272,7 +281,7 @@
             if(level == "全部"){
                 level = ""
             }
-            var searchParams = {
+            searchParams = {
                 "like_user.realName": $("#teacherName").val(),
                 "like_join_academic_conference.name": $("#name").val(),
                 "between_join_academic_conference.createdAt": createdAt,
@@ -298,7 +307,20 @@
             });
         });
 
+        $('#js-export').click(function(){
 
+            var querySql = "";
+
+            for(var key in searchParams){
+                querySql += key+"="+searchParams[key]+"&";
+            }
+
+            // 页面标识
+            querySql += "pageName=join_academic_conference_export&";
+
+            window.location.href="/achie/report/export?"+querySql;
+
+        });
 
     });
 </script>

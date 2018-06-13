@@ -104,16 +104,6 @@
                                 </div>
                             </div>
 
-                            <%--<div class="form-group">--%>
-                                <%--<label>论文类型</label>--%>
-                                <%--<select class="form-control select2" style="width: 100%;">--%>
-                                    <%--<option selected="selected">期刊论文</option>--%>
-                                    <%--<option>会议论文集</option>--%>
-                                    <%--<option>报纸</option>--%>
-                                    <%--<option>学位论文</option>--%>
-                                <%--</select>--%>
-                            <%--</div>--%>
-
                         </div>
                         <div>
                             <div class="col-xs-2">
@@ -306,7 +296,7 @@
             }
 
             // 页面标识
-            querySql += "pageName=statistics_search&";
+            querySql += "pageName=statistics_export&";
 
             window.location.href="/achie/report/export?"+querySql;
 

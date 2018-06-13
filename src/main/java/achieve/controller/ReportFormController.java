@@ -1,6 +1,8 @@
 package achieve.controller;
 
+import achieve.dao.JoinAcademicConferenceDaoImpl;
 import achieve.dao.StatisticsDaoImpl;
+import achieve.pojo.JoinAcademicConference;
 import achieve.util.ExportUtil;
 import achieve.util.QueryUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -27,6 +29,8 @@ public class ReportFormController extends BaseController {
 
     @Autowired
     private static StatisticsDaoImpl statisticsDaoImpl =  new StatisticsDaoImpl();
+    @Autowired
+    private static JoinAcademicConferenceDaoImpl joinAcademicConferenceDaoImpl = new JoinAcademicConferenceDaoImpl();
 
     /**
      * 导出报表
@@ -44,17 +48,18 @@ public class ReportFormController extends BaseController {
         String pageName = request.getParameter("pageName");
 
 //        参数初始化
-        List<HashMap> list;
+//        List<HashMap> list;
         String[][] content = {};
         String[] title = {};
         String fileName = null;
         String sheetName = null;
+        HSSFWorkbook wb = null;
 
         // 统计页面导出
-        if("statistics_search".equals(pageName)){
+        if("statistics_export".equals(pageName)){
             //获取数据
 //        List<PageData> list = reportService.bookList(page);
-            list = statisticsDaoImpl.findBasicInfo(querySql);
+            List<HashMap> list = statisticsDaoImpl.findBasicInfo(querySql);
 
             content = new String[5][5];
 
@@ -89,11 +94,48 @@ public class ReportFormController extends BaseController {
                 content[i][12] = hm.get("researchAwardCount").toString();
                 content[i][13] = hm.get("researchProjectCount").toString();
             }
+            //创建HSSFWorkbook
+            wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
+
+        }else if("join_academic_conference_export".equals(pageName)){
+            List<JoinAcademicConference> list = joinAcademicConferenceDaoImpl.adminFindAll(querySql);
+
+            content = new String[5][5];
+
+            //excel标题
+            title = new String[]{
+                    "教师姓名", "学术会议名称", "会议地点", "会议等级", "提交论文名称", "是否特邀报告",
+                    "所属学科", "备注", "提交时间", "修改时间"
+            };
+
+            //excel文件名
+            fileName = "参加学术会议统计表" + System.currentTimeMillis() + ".xls";
+
+            //sheet名
+            sheetName = "参加学术会议统计表";
+
+            for (int i = 0; i < list.size(); i++) {
+                content[i] = new String[title.length];
+                JoinAcademicConference jac = list.get(i);
+                content[i][0] = jac.getTeacherName();
+                content[i][1] = jac.getName();
+                content[i][2] = jac.getLocation();
+                content[i][3] = jac.getLevel();
+                content[i][4] = jac.getPaperName();
+                content[i][5] = jac.getIsInviteReport();
+                content[i][6] = jac.getSubjectCategory();
+                content[i][7] = jac.getRemark();
+                content[i][8] = jac.getCreatedAt().toString().substring(0, 19);
+                content[i][9] = jac.getUpdatedAt().toString().substring(0, 19);
+            }
+
+            //创建HSSFWorkbook
+            wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
+
         }
 
         if(title.length != 0){
-            //创建HSSFWorkbook
-            HSSFWorkbook wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
+
 
             //响应到客户端
             try {
