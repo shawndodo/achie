@@ -137,9 +137,15 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
-                <div class="col-xs-2">
+                <div class="col-xs-2" style="margin-bottom: 10px;">
                     <button type="button" class="btn btn-block btn-primary" onclick="window.location.href='add'">
                         新增获奖成果
+                    </button>
+                </div>
+
+                <div class="col-xs-2" style="margin-bottom: 10px;">
+                    <button type="button" class="btn btn-block btn-primary" id="js-export">
+                        导出excel
                     </button>
                 </div>
                 <div class="col-xs-12">
@@ -173,7 +179,7 @@
                                 <tbody>
                                 <c:forEach items="${researchAwardList}" var="researchAward" begin="0" end="9" step="1">
                                     <tr>
-                                        <td>${researchAward.teachername}</td>
+                                        <td>${researchAward.teacherName}</td>
                                         <td>${researchAward.awardName}</td>
                                         <td>${researchAward.publishJournal}</td>
                                         <td>${researchAward.publisher}</td>
@@ -312,7 +318,21 @@
             });
         });
 
+        // 导出excel
+        $('#js-export').click(function(){
 
+            var querySql = "";
+
+            for(var key in searchParams){
+                querySql += key+"="+searchParams[key]+"&";
+            }
+
+            // 页面标识
+            querySql += "pageName=research_award_export&";
+
+            window.location.href="/achie/report/export?"+querySql;
+
+        });
 
     });
 </script>

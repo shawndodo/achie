@@ -1,10 +1,10 @@
 package achieve.controller;
 
-import achieve.dao.JoinAcademicConferenceDaoImpl;
-import achieve.dao.PaperDaoImpl;
-import achieve.dao.StatisticsDaoImpl;
+import achieve.dao.*;
 import achieve.pojo.JoinAcademicConference;
 import achieve.pojo.Paper;
+import achieve.pojo.Patent;
+import achieve.pojo.ResearchAward;
 import achieve.util.ExportUtil;
 import achieve.util.QueryUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -35,6 +35,10 @@ public class ReportFormController extends BaseController {
     private static JoinAcademicConferenceDaoImpl joinAcademicConferenceDaoImpl = new JoinAcademicConferenceDaoImpl();
     @Autowired
     private static PaperDaoImpl paperDaoImpl = new PaperDaoImpl();
+    @Autowired
+    private static PatentDaoImpl patentDaoImpl = new PatentDaoImpl();
+    @Autowired
+    private static ResearchAwardDaoImpl researchAwardDaoImpl = new ResearchAwardDaoImpl();
 
     /**
      * 导出报表
@@ -65,7 +69,7 @@ public class ReportFormController extends BaseController {
 //        List<PageData> list = reportService.bookList(page);
             List<HashMap> list = statisticsDaoImpl.findBasicInfo(querySql);
 
-            content = new String[5][5];
+            content = new String[list.size()][];
 
             //excel标题
             title = new String[]{
@@ -104,7 +108,7 @@ public class ReportFormController extends BaseController {
         }else if("join_academic_conference_export".equals(pageName)){
             List<JoinAcademicConference> list = joinAcademicConferenceDaoImpl.adminFindAll(querySql);
 
-            content = new String[5][5];
+            content = new String[list.size()][];
 
             //excel标题
             title = new String[]{
@@ -139,7 +143,7 @@ public class ReportFormController extends BaseController {
         }else if("paper_export".equals(pageName)){
             List<Paper> list = paperDaoImpl.adminFindAll(querySql);
 
-            content = new String[5][5];
+            content = new String[list.size()][];
 
             //excel标题
             title = new String[]{
@@ -169,6 +173,84 @@ public class ReportFormController extends BaseController {
                 content[i][9] = paper.getRemark();
                 content[i][10] = paper.getCreatedAt().toString().substring(0, 19);
                 content[i][11] = paper.getUpdatedAt().toString().substring(0, 19);
+            }
+
+            //创建HSSFWorkbook
+            wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
+        }else if("patent_export".equals(pageName)){
+            List<Patent> list = patentDaoImpl.adminFindAll(querySql);
+
+            content = new String[list.size()][];
+
+            //excel标题
+            title = new String[]{
+                    "教师姓名", "专利名称", "专利类型", "专利状态", "专利编号", "获得时间",
+                    "申请编号", "申请时间", "本人排名", "备注", "提交时间", "修改时间"
+            };
+
+            //excel文件名
+            fileName = "(科研)专利统计表" + System.currentTimeMillis() + ".xls";
+
+            //sheet名
+            sheetName = "(科研)专利统计表";
+
+            for (int i = 0; i < list.size(); i++) {
+                content[i] = new String[title.length];
+                Patent patent = list.get(i);
+                content[i][0] = patent.getTeacherName();
+                content[i][1] = patent.getPatentName();
+                content[i][2] = patent.getPatentType();
+                content[i][3] = patent.getPatentStatus();
+                content[i][4] = patent.getPatentCode();
+                content[i][5] = patent.getGetPatentDate().toString();
+                content[i][6] = patent.getApplyCode();
+                content[i][7] = patent.getApplyDate().toString();
+                content[i][8] = patent.getSelfRank() + "";
+
+                content[i][9] = patent.getRemark();
+                content[i][10] = patent.getCreatedAt().toString().substring(0, 19);
+                content[i][11] = patent.getUpdatedAt().toString().substring(0, 19);
+            }
+
+            //创建HSSFWorkbook
+            wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
+        }else if("research_award_export".equals(pageName)){
+            List<ResearchAward> list = researchAwardDaoImpl.adminFindAll(querySql);
+
+            content = new String[list.size()][];
+
+            //excel标题
+            title = new String[]{
+                    "教师姓名", "成果名称", "发表刊物", "出版单位", "成果发表时间", "获奖名称",
+                    "获奖类别", "颁奖部门", "奖励时间", "证书号", "单位排名",
+                    "本人排名", "学科门类", "提交时间", "修改时间"
+            };
+
+            //excel文件名
+            fileName = "(科研)获奖成果统计表" + System.currentTimeMillis() + ".xls";
+
+            //sheet名
+            sheetName = "(科研)获奖成果统计表";
+
+            for (int i = 0; i < list.size(); i++) {
+                content[i] = new String[title.length];
+                ResearchAward researchAward = list.get(i);
+                content[i][0] = researchAward.getTeacherName();
+                content[i][1] = researchAward.getAwardName();
+                content[i][2] = researchAward.getPublishJournal();
+                content[i][3] = researchAward.getPublisher();
+                content[i][4] = researchAward.getPublishDate().toString();
+                content[i][5] = researchAward.getAwardWinningName();
+                content[i][6] = researchAward.getAwardType();
+                content[i][7] = researchAward.getAwardDepartment();
+                content[i][8] = researchAward.getAwardDate().toString();
+                content[i][9] = researchAward.getAwardNumber();
+                content[i][10] = researchAward.getUnitRank() + "";
+                content[i][11] = researchAward.getSelfRank() + "";
+
+                content[i][12] = researchAward.getSubjectCategory();
+                content[i][13] = researchAward.getCreatedAt().toString().substring(0, 19);
+                content[i][14] = researchAward.getUpdatedAt().toString().substring(0, 19);
             }
 
             //创建HSSFWorkbook

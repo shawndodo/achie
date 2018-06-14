@@ -32,7 +32,7 @@
     <tbody>
     <c:forEach items="${researchAwardList}" var="researchAward" begin="0" end="9" step="1">
         <tr>
-            <td>${researchAward.teachername}</td>
+            <td>${researchAward.teacherName}</td>
             <td>${researchAward.awardName}</td>
             <td>${researchAward.publishJournal}</td>
             <td>${researchAward.publisher}</td>

@@ -81,7 +81,7 @@ public class ResearchAwardDaoImpl implements ResearchAwardDao {
                 researchAward.setRemark(rs.getString("remark")) ;
                 researchAward.setCreatedAt(rs.getTimestamp("createdAt"));
                 researchAward.setUpdatedAt(rs.getTimestamp("updatedAt"));
-                researchAward.setTeachername(rs.getString("teacherName"));
+                researchAward.setTeacherName(rs.getString("teacherName"));
                 list.add(researchAward) ;
             }
             rs.close() ;
