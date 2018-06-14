@@ -40,6 +40,8 @@ public class ReportFormController extends BaseController {
     private static ResearchProjectDaoImpl researchProjectDaoImpl = new ResearchProjectDaoImpl();
     @Autowired
     private static SoftwareCopyrightDaoImpl softwareCopyrightDaoImpl = new SoftwareCopyrightDaoImpl();
+    @Autowired
+    private static StudentProjectDaoImpl studentProjectDaoImpl = new StudentProjectDaoImpl();
 
 
     /**
@@ -332,6 +334,41 @@ public class ReportFormController extends BaseController {
                 content[i][8] = softwareCopyright.getRemark();
                 content[i][9] = softwareCopyright.getCreatedAt().toString().substring(0, 19);
                 content[i][10] = softwareCopyright.getUpdatedAt().toString().substring(0, 19);
+            }
+
+            //创建HSSFWorkbook
+            wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
+        }else if("student_project_export".equals(pageName)){
+            List<StudentProject> list = studentProjectDaoImpl.adminFindAll(querySql);
+
+            content = new String[list.size()][];
+
+            //excel标题
+            title = new String[]{
+                    "教师姓名", "项目编号", "项目名称", "项目类型", "项目负责人", "学生数",
+                    "导师姓名", "备注", "提交时间", "修改时间"
+            };
+
+            //excel文件名
+            fileName = "(教学)指导学生项目统计表" + System.currentTimeMillis() + ".xls";
+
+            //sheet名
+            sheetName = "(教学)指导学生项目统计表";
+
+            for (int i = 0; i < list.size(); i++) {
+                content[i] = new String[title.length];
+                StudentProject studentProject = list.get(i);
+                content[i][0] = studentProject.getTeacherName();
+                content[i][1] = studentProject.getCode();
+                content[i][2] = studentProject.getName();
+                content[i][3] = studentProject.getProjectType();
+                content[i][4] = studentProject.getLeader();
+                content[i][5] = studentProject.getStudentNum();
+                content[i][6] = studentProject.getMentorName();
+
+                content[i][7] = studentProject.getRemark();
+                content[i][8] = studentProject.getCreatedAt().toString().substring(0, 19);
+                content[i][9] = studentProject.getUpdatedAt().toString().substring(0, 19);
             }
 
             //创建HSSFWorkbook
