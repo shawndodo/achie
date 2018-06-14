@@ -1,10 +1,7 @@
 package achieve.controller;
 
 import achieve.dao.*;
-import achieve.pojo.JoinAcademicConference;
-import achieve.pojo.Paper;
-import achieve.pojo.Patent;
-import achieve.pojo.ResearchAward;
+import achieve.pojo.*;
 import achieve.util.ExportUtil;
 import achieve.util.QueryUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -39,6 +36,8 @@ public class ReportFormController extends BaseController {
     private static PatentDaoImpl patentDaoImpl = new PatentDaoImpl();
     @Autowired
     private static ResearchAwardDaoImpl researchAwardDaoImpl = new ResearchAwardDaoImpl();
+    @Autowired
+    private static ResearchProjectDaoImpl researchProjectDaoImpl = new ResearchProjectDaoImpl();
 
     /**
      * 导出报表
@@ -251,6 +250,49 @@ public class ReportFormController extends BaseController {
                 content[i][12] = researchAward.getSubjectCategory();
                 content[i][13] = researchAward.getCreatedAt().toString().substring(0, 19);
                 content[i][14] = researchAward.getUpdatedAt().toString().substring(0, 19);
+            }
+
+            //创建HSSFWorkbook
+            wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
+        }else if("research_project_export".equals(pageName)){
+            List<ResearchProject> list = researchProjectDaoImpl.adminFindAll(querySql);
+
+            content = new String[list.size()][];
+
+            //excel标题
+            title = new String[]{
+                    "教师姓名", "负责人", "项目名称", "项目来源", "批准号", "研究类别",
+                    "批准经费(单位万元)", "本年度到账经费(单位万元)", "本年度支出(单位万元)", "学科门类", "组织形式",
+                    "服务的国名经济行业", "项目的社会经济目标", "项目状态", "备注", "提交时间", "修改时间"
+            };
+
+            //excel文件名
+            fileName = "(科研)科研项目统计表" + System.currentTimeMillis() + ".xls";
+
+            //sheet名
+            sheetName = "(科研)科研项目统计表";
+
+            for (int i = 0; i < list.size(); i++) {
+                content[i] = new String[title.length];
+                ResearchProject researchProject = list.get(i);
+                content[i][0] = researchProject.getTeacherName();
+                content[i][1] = researchProject.getLeader();
+                content[i][2] = researchProject.getName();
+                content[i][3] = researchProject.getProjectType();
+                content[i][4] = researchProject.getApprovalNumber();
+                content[i][5] = researchProject.getResearchCategory();
+                content[i][6] = researchProject.getApprovalFund() + "";
+                content[i][7] = researchProject.getCurrentYearInMoney() + "";
+                content[i][8] = researchProject.getCurrentYearOutMoney() + "";
+                content[i][9] = researchProject.getSubjectCategory();
+                content[i][10] = researchProject.getOrganizationForm() + "";
+                content[i][11] = researchProject.getServeNationalEconomyIndustry() + "";
+
+                content[i][12] = researchProject.getProjectGoal();
+                content[i][13] = researchProject.getProjectStatus();
+                content[i][14] = researchProject.getRemark();
+                content[i][15] = researchProject.getCreatedAt().toString().substring(0, 19);
+                content[i][16] = researchProject.getUpdatedAt().toString().substring(0, 19);
             }
 
             //创建HSSFWorkbook
