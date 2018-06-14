@@ -38,6 +38,9 @@ public class ReportFormController extends BaseController {
     private static ResearchAwardDaoImpl researchAwardDaoImpl = new ResearchAwardDaoImpl();
     @Autowired
     private static ResearchProjectDaoImpl researchProjectDaoImpl = new ResearchProjectDaoImpl();
+    @Autowired
+    private static SoftwareCopyrightDaoImpl softwareCopyrightDaoImpl = new SoftwareCopyrightDaoImpl();
+
 
     /**
      * 导出报表
@@ -293,6 +296,42 @@ public class ReportFormController extends BaseController {
                 content[i][14] = researchProject.getRemark();
                 content[i][15] = researchProject.getCreatedAt().toString().substring(0, 19);
                 content[i][16] = researchProject.getUpdatedAt().toString().substring(0, 19);
+            }
+
+            //创建HSSFWorkbook
+            wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
+        }else if("software_copyright_export".equals(pageName)){
+            List<SoftwareCopyright> list = softwareCopyrightDaoImpl.adminFindAll(querySql);
+
+            content = new String[list.size()][];
+
+            //excel标题
+            title = new String[]{
+                    "教师姓名", "著作权名称", "证书号", "本人排名", "开发完成时间", "获得时间",
+                    "著作权类型", "著作权人", "备注", "提交时间", "修改时间"
+            };
+
+            //excel文件名
+            fileName = "(科研)软件著作权统计表" + System.currentTimeMillis() + ".xls";
+
+            //sheet名
+            sheetName = "(科研)软件著作权统计表";
+
+            for (int i = 0; i < list.size(); i++) {
+                content[i] = new String[title.length];
+                SoftwareCopyright softwareCopyright = list.get(i);
+                content[i][0] = softwareCopyright.getTeacherName();
+                content[i][1] = softwareCopyright.getCopyrightName();
+                content[i][2] = softwareCopyright.getCertificateNum();
+                content[i][3] = softwareCopyright.getSelfRank() + "";
+                content[i][4] = softwareCopyright.getDevelopFinishDate().toString();
+                content[i][5] = softwareCopyright.getGetDate().toString();
+                content[i][6] = softwareCopyright.getCopyrightType() + "";
+                content[i][7] = softwareCopyright.getCopyrightPerson() + "";
+
+                content[i][8] = softwareCopyright.getRemark();
+                content[i][9] = softwareCopyright.getCreatedAt().toString().substring(0, 19);
+                content[i][10] = softwareCopyright.getUpdatedAt().toString().substring(0, 19);
             }
 
             //创建HSSFWorkbook
