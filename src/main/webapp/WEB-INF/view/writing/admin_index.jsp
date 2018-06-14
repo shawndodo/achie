@@ -178,7 +178,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${writingList}" var="writing" begin="0" end="9" step="1">
+                                <c:forEach items="${writingList}" var="writing" begin="0" end="${writingList.size()}" step="1">
                                     <tr>
                                         <td>${writing.teacherName}</td>
                                         <td>${writing.writingName}</td>

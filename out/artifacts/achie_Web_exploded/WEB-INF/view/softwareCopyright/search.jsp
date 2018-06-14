@@ -25,7 +25,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${softwareCopyrightList}" var="softwareCopyright" begin="0" end="9" step="1">
+    <c:forEach items="${softwareCopyrightList}" var="softwareCopyright" begin="0" end="${softwareCopyrightList.size()}" step="1">
         <tr>
             <td>${softwareCopyright.copyrightName}</td>
             <td>${softwareCopyright.certificateNum}</td>

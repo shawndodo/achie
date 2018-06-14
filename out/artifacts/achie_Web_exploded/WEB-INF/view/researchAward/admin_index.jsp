@@ -177,7 +177,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${researchAwardList}" var="researchAward" begin="0" end="9" step="1">
+                                <c:forEach items="${researchAwardList}" var="researchAward" begin="0" end="${researchAwardList.size()}" step="1">
                                     <tr>
                                         <td>${researchAward.teacherName}</td>
                                         <td>${researchAward.awardName}</td>

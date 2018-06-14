@@ -24,7 +24,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${joinAcademicConferenceList}" var="joinAcademicConference" begin="0" end="9" step="1">
+    <c:forEach items="${joinAcademicConferenceList}" var="joinAcademicConference" begin="0" end="${joinAcademicConferenceList.size()}" step="1">
         <tr>
             <td>${joinAcademicConference.name}</td>
             <td>${joinAcademicConference.location}</td>

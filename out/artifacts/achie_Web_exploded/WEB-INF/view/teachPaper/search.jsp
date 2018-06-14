@@ -22,7 +22,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${teachPaperList}" var="teachPaper" begin="0" end="9" step="1">
+    <c:forEach items="${teachPaperList}" var="teachPaper" begin="0" end="${teachPaperList.size()}" step="1">
         <tr>
             <td>${teachPaper.paperName}</td>
             <td>${teachPaper.periodicalName}</td>

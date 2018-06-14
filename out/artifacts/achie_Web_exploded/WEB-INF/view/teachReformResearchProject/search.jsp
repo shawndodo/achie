@@ -23,7 +23,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${teachReformResearchProjectList}" var="teachReformResearchProject" begin="0" end="9" step="1">
+    <c:forEach items="${teachReformResearchProjectList}" var="teachReformResearchProject" begin="0" end="${teachReformResearchProjectList.size()}" step="1">
         <tr>
             <td>${teachReformResearchProject.code}</td>
             <td>${teachReformResearchProject.name}</td>

@@ -27,7 +27,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${list}" var="lis" begin="0" end="9" step="1">
+    <c:forEach items="${list}" var="lis" begin="0" end="${list.size()}" step="1">
         <tr>
             <td>${lis.userName}</td>
             <td>${lis.teachCount}</td>

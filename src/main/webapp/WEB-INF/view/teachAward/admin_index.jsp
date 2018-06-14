@@ -169,7 +169,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${teachAwardList}" var="teachAward" begin="0" end="9" step="1">
+                                <c:forEach items="${teachAwardList}" var="teachAward" begin="0" end="${teachAwardList.size()}" step="1">
                                     <tr>
                                         <td>${teachAward.teacherName}</td>
                                         <td>${teachAward.awardName}</td>

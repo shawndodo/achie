@@ -196,7 +196,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${researchProjectList}" var="researchProject" begin="0" end="9" step="1">
+                                <c:forEach items="${researchProjectList}" var="researchProject" begin="0" end="${researchProjectList.size()}" step="1">
                                     <tr>
                                         <td>${researchProject.leader}</td>
                                         <td>${researchProject.name}</td>

@@ -163,7 +163,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${studentProjectList}" var="studentProject" begin="0" end="9" step="1">
+                                <c:forEach items="${studentProjectList}" var="studentProject" begin="0" end="${studentProjectList.size()}" step="1">
                                     <tr>
                                         <td>${studentProject.code}</td>
                                         <td>${studentProject.name}</td>
