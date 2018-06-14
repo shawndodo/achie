@@ -447,6 +447,79 @@ public class ReportFormController extends BaseController {
 
             //创建HSSFWorkbook
             wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
+        }else if("teach_reform_research_project_export".equals(pageName)){
+            List<TeachReformResearchProject> list = teachReformResearchProjectDaoImpl.adminFindAll(querySql);
+
+            content = new String[list.size()][];
+
+            //excel标题
+            title = new String[]{
+                    "教师姓名", "项目编号", "项目名称", "级别", "主持人", "年度",
+                    "备注", "提交时间", "修改时间"
+            };
+
+            //excel文件名
+            fileName = "(教学)主持教学改革研究项目统计表" + System.currentTimeMillis() + ".xls";
+
+            //sheet名
+            sheetName = "(教学)主持教学改革研究项目统计表";
+
+            for (int i = 0; i < list.size(); i++) {
+                content[i] = new String[title.length];
+                TeachReformResearchProject teachReformResearchProject = list.get(i);
+                content[i][0] = teachReformResearchProject.getTeacherName();
+                content[i][1] = teachReformResearchProject.getCode();
+                content[i][2] = teachReformResearchProject.getName()+"";
+                content[i][3] = teachReformResearchProject.getLevel();
+                content[i][4] = teachReformResearchProject.getLeader();
+                content[i][5] = teachReformResearchProject.getYear();
+
+
+                content[i][6] = teachReformResearchProject.getRemark();
+                content[i][7] = teachReformResearchProject.getCreatedAt().toString().substring(0, 19);
+                content[i][8] = teachReformResearchProject.getUpdatedAt().toString().substring(0, 19);
+            }
+
+            //创建HSSFWorkbook
+            wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
+        }else if("writing_export".equals(pageName)){
+            List<Writing> list = writingDaoImpl.adminFindAll(querySql);
+
+            content = new String[list.size()][];
+
+            //excel标题
+            title = new String[]{
+                    "教师姓名", "著作名称", "出版号", "身份", "本人排名", "出版社",
+                    "著作类型", "出版时间",
+                    "备注", "提交时间", "修改时间"
+            };
+
+            //excel文件名
+            fileName = "(教学)著作统计表" + System.currentTimeMillis() + ".xls";
+
+            //sheet名
+            sheetName = "(教学)著作统计表";
+
+            for (int i = 0; i < list.size(); i++) {
+                content[i] = new String[title.length];
+                Writing writing = list.get(i);
+                content[i][0] = writing.getTeacherName();
+                content[i][1] = writing.getWritingName();
+                content[i][2] = writing.getPublicationNumber();
+                content[i][3] = writing.getSelfPosition();
+                content[i][4] = writing.getSelfRank()+"";
+                content[i][5] = writing.getPress();
+                content[i][6] = writing.getWritingType();
+                content[i][7] = writing.getPublishTime().toString();
+
+
+                content[i][8] = writing.getRemark();
+                content[i][9] = writing.getCreatedAt().toString().substring(0, 19);
+                content[i][10] = writing.getUpdatedAt().toString().substring(0, 19);
+            }
+
+            //创建HSSFWorkbook
+            wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
         }
 
         if(title.length != 0){

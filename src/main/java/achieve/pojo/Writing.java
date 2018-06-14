@@ -2,6 +2,7 @@ package achieve.pojo;
 
 import java.util.Date;
 
+// 著作(教学)
 public class Writing {
 
     private int id;
