@@ -42,6 +42,8 @@ public class ReportFormController extends BaseController {
     private static SoftwareCopyrightDaoImpl softwareCopyrightDaoImpl = new SoftwareCopyrightDaoImpl();
     @Autowired
     private static StudentProjectDaoImpl studentProjectDaoImpl = new StudentProjectDaoImpl();
+    @Autowired
+    private static TeachAwardDaoImpl teachAwardDaoImpl = new TeachAwardDaoImpl();
 
 
     /**
@@ -369,6 +371,40 @@ public class ReportFormController extends BaseController {
                 content[i][7] = studentProject.getRemark();
                 content[i][8] = studentProject.getCreatedAt().toString().substring(0, 19);
                 content[i][9] = studentProject.getUpdatedAt().toString().substring(0, 19);
+            }
+
+            //创建HSSFWorkbook
+            wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
+        }else if("teach_award_export".equals(pageName)){
+            List<TeachAward> list = teachAwardDaoImpl.adminFindAll(querySql);
+
+            content = new String[list.size()][];
+
+            //excel标题
+            title = new String[]{
+                    "教师姓名", "教学奖项名称", "本人排名", "级别", "授予单位", "获奖时间",
+                    "备注", "提交时间", "修改时间"
+            };
+
+            //excel文件名
+            fileName = "(教学)教学奖项统计表" + System.currentTimeMillis() + ".xls";
+
+            //sheet名
+            sheetName = "(教学)教学奖项统计表";
+
+            for (int i = 0; i < list.size(); i++) {
+                content[i] = new String[title.length];
+                TeachAward teachAward = list.get(i);
+                content[i][0] = teachAward.getTeacherName();
+                content[i][1] = teachAward.getAwardName();
+                content[i][2] = teachAward.getSelfRank()+"";
+                content[i][3] = teachAward.getLevel();
+                content[i][4] = teachAward.getAwardDepartment();
+                content[i][5] = teachAward.getAwardDate().toString();
+
+                content[i][6] = teachAward.getRemark();
+                content[i][7] = teachAward.getCreatedAt().toString().substring(0, 19);
+                content[i][8] = teachAward.getUpdatedAt().toString().substring(0, 19);
             }
 
             //创建HSSFWorkbook
