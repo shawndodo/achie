@@ -44,7 +44,12 @@ public class ReportFormController extends BaseController {
     private static StudentProjectDaoImpl studentProjectDaoImpl = new StudentProjectDaoImpl();
     @Autowired
     private static TeachAwardDaoImpl teachAwardDaoImpl = new TeachAwardDaoImpl();
-
+    @Autowired
+    private static TeachPaperDaoImpl teachPaperDaoImpl = new TeachPaperDaoImpl();
+    @Autowired
+    private static TeachReformResearchProjectDaoImpl teachReformResearchProjectDaoImpl = new TeachReformResearchProjectDaoImpl();
+    @Autowired
+    private static WritingDaoImpl writingDaoImpl = new WritingDaoImpl();
 
     /**
      * 导出报表
@@ -405,6 +410,39 @@ public class ReportFormController extends BaseController {
                 content[i][6] = teachAward.getRemark();
                 content[i][7] = teachAward.getCreatedAt().toString().substring(0, 19);
                 content[i][8] = teachAward.getUpdatedAt().toString().substring(0, 19);
+            }
+
+            //创建HSSFWorkbook
+            wb = ExportUtil.getHSSFWorkbook(sheetName, title, content, null);
+        }else if("teach_paper_export".equals(pageName)){
+            List<TeachPaper> list = teachPaperDaoImpl.adminFindAll(querySql);
+
+            content = new String[list.size()][];
+
+            //excel标题
+            title = new String[]{
+                    "教师姓名", "论文题目", "刊物名称", "期/卷", "页号",
+                    "备注", "提交时间", "修改时间"
+            };
+
+            //excel文件名
+            fileName = "(教学)教学论文统计表" + System.currentTimeMillis() + ".xls";
+
+            //sheet名
+            sheetName = "(教学)教学论文统计表";
+
+            for (int i = 0; i < list.size(); i++) {
+                content[i] = new String[title.length];
+                TeachPaper teachPaper = list.get(i);
+                content[i][0] = teachPaper.getTeacherName();
+                content[i][1] = teachPaper.getPaperName();
+                content[i][2] = teachPaper.getPeriodicalName()+"";
+                content[i][3] = teachPaper.getVol();
+                content[i][4] = teachPaper.getPage();
+
+                content[i][5] = teachPaper.getRemark();
+                content[i][6] = teachPaper.getCreatedAt().toString().substring(0, 19);
+                content[i][7] = teachPaper.getUpdatedAt().toString().substring(0, 19);
             }
 
             //创建HSSFWorkbook
